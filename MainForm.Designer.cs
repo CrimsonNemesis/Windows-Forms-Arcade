@@ -30,7 +30,6 @@
         {
             components = new System.ComponentModel.Container();
             timer = new System.Windows.Forms.Timer(components);
-            pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
             pictureBox3 = new PictureBox();
             pictureBox4 = new PictureBox();
@@ -38,7 +37,6 @@
             pictureBox6 = new PictureBox();
             pictureBox7 = new PictureBox();
             pictureBox8 = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
@@ -50,18 +48,9 @@
             // 
             // timer
             // 
+            timer.Enabled = true;
             timer.Interval = 20;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = Properties.Resources.Player_1;
-            pictureBox1.Location = new Point(104, 673);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(90, 90);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
-            pictureBox1.Tag = "Player";
+            timer.Tick += TimerEvent;
             // 
             // pictureBox2
             // 
@@ -77,7 +66,7 @@
             // pictureBox3
             // 
             pictureBox3.Image = Properties.Resources.Enemy_Scout;
-            pictureBox3.Location = new Point(104, 248);
+            pictureBox3.Location = new Point(121, 248);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(60, 60);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -88,7 +77,7 @@
             // pictureBox4
             // 
             pictureBox4.Image = Properties.Resources.Enemy_Standard;
-            pictureBox4.Location = new Point(183, 248);
+            pictureBox4.Location = new Point(226, 248);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(60, 60);
             pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -99,7 +88,7 @@
             // pictureBox5
             // 
             pictureBox5.Image = Properties.Resources.Enemy_Shooter;
-            pictureBox5.Location = new Point(277, 248);
+            pictureBox5.Location = new Point(337, 248);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(60, 60);
             pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -121,7 +110,7 @@
             // pictureBox7
             // 
             pictureBox7.Image = Properties.Resources.Bullet_Player;
-            pictureBox7.Location = new Point(537, 217);
+            pictureBox7.Location = new Point(942, 210);
             pictureBox7.Name = "pictureBox7";
             pictureBox7.Size = new Size(10, 35);
             pictureBox7.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -132,7 +121,7 @@
             // pictureBox8
             // 
             pictureBox8.Image = Properties.Resources.Bullet_Enemy;
-            pictureBox8.Location = new Point(592, 217);
+            pictureBox8.Location = new Point(997, 210);
             pictureBox8.Name = "pictureBox8";
             pictureBox8.Size = new Size(10, 35);
             pictureBox8.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -145,7 +134,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
-            ClientSize = new Size(1181, 775);
+            ClientSize = new Size(1182, 853);
             Controls.Add(pictureBox8);
             Controls.Add(pictureBox7);
             Controls.Add(pictureBox6);
@@ -153,10 +142,8 @@
             Controls.Add(pictureBox4);
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
-            Controls.Add(pictureBox1);
             Name = "MainForm";
             Text = "Space Invaders";
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
@@ -170,7 +157,6 @@
         #endregion
 
         private System.Windows.Forms.Timer timer;
-        private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private PictureBox pictureBox3;
         private PictureBox pictureBox4;
