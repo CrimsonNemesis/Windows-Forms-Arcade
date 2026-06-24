@@ -47,11 +47,15 @@ public partial class MainForm : System.Windows.Forms.Form
 
         for (int i = Enemy.enemies.Count - 1; i >= 0;i--)
         {
+            bool isEnemyDead = false;
+
             Enemy currentEnemy = Enemy.enemies[i];
+            currentEnemy.Move();
 
             if (currentEnemy.Bounds.IntersectsWith(player.Bounds))
             {
                 player.HealthPoint--;
+                currentEnemy.HealthPoint--;
 
                 if (player.HealthPoint <= 0)
                 {
@@ -60,24 +64,37 @@ public partial class MainForm : System.Windows.Forms.Form
                     break;
                 }
 
-                this.Controls.Remove(currentEnemy);
-                Enemy.enemies.RemoveAt(i);
-                currentEnemy.Dispose();
+                if (currentEnemy.HealthPoint <= 0)
+                {
+                    this.Controls.Remove(currentEnemy);
+                    Enemy.enemies.RemoveAt(i);
+                    currentEnemy.Dispose();
 
-                continue;
+                    continue;
+                }
+                    
             }
 
             for (int j = Player.bullets.Count - 1; j >= 0; j--)
             {
+                if (isEnemyDead) break;
+
                 Bullet currentBullet = Player.bullets[j];
 
                 if (currentBullet.Bounds.IntersectsWith(currentEnemy.Bounds))
                 {
                     this.Controls.Remove(currentBullet);
-                    Player.bullets.RemoveAt(j);
                     currentBullet.Dispose();
+                    Player.bullets.RemoveAt(j);
+                    currentEnemy.HealthPoint--;
 
-                    break;
+                    if (currentEnemy.HealthPoint <= 0)
+                    {
+                        isEnemyDead = true;
+                        this.Controls.Remove(currentEnemy);
+                        currentEnemy.Dispose();
+                        Enemy.enemies.RemoveAt(i);
+                    }
                 }
             }
         }
