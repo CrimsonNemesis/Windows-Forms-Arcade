@@ -45,7 +45,7 @@
             startGame.TabIndex = 0;
             startGame.Text = "Start";
             startGame.UseVisualStyleBackColor = false;
-            startGame.Click += button1_Click;
+            startGame.Click += btnStart_Click;
             // 
             // Shop
             // 

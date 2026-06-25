@@ -20,9 +20,12 @@ namespace Arcade_Game
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnStart_Click(object sender, EventArgs e)
         {
+            MainForm game = new MainForm();
 
+            game.Show();
+            this.Hide();
         }
     }
 }

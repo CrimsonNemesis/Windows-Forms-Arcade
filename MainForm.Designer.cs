@@ -34,7 +34,7 @@
             // 
             // Timer
             // 
-            Timer.Enabled = true;
+            Timer.Enabled = false;
             Timer.Interval = 20;
             Timer.Tick += TimerEvent;
             // 

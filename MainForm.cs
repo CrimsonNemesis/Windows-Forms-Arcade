@@ -18,6 +18,7 @@ public partial class MainForm : System.Windows.Forms.Form
         this.DoubleBuffered = true;
 
         SetupGame();
+        Timer.Start();
     }
 
     private void SetupGame()
