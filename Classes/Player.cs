@@ -46,7 +46,7 @@ internal class Player : PictureBox
         if (e.KeyCode == Keys.Right) goRight = true;
         if (e.KeyCode == Keys.Up) goUp = true;
         if (e.KeyCode == Keys.Down) goDown = true;
-        if (e.KeyCode == Keys.Space && this.CanShoot()) Shoot(0, 1);
+        if (e.KeyCode == Keys.Space) Shoot(0, 1);
     }
 
     public void KeyUp(KeyEventArgs e)
@@ -89,8 +89,7 @@ internal class Player : PictureBox
 
     private void Shoot(int dirX, int dirY)
     {
-        int startX = this.Location.X + this.Size.Width / 2 - 5;
-        int startY = this.Location.Y - 35;
+        if (!this.CanShoot()) return;
 
         PlayerBullet bullet = new(this, dirX, dirY, 15);
         bullets.Add(bullet);

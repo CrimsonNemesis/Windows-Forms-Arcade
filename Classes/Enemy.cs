@@ -8,6 +8,8 @@ internal abstract class Enemy : PictureBox
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public virtual int HealthPoint { get; set; } = 2;
 
+    public static List<EnemyBullet> bullets = new();
+
     public Enemy()
     {
         this.Size = new Size(60, 60);
@@ -36,9 +38,13 @@ class StandardEnemy : Enemy
 class ShooterEnemy : Enemy
 {
     private int speed { get; set; } = 2;
+
+    private DateTime lastTimeShot = DateTime.MinValue;
+    private const int CoolDown = 2000;
+
     public ShooterEnemy(int startX, int startY) : base() { 
         this.Location = new Point(startX - this.Width / 2, startY - this.Height / 2);
-        this.Image = Properties.Resources.Enemy_Standard;
+        this.Image = Properties.Resources.Enemy_Shooter;
     }
 
     public override void Move()
@@ -46,9 +52,23 @@ class ShooterEnemy : Enemy
         this.Top += speed;
     }
 
+    public bool CanShoot()
+    {
+        if ((DateTime.Now - this.lastTimeShot).TotalMilliseconds >= CoolDown)
+        {
+            this.lastTimeShot = DateTime.Now;
+            return true;
+        }
+
+        return false;
+    }
+
     public void Shoot()
     {
+        if (!this.CanShoot()) return;
 
+        EnemyBullet bullet = new(this, 0, -1, 5);
+        bullets.Add(bullet);
     }
 }
 
@@ -86,6 +106,9 @@ class TankEnemy : Enemy
     private int speed { get; set; } = 2;
     public override int HealthPoint { get; set; } = 6;
 
+    private DateTime lastTimeShot = DateTime.MinValue;
+    private const int CoolDown = 2000;
+
     private int invert = 1;
     public TankEnemy(int startX, int startY) : base()
     {
@@ -102,8 +125,32 @@ class TankEnemy : Enemy
         this.Left += speed * invert;
     }
 
+    public bool CanShoot()
+    {
+        if ((DateTime.Now - this.lastTimeShot).TotalMilliseconds >= CoolDown)
+        {
+            this.lastTimeShot = DateTime.Now;
+            return true;
+        }
+
+        return false;
+    }
+
     public void Shoot()
     {
+        if (!this.CanShoot()) return;
 
+        List<EnemyBullet> tankBullets = new List<EnemyBullet> {
+            new EnemyBullet(this, 0, 1, 5),
+            new EnemyBullet(this, 0, -1, 5),
+            new EnemyBullet(this, 1, 0, 5),
+            new EnemyBullet(this, -1, 0, 5),
+            new EnemyBullet(this, 1, 1, 5),
+            new EnemyBullet(this, 1, -1, 5),
+            new EnemyBullet(this, -1, -1, 5),
+            new EnemyBullet(this, -1, 1, 5)
+        };
+
+        foreach (var bullet in tankBullets) bullets.Add(bullet);
     }
 }

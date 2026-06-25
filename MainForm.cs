@@ -5,6 +5,10 @@ public partial class MainForm : System.Windows.Forms.Form
     Player player;
     public static MainForm Instance { get; private set; }
 
+    ShooterEnemy shooterEnemy = new ShooterEnemy(30, 400);
+    TankEnemy tankEnemy = new TankEnemy(100, 50);
+
+
     public MainForm()
     {
         Instance = this;
@@ -27,16 +31,20 @@ public partial class MainForm : System.Windows.Forms.Form
         Enemy enemy1 = new StandardEnemy(100);
         Enemy.enemies.Add(enemy1);
 
-        Enemy enemy2 = new TankEnemy(100, 50);
-        Enemy.enemies.Add(enemy2);
+        Enemy.enemies.Add(tankEnemy);
+        Enemy.enemies.Add(shooterEnemy);
 
         Enemy enemy3 = new TerroristEnemy(100, 200, player);
         Enemy.enemies.Add(enemy3);
+
     }
 
     private void TimerEvent(object sender, EventArgs e)
     {
         player.Move();
+
+        shooterEnemy.Shoot();
+        tankEnemy.Shoot();
 
         for (int i = Player.bullets.Count - 1; i >= 0; i--)
         {
@@ -48,6 +56,38 @@ public partial class MainForm : System.Windows.Forms.Form
             {
                 bullet.Dispose();
                 Player.bullets.RemoveAt(i);
+
+                continue;
+            }
+        }
+
+        for (int i = Enemy.bullets.Count - 1; i >= 0; i--)
+        {
+            EnemyBullet bullet = Enemy.bullets[i];
+
+            bullet.Move();
+
+            if (bullet.IsOutOfBounds())
+            {
+                bullet.Dispose();
+                Enemy.bullets.RemoveAt(i);
+
+                continue;
+            }
+
+            if (bullet.Bounds.IntersectsWith(player.Bounds))
+            {
+                player.HealthPoint--;
+
+                if (player.HealthPoint <= 0)
+                {
+                    // game-over
+                    Timer.Stop();
+                    break;
+                }
+
+                bullet.Dispose();
+                Enemy.bullets.RemoveAt(i);
 
                 continue;
             }
@@ -78,8 +118,7 @@ public partial class MainForm : System.Windows.Forms.Form
                     currentEnemy.Dispose();
 
                     continue;
-                }
-                    
+                } 
             }
 
             for (int j = Player.bullets.Count - 1; j >= 0; j--)
@@ -92,6 +131,7 @@ public partial class MainForm : System.Windows.Forms.Form
                 {
                     currentBullet.Dispose();
                     Player.bullets.RemoveAt(j);
+
                     currentEnemy.HealthPoint--;
 
                     if (currentEnemy.HealthPoint <= 0)
@@ -128,6 +168,9 @@ public partial class MainForm : System.Windows.Forms.Form
             e.Graphics.DrawImage(enemy.Image, enemy.Bounds);
 
         foreach(var bullet in Player.bullets) 
+            e.Graphics.DrawImage(bullet.Image, bullet.Bounds);
+
+        foreach (var bullet in Enemy.bullets)
             e.Graphics.DrawImage(bullet.Image, bullet.Bounds);
     }
 }
