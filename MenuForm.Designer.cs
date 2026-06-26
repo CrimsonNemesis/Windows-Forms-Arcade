@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuForm));
             startGame = new Button();
             Shop = new Button();
             about = new Button();
@@ -97,13 +98,15 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.DarkRed;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.None;
             ClientSize = new Size(800, 450);
             Controls.Add(option);
             Controls.Add(Exit);
             Controls.Add(about);
             Controls.Add(Shop);
             Controls.Add(startGame);
+            MaximizeBox = false;
             Name = "MenuForm";
             Load += MenuForm_Load;
             ResumeLayout(false);

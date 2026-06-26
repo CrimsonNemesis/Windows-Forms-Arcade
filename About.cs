@@ -19,5 +19,10 @@ namespace Arcade_Game
         {
 
         }
+
+        private void About_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
