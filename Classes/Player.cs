@@ -8,6 +8,7 @@ internal class Player : PictureBox
 
     public static int TotalSilverCoinValues = 0;
     public static int TotalGoldCoinValues = 0;
+    public static int TotalScore = 0;
 
     public static Player Instance { get; private set; }
 

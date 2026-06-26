@@ -11,6 +11,9 @@ internal abstract class Enemy : PictureBox
     public static List<EnemyBullet> bullets = new();
     public CoinSpecification? Loot { get; }
 
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    public int Score { get; protected set; }
+
     public Enemy(CoinSpecification? loot = null)
     {
         this.Size = new Size(60, 60);
@@ -43,6 +46,7 @@ class StandardEnemy : Enemy
     {
         this.Image = GameAssets.EnemyStandard;
         this.Location = new Point(startX - this.Width / 2, 100);
+        this.Score = 2;
     }
 
     public override void Move()
@@ -62,6 +66,7 @@ class ShooterEnemy : Enemy
     { 
         this.Location = new Point(startX - this.Width / 2, startY - this.Height / 2);
         this.Image = GameAssets.EnemyShooter;
+        this.Score = 2;
     }
 
     public override void Move()
@@ -101,6 +106,7 @@ class ScoutEnemy : Enemy
     {
         this.Image = GameAssets.EnemyScout;
         this.Location = new Point(startX - this.Width / 2, startY - this.Height / 2);
+        this.Score = 5;
     }
 
     public override void Move()
@@ -129,6 +135,7 @@ class TerroristEnemy : Enemy
     {
         this.Location = new Point(startX - this.Width / 2, startY - this.Height / 2);
         this.Image = GameAssets.EnemyTerrorist;
+        this.Score = 7;
     }
 
     public override void Move()
@@ -161,6 +168,7 @@ class TankEnemy : Enemy
         this.Image = GameAssets.EnemyTank;
         this.Size = new Size(125, 75);
         this.Location = new Point(startX - this.Width / 2, startY - this.Height / 2);
+        this.Score = 10;
     }
 
     public override void Move()
