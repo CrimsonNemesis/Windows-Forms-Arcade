@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(choose));
             NormMode = new Button();
             backBtn = new Button();
             PixMode = new Button();
@@ -77,7 +76,6 @@
             Controls.Add(PixMode);
             Controls.Add(backBtn);
             Controls.Add(NormMode);
-            Icon = (Icon)resources.GetObject("$this.Icon");
             MinimizeBox = false;
             Name = "choose";
             Text = "choose";
