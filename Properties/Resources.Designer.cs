@@ -93,9 +93,39 @@ namespace Arcade_Game.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap e447c5bdd414dce7b88d3bd7536c9f47 {
+        internal static System.Drawing.Bitmap Coin_Gold_1 {
             get {
-                object obj = ResourceManager.GetObject("e447c5bdd414dce7b88d3bd7536c9f47", resourceCulture);
+                object obj = ResourceManager.GetObject("Coin Gold 1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Coin_Gold_5 {
+            get {
+                object obj = ResourceManager.GetObject("Coin Gold 5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Coin_Silver_1 {
+            get {
+                object obj = ResourceManager.GetObject("Coin Silver 1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Coin_Silver_5 {
+            get {
+                object obj = ResourceManager.GetObject("Coin Silver 5", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

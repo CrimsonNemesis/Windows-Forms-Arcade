@@ -22,13 +22,13 @@ public partial class MainForm : System.Windows.Forms.Form
 
         this.Paint += MainFormPaint;
 
-        player = new Player(Properties.Resources.Player_1);
+        player = new Player(GameAssets.SkinPlayer1);
 
         // test
-        Enemy.enemies.Add(new StandardEnemy(100));
-        Enemy.enemies.Add(new TankEnemy(100, 50));
-        Enemy.enemies.Add(new ShooterEnemy(30, 400));
-        Enemy.enemies.Add(new ScoutEnemy(60, 60));
+        Enemy.enemies.Add(new StandardEnemy(100, new(5, CoinKind.Gold)));
+        Enemy.enemies.Add(new TankEnemy(100, 50, new(1, CoinKind.Gold)));
+        Enemy.enemies.Add(new ShooterEnemy(30, 400, new(5, CoinKind.Silver)));
+        Enemy.enemies.Add(new ScoutEnemy(60, 60, new(1, CoinKind.Silver)));
         Enemy.enemies.Add(new TerroristEnemy(100, 200));
         // test
     }
@@ -92,9 +92,11 @@ public partial class MainForm : System.Windows.Forms.Form
 
                 if (currentEnemy.HealthPoint <= 0)
                 {
+                    currentEnemy.DropCoin();
+                    Player.TotalScore += currentEnemy.Score;
                     Enemy.enemies.RemoveAt(i);
                     currentEnemy.Dispose();
-
+                    
                     continue;
                 }
             }
@@ -114,11 +116,28 @@ public partial class MainForm : System.Windows.Forms.Form
 
                     if (currentEnemy.HealthPoint <= 0)
                     {
-                        isEnemyDead = true;
-                        currentEnemy.Dispose();
+                        currentEnemy.DropCoin();
+                        Player.TotalScore += currentEnemy.Score;
                         Enemy.enemies.RemoveAt(i);
+                        currentEnemy.Dispose();
+
+                        isEnemyDead = true;
                     }
                 }
+            }
+        }
+
+        for (int i = Coin.coins.Count - 1; i >= 0; i--)
+        {
+            Coin currentCoin = Coin.coins[i];
+
+            if (player.Bounds.IntersectsWith(currentCoin.Bounds))
+            {
+                if (currentCoin.kind == CoinKind.Silver) Player.TotalSilverCoinValues += currentCoin.value;
+                else if (currentCoin.kind == CoinKind.Gold) Player.TotalGoldCoinValues += currentCoin.value;
+
+                Coin.coins.RemoveAt(i);
+                currentCoin.Dispose();
             }
         }
 
@@ -150,6 +169,9 @@ public partial class MainForm : System.Windows.Forms.Form
 
         foreach (var bullet in Enemy.bullets)
             e.Graphics.DrawImage(bullet.Image, bullet.Bounds);
+
+        foreach (var coin in Coin.coins)
+            e.Graphics.DrawImage(coin.Image, coin.Bounds);
     }
 
     private void MainForm_Load(object sender, EventArgs e)

@@ -1,11 +1,14 @@
 ﻿using System.ComponentModel;
-using System.Numerics;
 
 namespace Arcade_Game;
 
 internal class Player : PictureBox
 {
     public static List<PlayerBullet> bullets = new();
+
+    public static int TotalSilverCoinValues = 0;
+    public static int TotalGoldCoinValues = 0;
+    public static int TotalScore = 0;
 
     public static Player Instance { get; private set; }
 
@@ -53,10 +56,10 @@ internal class Player : PictureBox
 
         this.Image = skin;
         this.SizeMode = PictureBoxSizeMode.StretchImage;
+        this.BackColor = Color.Transparent;
 
         this.Size = new Size(90, 90);
         this.Location = new Point(windowWidth / 2 - 45, windowHeight - 90 - 15);
-        this.BackColor = Color.Transparent;
     }
 
     public void KeyDown(KeyEventArgs e)
