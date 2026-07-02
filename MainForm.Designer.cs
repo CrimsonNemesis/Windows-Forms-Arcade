@@ -47,9 +47,9 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
-            MaximizeBox = false;
             Name = "MainForm";
             Text = "Space Invaders";
+            FormClosing += Form_FormClosing;
             Load += MainForm_Load;
             ResumeLayout(false);
         }

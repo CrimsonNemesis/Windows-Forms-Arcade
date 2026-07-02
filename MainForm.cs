@@ -146,6 +146,11 @@ public partial class MainForm : System.Windows.Forms.Form
         player.KeyDown(e);
     }
 
+    private void Form_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        Application.Exit();
+    }
+
     private void MainFormKeyUp(object sender, KeyEventArgs e)
     {
         player.KeyUp(e);

@@ -20,6 +20,11 @@ namespace Arcade_Game
 
         }
 
+        private void Form_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
         private void btnStart_Click(object sender, EventArgs e)
         {
             Choose game = new Choose();

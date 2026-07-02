@@ -31,6 +31,11 @@ namespace Arcade_Game
             this.Hide();
         }
 
+        private void Form_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
         private void choose_Load(object sender, EventArgs e)
         {
 

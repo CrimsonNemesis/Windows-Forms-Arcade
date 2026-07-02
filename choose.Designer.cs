@@ -82,6 +82,7 @@
             MinimizeBox = false;
             Name = "Choose";
             Text = "choose";
+            FormClosing += Form_FormClosing;
             Load += choose_Load;
             ResumeLayout(false);
         }
