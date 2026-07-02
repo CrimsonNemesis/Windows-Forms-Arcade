@@ -111,6 +111,9 @@ internal class Player : PictureBox
     private void Shoot(int dirX, int dirY)
     {
         if (!this.CanShoot()) return;
+        GameAssets.Shoot.Play();
+
+
 
         PlayerBullet bullet = new(this, dirX, dirY, 15);
         bullets.Add(bullet);

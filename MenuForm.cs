@@ -17,7 +17,7 @@ namespace Arcade_Game
 
         private void MenuForm_Load(object sender, EventArgs e)
         {
-
+            MusicPlayer.Play(@"Resources\Musics&Sounds\MenuMusic.wav");
         }
 
         private void Form_FormClosing(object sender, FormClosingEventArgs e)

@@ -11,6 +11,8 @@ public partial class MainForm : System.Windows.Forms.Form
         InitializeComponent();
         this.DoubleBuffered = true;
 
+
+
         SetupGame();
         Timer.Start();
     }
@@ -87,11 +89,13 @@ public partial class MainForm : System.Windows.Forms.Form
 
             if (currentEnemy.Bounds.IntersectsWith(player.Bounds) && player.CanGetHitByImpact())
             {
+
                 player.HealthPoint--;
                 currentEnemy.HealthPoint--;
 
                 if (currentEnemy.HealthPoint <= 0)
                 {
+                    GameAssets.Explosion.Play();
                     currentEnemy.DropCoin();
                     Enemy.enemies.RemoveAt(i);
                     currentEnemy.Dispose();
@@ -115,6 +119,7 @@ public partial class MainForm : System.Windows.Forms.Form
 
                     if (currentEnemy.HealthPoint <= 0)
                     {
+                        GameAssets.Explosion.Play();
                         isEnemyDead = true;
                         currentEnemy.DropCoin();
                         currentEnemy.Dispose();
@@ -130,6 +135,7 @@ public partial class MainForm : System.Windows.Forms.Form
 
             if (player.Bounds.IntersectsWith(currentCoin.Bounds))
             {
+                GameAssets.CoinPickup.Play();
                 if (currentCoin.kind == CoinKind.Silver) Player.TotalSilverCoinValues += currentCoin.value;
                 else if (currentCoin.kind == CoinKind.Gold) Player.TotalGoldCoinValues += currentCoin.value;
 
@@ -179,5 +185,6 @@ public partial class MainForm : System.Windows.Forms.Form
     private void MainForm_Load(object sender, EventArgs e)
     {
 
+        MusicPlayer.Play(@"Resources\Musics&Sounds\GameMusic.wav");
     }
 }
