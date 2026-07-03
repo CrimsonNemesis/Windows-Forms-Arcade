@@ -5,23 +5,37 @@ namespace Arcade_Game;
 internal abstract class Enemy : PictureBox
 {
     public static List<Enemy> enemies = new();
+    public static List<EnemyBullet> bullets = new();
+
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public virtual int HealthPoint { get; set; } = 2;
 
-    public static List<EnemyBullet> bullets = new();
     public CoinSpecification? Loot { get; }
+
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    public int Score { get; protected set; }
+
+    protected DateTime lastTimeShot = DateTime.MinValue;
 
     public Enemy(CoinSpecification? loot = null)
     {
         this.Size = new Size(60, 60);
         this.SizeMode = PictureBoxSizeMode.StretchImage;
         this.BackColor = Color.Transparent;
-
         this.Loot = loot;
     }
 
-    public new abstract void Move();
+    protected bool CanShoot(int cooldownMilliseconds)
+    {
+        if ((DateTime.Now - lastTimeShot).TotalMilliseconds >= cooldownMilliseconds)
+        {
+            lastTimeShot = DateTime.Now;
+            return true;
+        }
+        return false;
+    }
 
+    public new abstract void Move();
     public virtual void Shoot() { }
 
     public void DropCoin()
@@ -30,7 +44,6 @@ internal abstract class Enemy : PictureBox
         {
             int centerX = this.Left + this.Width / 2;
             int centerY = this.Top + this.Height / 2;
-
             Coin.coins.Add(new Coin(Loot.Value, Loot.Kind, centerX, centerY));
         }
     }
@@ -39,51 +52,34 @@ internal abstract class Enemy : PictureBox
 class StandardEnemy : Enemy
 {
     private int speed { get; set; } = 2;
+
     public StandardEnemy(int startX, CoinSpecification? loot = null) : base(loot)
     {
         this.Image = GameAssets.NormalEnemyStandard;
         this.Location = new Point(startX - this.Width / 2, 100);
+        Score = 5;
     }
 
-    public override void Move()
-    {
-        this.Top += speed;
-    }
+    public override void Move() => this.Top += speed;
 }
 
 class ShooterEnemy : Enemy
 {
     private int speed { get; set; } = 2;
-
-    private DateTime lastTimeShot = DateTime.MinValue;
     private const int CoolDown = 2000;
 
     public ShooterEnemy(int startX, int startY, CoinSpecification? loot = null) : base(loot)
-    { 
+    {
         this.Location = new Point(startX - this.Width / 2, startY - this.Height / 2);
         this.Image = GameAssets.NormalEnemyShooter;
+        Score = 15;
     }
 
-    public override void Move()
-    {
-        this.Top += speed;
-    }
-
-    public bool CanShoot()
-    {
-        if ((DateTime.Now - this.lastTimeShot).TotalMilliseconds >= CoolDown)
-        {
-            this.lastTimeShot = DateTime.Now;
-            return true;
-        }
-
-        return false;
-    }
+    public override void Move() => this.Top += speed;
 
     public override void Shoot()
     {
-        if (!this.CanShoot()) return;
-
+        if (!base.CanShoot(CoolDown)) return;
         EnemyBullet bullet = new(this, 0, -1, 5);
         bullets.Add(bullet);
     }
@@ -93,7 +89,6 @@ class ScoutEnemy : Enemy
 {
     private int speed { get; set; } = 3;
     private int invert = 1;
-
     private static readonly Random rand = new();
     private DateTime lastInvertTime = DateTime.Now;
 
@@ -101,6 +96,7 @@ class ScoutEnemy : Enemy
     {
         this.Image = GameAssets.NormalEnemyScout;
         this.Location = new Point(startX - this.Width / 2, startY - this.Height / 2);
+        Score = 10;
     }
 
     public override void Move()
@@ -115,7 +111,6 @@ class ScoutEnemy : Enemy
         else if (this.Left < 0) invert = 1;
 
         int step = (int)Math.Round(speed / Math.Sqrt(2));
-
         this.Top += step;
         this.Left += invert * step;
     }
@@ -125,10 +120,12 @@ class TerroristEnemy : Enemy
 {
     private int speed { get; set; } = 2;
     public override int HealthPoint { get; set; } = 1;
+
     public TerroristEnemy(int startX, int startY, CoinSpecification? loot = null) : base(loot)
     {
         this.Location = new Point(startX - this.Width / 2, startY - this.Height / 2);
         this.Image = GameAssets.NormalEnemyTerrorist;
+        Score = 10;
     }
 
     public override void Move()
@@ -137,11 +134,9 @@ class TerroristEnemy : Enemy
         int diffY = Player.Instance.Top - this.Top;
 
         double diagonal = Math.Sqrt(Math.Pow(diffX, 2) + Math.Pow(diffY, 2));
-
         if (diagonal == 0) return;
 
         double k = speed / diagonal;
-
         this.Left += (int)Math.Round(diffX * k);
         this.Top += (int)Math.Round(diffY * k);
     }
@@ -151,16 +146,15 @@ class TankEnemy : Enemy
 {
     private int speed { get; set; } = 2;
     public override int HealthPoint { get; set; } = 6;
-
-    private DateTime lastTimeShot = DateTime.MinValue;
     private const int CoolDown = 2000;
-
     private int invert = 1;
+
     public TankEnemy(int startX, int startY, CoinSpecification? loot = null) : base(loot)
     {
         this.Image = GameAssets.NormalEnemyTank;
         this.Size = new Size(125, 75);
         this.Location = new Point(startX - this.Width / 2, startY - this.Height / 2);
+        Score = 25;
     }
 
     public override void Move()
@@ -171,30 +165,15 @@ class TankEnemy : Enemy
         this.Left += speed * invert;
     }
 
-    public bool CanShoot()
-    {
-        if ((DateTime.Now - this.lastTimeShot).TotalMilliseconds >= CoolDown)
-        {
-            this.lastTimeShot = DateTime.Now;
-            return true;
-        }
-
-        return false;
-    }
-
     public override void Shoot()
     {
-        if (!this.CanShoot()) return;
+        if (!base.CanShoot(CoolDown)) return;
 
         List<EnemyBullet> tankBullets = new List<EnemyBullet> {
-            new EnemyBullet(this, 0, 1, 5),
-            new EnemyBullet(this, 0, -1, 5),
-            new EnemyBullet(this, 1, 0, 5),
-            new EnemyBullet(this, -1, 0, 5),
-            new EnemyBullet(this, 1, 1, 5),
-            new EnemyBullet(this, 1, -1, 5),
-            new EnemyBullet(this, -1, -1, 5),
-            new EnemyBullet(this, -1, 1, 5)
+            new EnemyBullet(this, 0, 1, 5), new EnemyBullet(this, 0, -1, 5),
+            new EnemyBullet(this, 1, 0, 5), new EnemyBullet(this, -1, 0, 5),
+            new EnemyBullet(this, 1, 1, 5), new EnemyBullet(this, 1, -1, 5),
+            new EnemyBullet(this, -1, -1, 5), new EnemyBullet(this, -1, 1, 5)
         };
 
         foreach (var bullet in tankBullets) bullets.Add(bullet);

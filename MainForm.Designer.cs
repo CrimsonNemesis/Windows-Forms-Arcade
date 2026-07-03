@@ -50,7 +50,6 @@
             MaximizeBox = false;
             Name = "MainForm";
             Text = "Space Invaders";
-            Load += MainForm_Load;
             ResumeLayout(false);
         }
 
