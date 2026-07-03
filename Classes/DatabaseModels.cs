@@ -41,10 +41,10 @@ public class GameDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<ShopItem>().HasData(
-            new ShopItem { Id = 1, Name = "سفینه عقاب سرخ", Category = "Skin", Price = 500, IsPurchased = false, IsEquipped = false, CurrencyType = CoinKind.Gold },
-            new ShopItem { Id = 2, Name = "تیرهای لیزری سبز", Category = "Bullet", Price = 300, IsPurchased = false, IsEquipped = false, CurrencyType = CoinKind.Silver },
-            new ShopItem { Id = 3, Name = "پس‌زمینه شهر نئونی", Category = "Theme", Price = 400, IsPurchased = false, IsEquipped = false, CurrencyType = CoinKind.Gold },
-            new ShopItem { Id = 4, Name = "بسته جان اضافه", Category = "Consumable", Price = 150, IsPurchased = false, IsEquipped = false, CurrencyType = CoinKind.Silver }
+            new ShopItem { Id = 1, Name = "Spaceship 2", Category = "Skin", Price = 500, IsPurchased = false, IsEquipped = false, CurrencyType = CoinKind.Gold },
+            new ShopItem { Id = 2, Name = "Green Bullets", Category = "Bullet", Price = 300, IsPurchased = false, IsEquipped = false, CurrencyType = CoinKind.Silver },
+            new ShopItem { Id = 3, Name = "Neon Background", Category = "Theme", Price = 400, IsPurchased = false, IsEquipped = false, CurrencyType = CoinKind.Gold },
+            new ShopItem { Id = 4, Name = "Extra Life", Category = "Consumable", Price = 150, IsPurchased = false, IsEquipped = false, CurrencyType = CoinKind.Silver }
         );
     }
 }
