@@ -8,6 +8,8 @@ internal class Player : PictureBox
 
     public static int TotalSilverCoinValues = 0;
     public static int TotalGoldCoinValues = 0;
+    public static int CurrentScore = 0;
+    public static int HighScore { get; set; }
 
     public static Player Instance { get; private set; }
 
@@ -17,13 +19,8 @@ internal class Player : PictureBox
     private DateTime lastTimeImpactWithEnemy = DateTime.MinValue;
     private const int DelayAfterImpact = 500;
 
-    bool goLeft;
-    bool goRight;
-    bool goUp;
-    bool goDown;
-
-    int windowWidth;
-    int windowHeight;
+    bool goLeft, goRight, goUp, goDown;
+    int windowWidth, windowHeight;
 
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public int Speed { get; set; } = 10;
@@ -36,10 +33,11 @@ internal class Player : PictureBox
         set
         {
             _HP = value;
-
             if (_HP <= 0)
             {
                 _HP = 0;
+                Player.HighScore = Math.Max(Player.CurrentScore, Player.HighScore);
+                SavePlayerDataToDb();
                 SoundEffects.Play(GameAssets.Explosion);
                 MainForm.Instance.Timer.Stop();
                 this.Dispose();
@@ -56,9 +54,25 @@ internal class Player : PictureBox
         this.Image = skin;
         this.SizeMode = PictureBoxSizeMode.StretchImage;
         this.BackColor = Color.Transparent;
-
         this.Size = new Size(90, 90);
         this.Location = new Point(windowWidth / 2 - 45, windowHeight - 90 - 15);
+    }
+
+    private void SavePlayerDataToDb()
+    {
+        using (var db = new GameDbContext())
+        {
+            var activeProfile = db.PlayerProfiles.FirstOrDefault(p => p.Id == GameSession.CurrentPlayerId);
+            if (activeProfile != null)
+            {
+                activeProfile.TotalGoldCoinValues += Player.TotalGoldCoinValues;
+                activeProfile.TotalSilverCoinValues += Player.TotalSilverCoinValues;
+
+                activeProfile.HighScore = Math.Max(Player.HighScore, activeProfile.HighScore);
+
+                db.SaveChanges();
+            }
+        }
     }
 
     public void KeyDown(KeyEventArgs e)
@@ -81,7 +95,7 @@ internal class Player : PictureBox
     public new void Move()
     {
         if (goLeft && this.Location.X >= 15) this.Left -= Speed;
-        if (goRight && this.Location.X <= windowWidth - 90 - 15 ) this.Left += Speed;
+        if (goRight && this.Location.X <= windowWidth - 90 - 15) this.Left += Speed;
         if (goUp && this.Location.Y >= 15) this.Top -= Speed;
         if (goDown && this.Location.Y <= windowHeight - 90 - 15) this.Top += Speed;
     }
@@ -93,7 +107,6 @@ internal class Player : PictureBox
             this.lastTimeShot = DateTime.Now;
             return true;
         }
-
         return false;
     }
 
@@ -104,7 +117,6 @@ internal class Player : PictureBox
             this.lastTimeImpactWithEnemy = DateTime.Now;
             return true;
         }
-
         return false;
     }
 

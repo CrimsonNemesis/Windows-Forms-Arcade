@@ -31,10 +31,7 @@ namespace Arcade_Game.Properties {
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Resources() {
         }
-
-        public static Image PixelBulletPlayer { get; internal set; }
-        public static Image PixelBulletEnemy { get; internal set; }
-
+        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
@@ -145,6 +142,16 @@ namespace Arcade_Game.Properties {
         internal static System.Drawing.Bitmap NormalBulletPlayer {
             get {
                 object obj = ResourceManager.GetObject("NormalBulletPlayer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap NormalBulletPlayerGreen {
+            get {
+                object obj = ResourceManager.GetObject("NormalBulletPlayerGreen", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

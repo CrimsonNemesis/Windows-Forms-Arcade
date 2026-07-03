@@ -33,6 +33,7 @@ internal class GameAssets
     public static readonly Image NormalSpecialPlayer = Properties.Resources.NormalSpecialPlayer;
 
     public static readonly Image NormalBulletPlayer = Properties.Resources.NormalBulletPlayer;
+    public static readonly Image NormalBulletPlayerGreen = Properties.Resources.NormalBulletPlayerGreen;
     public static readonly Image NormalBulletEnemy = Properties.Resources.NormalBulletEnemy;
 
 
@@ -53,8 +54,8 @@ internal class GameAssets
     public static readonly Image PixelPlayer = Properties.Resources.PixelPlayer;
     public static readonly Image PixelSpecialPlayer = Properties.Resources.PixelSpecialPlayer;
 
-    public static readonly Image PixelBulletPlayer = Properties.Resources.PixelBulletPlayer;
-    public static readonly Image PixelBulletEnemy = Properties.Resources.PixelBulletEnemy;
+    public static readonly Image PixelBulletPlayer = Properties.Resources.PixelPlayerBullet;
+    public static readonly Image PixelBulletEnemy = Properties.Resources.PixelEnemyBullet;
 
 
 

@@ -1,9 +1,5 @@
 ﻿namespace Arcade_Game;
 
-using System;
-using System.Drawing;
-using System.Windows.Forms;
-
 internal abstract class Bullet : PictureBox
 {
     protected double exactX;
