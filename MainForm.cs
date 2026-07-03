@@ -95,7 +95,7 @@ public partial class MainForm : System.Windows.Forms.Form
 
                 if (currentEnemy.HealthPoint <= 0)
                 {
-                    GameAssets.Explosion.Play();
+                    SoundEffects.Play(GameAssets.Shoot);
                     currentEnemy.DropCoin();
                     Enemy.enemies.RemoveAt(i);
                     currentEnemy.Dispose();
@@ -119,7 +119,7 @@ public partial class MainForm : System.Windows.Forms.Form
 
                     if (currentEnemy.HealthPoint <= 0)
                     {
-                        GameAssets.Explosion.Play();
+                        SoundEffects.Play(GameAssets.Explosion);
                         isEnemyDead = true;
                         currentEnemy.DropCoin();
                         currentEnemy.Dispose();
@@ -135,7 +135,7 @@ public partial class MainForm : System.Windows.Forms.Form
 
             if (player.Bounds.IntersectsWith(currentCoin.Bounds))
             {
-                GameAssets.CoinPickup.Play();
+                SoundEffects.Play(GameAssets.CoinPickup);
                 if (currentCoin.kind == CoinKind.Silver) Player.TotalSilverCoinValues += currentCoin.value;
                 else if (currentCoin.kind == CoinKind.Gold) Player.TotalGoldCoinValues += currentCoin.value;
 

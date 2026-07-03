@@ -40,7 +40,7 @@ internal class Player : PictureBox
             if (_HP <= 0)
             {
                 _HP = 0;
-
+                SoundEffects.Play(GameAssets.Explosion);
                 MainForm.Instance.Timer.Stop();
                 this.Dispose();
             }
@@ -111,7 +111,7 @@ internal class Player : PictureBox
     private void Shoot(int dirX, int dirY)
     {
         if (!this.CanShoot()) return;
-        GameAssets.Shoot.Play();
+        SoundEffects.Play(GameAssets.Shoot);
 
 
 

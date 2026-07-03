@@ -45,5 +45,12 @@ namespace Arcade_Game
             page.Show();
             this.Hide();
         }
+
+        private void option_Click(object sender, EventArgs e)
+        {
+            Options superbeje = new Options();
+            superbeje.Show();
+            this.Hide();
+        }
     }
 }
