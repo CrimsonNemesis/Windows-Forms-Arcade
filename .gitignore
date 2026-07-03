@@ -2,6 +2,3 @@
 bin/
 obj/
 *.csproj.user
-GameData.db
-GameData.db-shm
-GameData.db-wal
