@@ -64,9 +64,15 @@ internal class Player : PictureBox
             var activeProfile = db.PlayerProfiles.FirstOrDefault(p => p.Id == GameSession.CurrentPlayerId);
             if (activeProfile != null)
             {
-                activeProfile.TotalGoldCoins += Player.TotalGoldCoinValues;
-                activeProfile.TotalSilverCoins += Player.TotalSilverCoinValues;
-                if (Player.HighScore > activeProfile.HighScore) activeProfile.HighScore = Player.HighScore;
+                // مقادیر جمع آوری شده در این دست به مقادیر کل در دیتابیس اضافه می‌شوند
+                activeProfile.TotalGoldCoinValues += Player.TotalGoldCoinValues;
+                activeProfile.TotalSilverCoinValues += Player.TotalSilverCoinValues;
+
+                if (Player.HighScore > activeProfile.HighScore)
+                {
+                    activeProfile.HighScore = Player.HighScore;
+                }
+
                 db.SaveChanges();
             }
         }
