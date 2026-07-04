@@ -37,7 +37,9 @@ internal class Player : GameObject
             {
                 _HP = 0;
                 Player.HighScore = Math.Max(Player.CurrentScore, Player.HighScore);
+
                 //SavePlayerDataToDb();
+
                 MainForm.Instance.Timer.Stop();
             }
         }
@@ -88,7 +90,7 @@ internal class Player : GameObject
         if (e.KeyCode == Keys.Down) goDown = false;
     }
 
-    public new void Move()
+    public void Move()
     {
         if (goLeft && this.Location.X >= 15) this.Left -= Speed;
         if (goRight && this.Location.X <= windowWidth - 90 - 15) this.Left += Speed;

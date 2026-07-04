@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace Arcade_Game;
+﻿namespace Arcade_Game;
 
 public class GameObject
 {
@@ -53,7 +51,7 @@ public class GameObject
     public int Right => _bounds.Right;
     public int Bottom => _bounds.Bottom;
 
-    public virtual void Draw(Graphics g)
+    public void Draw(Graphics g)
     {
         if (!Visible || Image == null) return;
         g.DrawImage(Image, _bounds);

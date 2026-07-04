@@ -33,7 +33,7 @@ internal abstract class Enemy : GameObject
         return false;
     }
 
-    public new abstract void Move();
+    public abstract void Move();
     public virtual void Shoot() { }
 
     public void DropCoin()
