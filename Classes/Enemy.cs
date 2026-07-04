@@ -19,7 +19,7 @@ internal abstract class Enemy : GameObject
 
     protected DateTime lastTimeShot = DateTime.MinValue;
 
-    protected int speed { get; set; }
+    protected int Speed { get; set; }
 
     protected Point Invert = new Point(1, 1);
 
@@ -48,7 +48,7 @@ internal abstract class Enemy : GameObject
         if (this.Top <= 0) Invert.Y = 1;
         else if (this.Bottom >= MainForm.Instance.ClientSize.Height) Invert.Y = -1;
 
-        this.Top += speed * Invert.Y;
+        this.Top += Speed * Invert.Y;
     }
 
     public void DropCoin()
@@ -69,7 +69,7 @@ class StandardEnemy : Enemy
         this.Image = GameAssets.NormalEnemyStandard;
 
         Score = 5;
-        speed = 2;
+        Speed = 2;
     }
 }
 
@@ -82,7 +82,7 @@ class ShooterEnemy : Enemy
         this.Image = GameAssets.NormalEnemyShooter;
 
         Score = 15;
-        speed = 2;
+        Speed = 2;
     }
 
     public override void Shoot()
@@ -103,7 +103,7 @@ class ScoutEnemy : Enemy
         this.Image = GameAssets.NormalEnemyScout;
 
         Score = 10;
-        speed = 3;
+        Speed = 3;
     }
 
     public override void Move()
@@ -120,7 +120,7 @@ class ScoutEnemy : Enemy
         if (this.Top <= 0) Invert.Y = 1;
         else if (this.Bottom >= MainForm.Instance.ClientSize.Height) Invert.Y = -1;
 
-        int step = (int)Math.Round(speed / Math.Sqrt(2));
+        int step = (int)Math.Round(Speed / Math.Sqrt(2));
         this.Left += step * Invert.X;
         this.Top += step * Invert.Y;
     }
@@ -135,7 +135,7 @@ class TerroristEnemy : Enemy
         this.Image = GameAssets.NormalEnemyTerrorist;
 
         Score = 10;
-        speed = 2;
+        Speed = 2;
     }
 
     public override void Move()
@@ -146,7 +146,7 @@ class TerroristEnemy : Enemy
         double diagonal = Math.Sqrt(Math.Pow(diffX, 2) + Math.Pow(diffY, 2));
         if (diagonal == 0) return;
 
-        double k = speed / diagonal;
+        double k = Speed / diagonal;
         this.Left += (int)Math.Round(diffX * k);
         this.Top += (int)Math.Round(diffY * k);
     }
@@ -162,7 +162,7 @@ class TankEnemy : Enemy
         this.Image = AssetManager.TankEnemy;
         this.Size = new Size(125, 75);
         Score = 25;
-        speed = 2;
+        Speed = 2;
     }
 
     public override void Move()
@@ -170,7 +170,7 @@ class TankEnemy : Enemy
         if (this.Right > MainForm.Instance.ClientSize.Width) Invert.X = -1;
         else if (this.Left < 0) Invert.X = 1;
 
-        this.Left += speed * Invert.X;
+        this.Left += Speed * Invert.X;
     }
 
     public override void Shoot()
