@@ -55,7 +55,7 @@ class StandardEnemy : Enemy
 
     public StandardEnemy(int startX, CoinSpecification? loot = null) : base(loot)
     {
-        this.Image = GameAssets.NormalEnemyStandard;
+        this.Image = AssetManager.StandardEnemy;
         this.Location = new Point(startX - this.Width / 2, 100);
         Score = 5;
     }
@@ -71,7 +71,7 @@ class ShooterEnemy : Enemy
     public ShooterEnemy(int startX, int startY, CoinSpecification? loot = null) : base(loot)
     {
         this.Location = new Point(startX - this.Width / 2, startY - this.Height / 2);
-        this.Image = GameAssets.NormalEnemyShooter;
+        this.Image = AssetManager.ShooterEnemy;
         Score = 15;
     }
 
@@ -94,7 +94,7 @@ class ScoutEnemy : Enemy
 
     public ScoutEnemy(int startX, int startY, CoinSpecification? loot = null) : base(loot)
     {
-        this.Image = GameAssets.NormalEnemyScout;
+        this.Image = AssetManager.ScoutEnemy;
         this.Location = new Point(startX - this.Width / 2, startY - this.Height / 2);
         Score = 10;
     }
@@ -124,7 +124,7 @@ class TerroristEnemy : Enemy
     public TerroristEnemy(int startX, int startY, CoinSpecification? loot = null) : base(loot)
     {
         this.Location = new Point(startX - this.Width / 2, startY - this.Height / 2);
-        this.Image = GameAssets.NormalEnemyTerrorist;
+        this.Image = AssetManager.TerroristEnemy;
         Score = 10;
     }
 
@@ -151,7 +151,7 @@ class TankEnemy : Enemy
 
     public TankEnemy(int startX, int startY, CoinSpecification? loot = null) : base(loot)
     {
-        this.Image = GameAssets.NormalEnemyTank;
+        this.Image = AssetManager.TankEnemy;
         this.Size = new Size(125, 75);
         this.Location = new Point(startX - this.Width / 2, startY - this.Height / 2);
         Score = 25;

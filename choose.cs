@@ -25,6 +25,7 @@ namespace Arcade_Game
 
         private void NormMode_Click(object sender, EventArgs e)
         {
+            GameSettings.PixelMode = false;
             MainForm game3 = new MainForm();
 
             game3.Show();
@@ -39,6 +40,15 @@ namespace Arcade_Game
         private void choose_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void PixMode_Click(object sender, EventArgs e)
+        {
+            GameSettings.PixelMode = true;
+            MainForm game3 = new MainForm();
+
+            game3.Show();
+            this.Hide();
         }
     }
 }

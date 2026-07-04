@@ -67,6 +67,7 @@
             PixMode.TabIndex = 2;
             PixMode.Text = "Pixel Mode";
             PixMode.UseVisualStyleBackColor = true;
+            PixMode.Click += PixMode_Click;
             // 
             // Choose
             // 

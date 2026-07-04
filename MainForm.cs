@@ -25,7 +25,7 @@ public partial class MainForm : Form
 
         //LoadPlayerDataFromDb();
 
-        player = new Player(GameAssets.NormalPlayer);
+        player = new Player(AssetManager.Player);
 
         // test
         Enemy.enemies.Add(new StandardEnemy(100, new(5, CoinKind.Gold)));
