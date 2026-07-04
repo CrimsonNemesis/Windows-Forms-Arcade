@@ -31,12 +31,23 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             Timer = new System.Windows.Forms.Timer(components);
+            pH = new Label();
             SuspendLayout();
             // 
             // Timer
             // 
             Timer.Interval = 20;
             Timer.Tick += TimerEvent;
+            // 
+            // pH
+            // 
+            pH.AutoSize = true;
+            pH.ForeColor = Color.White;
+            pH.Location = new Point(12, 9);
+            pH.Name = "pH";
+            pH.Size = new Size(85, 15);
+            pH.TabIndex = 0;
+            pH.Text = "Player's Health";
             // 
             // MainForm
             // 
@@ -46,6 +57,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1034, 562);
+            Controls.Add(pH);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
@@ -55,10 +67,12 @@
             FormClosing += Form_FormClosing;
             Load += MainForm_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         public System.Windows.Forms.Timer Timer;
+        private Label pH;
     }
 }

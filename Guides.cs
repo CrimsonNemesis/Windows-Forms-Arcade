@@ -13,6 +13,8 @@ namespace Arcade_Game
         public Guides()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
+
         }
 
         private void Form_FormClosing(object sender, FormClosingEventArgs e)

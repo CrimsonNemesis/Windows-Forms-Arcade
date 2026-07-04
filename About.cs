@@ -13,6 +13,8 @@ namespace Arcade_Game
         public About()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

@@ -13,6 +13,8 @@ namespace Arcade_Game
         public Choose()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
+
         }
 
         private void backBtn_Click(object sender, EventArgs e)

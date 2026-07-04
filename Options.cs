@@ -13,6 +13,8 @@ namespace Arcade_Game
         public Options()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
+
         }
 
         private void button1_Click(object sender, EventArgs e)
