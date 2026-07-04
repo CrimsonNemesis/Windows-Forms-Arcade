@@ -2,7 +2,7 @@
 
 namespace Arcade_Game;
 
-internal class Player : PictureBox
+internal class Player : GameObject
 {
     public static List<PlayerBullet> bullets = new();
 
@@ -37,9 +37,8 @@ internal class Player : PictureBox
             {
                 _HP = 0;
                 Player.HighScore = Math.Max(Player.CurrentScore, Player.HighScore);
-                SavePlayerDataToDb();
+                //SavePlayerDataToDb();
                 MainForm.Instance.Timer.Stop();
-                this.Dispose();
             }
         }
     }
@@ -51,8 +50,6 @@ internal class Player : PictureBox
         windowHeight = MainForm.Instance.ClientSize.Height;
 
         this.Image = skin;
-        this.SizeMode = PictureBoxSizeMode.StretchImage;
-        this.BackColor = Color.Transparent;
         this.Size = new Size(90, 90);
         this.Location = new Point(windowWidth / 2 - 45, windowHeight - 90 - 15);
     }

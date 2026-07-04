@@ -2,7 +2,7 @@
 
 namespace Arcade_Game;
 
-internal abstract class Enemy : PictureBox
+internal abstract class Enemy : GameObject
 {
     public static List<Enemy> enemies = new();
     public static List<EnemyBullet> bullets = new();
@@ -20,8 +20,6 @@ internal abstract class Enemy : PictureBox
     public Enemy(CoinSpecification? loot = null)
     {
         this.Size = new Size(60, 60);
-        this.SizeMode = PictureBoxSizeMode.StretchImage;
-        this.BackColor = Color.Transparent;
         this.Loot = loot;
     }
 

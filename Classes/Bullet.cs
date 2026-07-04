@@ -1,17 +1,15 @@
 ﻿namespace Arcade_Game;
 
-internal abstract class Bullet : PictureBox
+internal abstract class Bullet : GameObject
 {
     protected double exactX;
     protected double exactY;
     protected double moveSpeedX;
     protected double moveSpeedY;
 
-    public Bullet(Control shooter, int dirX, int dirY, int speed)
+    public Bullet(GameObject shooter, int dirX, int dirY, int speed)
     {
         this.Size = new Size(15, 15);
-        this.SizeMode = PictureBoxSizeMode.StretchImage;
-        this.BackColor = Color.Transparent;
 
         double actualSpeed = (dirX != 0 && dirY != 0) ? (speed / Math.Sqrt(2)) : speed;
 
@@ -48,7 +46,7 @@ internal abstract class Bullet : PictureBox
 
 class PlayerBullet : Bullet
 {
-    public PlayerBullet(Control playerShip, int dirX, int dirY, int speed)
+    public PlayerBullet(GameObject playerShip, int dirX, int dirY, int speed)
         : base(playerShip, dirX, dirY, speed)
     {
         this.Image = GameAssets.NormalBulletPlayer;
@@ -57,7 +55,7 @@ class PlayerBullet : Bullet
 
 class EnemyBullet : Bullet
 {
-    public EnemyBullet(Control enemyShip, int dirX, int dirY, int speed)
+    public EnemyBullet(GameObject enemyShip, int dirX, int dirY, int speed)
         : base(enemyShip, dirX, dirY, speed)
     {
         this.Image = GameAssets.NormalBulletEnemy;

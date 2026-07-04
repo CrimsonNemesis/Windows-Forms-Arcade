@@ -21,7 +21,7 @@ public partial class MainForm : Form
         this.KeyUp += MainFormKeyUp;
         this.Paint += MainFormPaint;
 
-        LoadPlayerDataFromDb();
+        //LoadPlayerDataFromDb();
 
         player = new Player(GameAssets.NormalPlayer);
 
@@ -71,7 +71,6 @@ public partial class MainForm : Form
 
             if (bullet.IsOutOfBounds())
             {
-                bullet.Dispose();
                 Player.bullets.RemoveAt(i);
             }
         }
@@ -86,7 +85,6 @@ public partial class MainForm : Form
 
             if (bullet.IsOutOfBounds())
             {
-                bullet.Dispose();
                 Enemy.bullets.RemoveAt(i);
                 continue;
             }
@@ -94,7 +92,6 @@ public partial class MainForm : Form
             if (bullet.Bounds.IntersectsWith(player.Bounds))
             {
                 player.HealthPoint--;
-                bullet.Dispose();
                 Enemy.bullets.RemoveAt(i);
             }
         }
@@ -122,7 +119,6 @@ public partial class MainForm : Form
 
                 if (currentBullet.Bounds.IntersectsWith(currentEnemy.Bounds))
                 {
-                    currentBullet.Dispose();
                     Player.bullets.RemoveAt(j);
                     currentEnemy.HealthPoint--;
 
@@ -139,7 +135,6 @@ public partial class MainForm : Form
         {
             enemy.DropCoin();
             Player.CurrentScore += enemy.Score;
-            enemy.Dispose();
             Enemy.enemies.RemoveAt(enemyIndex);
             return true;
         }
@@ -158,7 +153,6 @@ public partial class MainForm : Form
                 else if (currentCoin.kind == CoinKind.Gold) Player.TotalGoldCoinValues += currentCoin.value;
 
                 Coin.coins.RemoveAt(i);
-                currentCoin.Dispose();
             }
         }
     }
