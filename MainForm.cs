@@ -92,6 +92,7 @@ public partial class MainForm : Form
             if (bullet.Bounds.IntersectsWith(player.Bounds))
             {
                 player.HealthPoint--;
+                SoundEffects.Play(GameAssets.hitHurt);
                 Enemy.bullets.RemoveAt(i);
             }
         }
@@ -109,6 +110,7 @@ public partial class MainForm : Form
             {
 
                 player.HealthPoint--;
+                SoundEffects.Play(GameAssets.hitHurt);
                 currentEnemy.HealthPoint--;
                 CheckEnemyDeath(currentEnemy, i);
                 continue;
@@ -121,6 +123,9 @@ public partial class MainForm : Form
                 if (currentBullet.Bounds.IntersectsWith(currentEnemy.Bounds))
                 {
                     Player.bullets.RemoveAt(j);
+
+                    SoundEffects.Play(GameAssets.hitHurt);
+
                     currentEnemy.HealthPoint--;
 
                     if (CheckEnemyDeath(currentEnemy, i))
