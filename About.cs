@@ -25,6 +25,11 @@ namespace Arcade_Game
 
         }
 
+        private void Form_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             MenuForm miow = new MenuForm();

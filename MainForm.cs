@@ -11,6 +11,8 @@ public partial class MainForm : Form
         InitializeComponent();
         this.DoubleBuffered = true;
 
+
+
         SetupGame();
         Timer.Start();
     }
@@ -107,6 +109,7 @@ public partial class MainForm : Form
 
             if (currentEnemy.Bounds.IntersectsWith(player.Bounds) && player.CanGetHitByImpact())
             {
+
                 player.HealthPoint--;
                 currentEnemy.HealthPoint--;
                 CheckEnemyDeath(currentEnemy, i);
@@ -133,6 +136,7 @@ public partial class MainForm : Form
     {
         if (enemy.HealthPoint <= 0)
         {
+            SoundEffects.Play(GameAssets.Explosion);
             enemy.DropCoin();
             Player.CurrentScore += enemy.Score;
             Enemy.enemies.RemoveAt(enemyIndex);
@@ -149,12 +153,18 @@ public partial class MainForm : Form
 
             if (player.Bounds.IntersectsWith(currentCoin.Bounds))
             {
+                SoundEffects.Play(GameAssets.CoinPickup);
                 if (currentCoin.kind == CoinKind.Silver) Player.TotalSilverCoinValues += currentCoin.value;
                 else if (currentCoin.kind == CoinKind.Gold) Player.TotalGoldCoinValues += currentCoin.value;
 
                 Coin.coins.RemoveAt(i);
             }
         }
+    }
+
+    private void Form_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        Application.Exit();
     }
 
     private void MainFormKeyDown(object sender, KeyEventArgs e) => player.KeyDown(e);
@@ -169,5 +179,11 @@ public partial class MainForm : Form
         foreach (var bullet in Player.bullets) e.Graphics.DrawImage(bullet.Image, bullet.Bounds);
         foreach (var bullet in Enemy.bullets) e.Graphics.DrawImage(bullet.Image, bullet.Bounds);
         foreach (var coin in Coin.coins) e.Graphics.DrawImage(coin.Image, coin.Bounds);
+    }
+
+    private void MainForm_Load(object sender, EventArgs e)
+    {
+
+        MusicPlayer.Play(@"Resources\Musics&Sounds\GameMusic.wav");
     }
 }

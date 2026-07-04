@@ -17,7 +17,12 @@ namespace Arcade_Game
 
         private void MenuForm_Load(object sender, EventArgs e)
         {
+            MusicPlayer.Play(@"Resources\Musics&Sounds\MenuMusic.wav");
+        }
 
+        private void Form_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -38,6 +43,13 @@ namespace Arcade_Game
             About page = new About();
 
             page.Show();
+            this.Hide();
+        }
+
+        private void option_Click(object sender, EventArgs e)
+        {
+            Options superbeje = new Options();
+            superbeje.Show();
             this.Hide();
         }
     }

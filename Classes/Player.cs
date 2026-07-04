@@ -39,6 +39,7 @@ internal class Player : GameObject
                 Player.HighScore = Math.Max(Player.CurrentScore, Player.HighScore);
 
                 //SavePlayerDataToDb();
+                SoundEffects.Play(GameAssets.Explosion);
 
                 MainForm.Instance.Timer.Stop();
             }
@@ -121,6 +122,10 @@ internal class Player : GameObject
     private void Shoot(int dirX, int dirY)
     {
         if (!this.CanShoot()) return;
+        SoundEffects.Play(GameAssets.Shoot);
+
+
+
         PlayerBullet bullet = new(this, dirX, dirY, 15);
         bullets.Add(bullet);
     }

@@ -3,9 +3,9 @@ namespace Arcade_Game;
 
 internal class GameAssets
 {
-    public static readonly SoundPlayer CoinPickup = new SoundPlayer(Properties.Resources.CoinPickup);
-    public static readonly SoundPlayer Explosion = new SoundPlayer(Properties.Resources.Explosion);
-    public static readonly SoundPlayer Shoot = new SoundPlayer(Properties.Resources.Shoot);
+    public static readonly string Shoot = @"Resources\Musics&Sounds\Shoot.wav";
+    public static readonly string Explosion = @"Resources\Musics&Sounds\Explosion.wav";
+    public static readonly string CoinPickup = @"Resources\Musics&Sounds\CoinPickup.wav";
     public static readonly SoundPlayer TheTheme = new SoundPlayer(Properties.Resources.TheTheme);
     public static readonly SoundPlayer MenuMusic = new SoundPlayer(Properties.Resources.MenuMusic);
     public static readonly SoundPlayer GameMusic = new SoundPlayer(Properties.Resources.GameMusic);

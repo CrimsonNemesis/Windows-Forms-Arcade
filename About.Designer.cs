@@ -155,6 +155,7 @@
             MaximizeBox = false;
             Name = "About";
             Text = "About";
+            FormClosing += Form_FormClosing;
             Load += About_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

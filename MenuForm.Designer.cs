@@ -40,7 +40,8 @@
             // 
             // startGame
             // 
-            startGame.BackColor = SystemColors.ControlDark;
+            startGame.BackColor = Color.Lime;
+            startGame.FlatStyle = FlatStyle.Popup;
             startGame.Font = new Font("Courier New", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             startGame.Location = new Point(353, 134);
             startGame.Name = "startGame";
@@ -52,7 +53,8 @@
             // 
             // Shop
             // 
-            Shop.BackColor = SystemColors.ControlDark;
+            Shop.BackColor = Color.Yellow;
+            Shop.FlatStyle = FlatStyle.Popup;
             Shop.Font = new Font("Courier New", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Shop.Location = new Point(353, 196);
             Shop.Name = "Shop";
@@ -63,7 +65,8 @@
             // 
             // about
             // 
-            about.BackColor = SystemColors.ControlDark;
+            about.BackColor = Color.DarkCyan;
+            about.FlatStyle = FlatStyle.Flat;
             about.Font = new Font("Courier New", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             about.Location = new Point(353, 257);
             about.Name = "about";
@@ -75,7 +78,8 @@
             // 
             // Exit
             // 
-            Exit.BackColor = SystemColors.ControlDark;
+            Exit.BackColor = Color.Tomato;
+            Exit.FlatStyle = FlatStyle.Flat;
             Exit.Font = new Font("Courier New", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Exit.Location = new Point(353, 383);
             Exit.Name = "Exit";
@@ -87,7 +91,8 @@
             // 
             // option
             // 
-            option.BackColor = SystemColors.ControlDark;
+            option.BackColor = Color.Thistle;
+            option.FlatStyle = FlatStyle.Flat;
             option.Font = new Font("Courier New", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             option.Location = new Point(353, 320);
             option.Name = "option";
@@ -95,6 +100,7 @@
             option.TabIndex = 4;
             option.Text = "Option";
             option.UseVisualStyleBackColor = false;
+            option.Click += option_Click;
             // 
             // pictureBox1
             // 
@@ -123,6 +129,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "MenuForm";
+            FormClosing += Form_FormClosing;
             Load += MenuForm_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

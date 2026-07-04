@@ -11,6 +11,36 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Musics&amp;Sounds\CoinPickup.wav" />
+    <None Remove="Resources\Musics&amp;Sounds\Explosion.wav" />
+    <None Remove="Resources\Musics&amp;Sounds\GameMusic.wav" />
+    <None Remove="Resources\Musics&amp;Sounds\MenuMusic.wav" />
+    <None Remove="Resources\Musics&amp;Sounds\Shoot.wav" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\Musics&amp;Sounds\CoinPickup.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Musics&amp;Sounds\Explosion.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Musics&amp;Sounds\GameMusic.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Musics&amp;Sounds\MenuMusic.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Musics&amp;Sounds\Shoot.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NAudio" Version="2.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.9">
       <PrivateAssets>all</PrivateAssets>

@@ -43,6 +43,8 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Desktop;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1034, 562);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -50,6 +52,8 @@
             MaximizeBox = false;
             Name = "MainForm";
             Text = "Space Invaders";
+            FormClosing += Form_FormClosing;
+            Load += MainForm_Load;
             ResumeLayout(false);
         }
 
