@@ -4,7 +4,7 @@ public enum CoinKind { Silver, Gold }
 
 public record CoinSpecification(int Value, CoinKind Kind);
 
-internal class Coin : PictureBox
+internal class Coin : GameObject
 {
     public static List<Coin> coins = new();
 
@@ -24,8 +24,5 @@ internal class Coin : PictureBox
         this.Size = new Size(50, 50);
         this.Left = startX - this.Width / 2;
         this.Top = startY - this.Height / 2;
-
-        this.SizeMode = PictureBoxSizeMode.StretchImage;
-        this.BackColor = Color.Transparent;
     }
 }

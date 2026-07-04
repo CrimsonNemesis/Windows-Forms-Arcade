@@ -11,8 +11,6 @@ public partial class MainForm : Form
         InitializeComponent();
         this.DoubleBuffered = true;
 
-
-
         SetupGame();
         Timer.Start();
     }
@@ -28,11 +26,11 @@ public partial class MainForm : Form
         player = new Player(AssetManager.Player);
 
         // test
-        Enemy.enemies.Add(new StandardEnemy(100, new(5, CoinKind.Gold)));
-        Enemy.enemies.Add(new TankEnemy(100, 50, new(1, CoinKind.Gold)));
-        Enemy.enemies.Add(new ShooterEnemy(30, 400, new(5, CoinKind.Silver)));
-        Enemy.enemies.Add(new ScoutEnemy(60, 60, new(1, CoinKind.Silver)));
-        Enemy.enemies.Add(new TerroristEnemy(100, 200));
+        Enemy.enemies.Add(new StandardEnemy(new(400, 25), new(5, CoinKind.Gold)));
+        Enemy.enemies.Add(new TankEnemy(new(100, 50), new(1, CoinKind.Gold)));
+        Enemy.enemies.Add(new ShooterEnemy(new(30, 400), new(5, CoinKind.Silver)));
+        Enemy.enemies.Add(new ScoutEnemy(new(60, 60), new(1, CoinKind.Silver)));
+        Enemy.enemies.Add(new TerroristEnemy(new(100, 200)));
     }
 
     private void LoadPlayerDataFromDb()
@@ -73,7 +71,6 @@ public partial class MainForm : Form
 
             if (bullet.IsOutOfBounds())
             {
-                bullet.Dispose();
                 Player.bullets.RemoveAt(i);
             }
         }
@@ -88,7 +85,6 @@ public partial class MainForm : Form
 
             if (bullet.IsOutOfBounds())
             {
-                bullet.Dispose();
                 Enemy.bullets.RemoveAt(i);
                 continue;
             }
@@ -96,7 +92,7 @@ public partial class MainForm : Form
             if (bullet.Bounds.IntersectsWith(player.Bounds))
             {
                 player.HealthPoint--;
-                bullet.Dispose();
+                SoundEffects.Play(GameAssets.hitHurt);
                 Enemy.bullets.RemoveAt(i);
             }
         }
@@ -114,6 +110,7 @@ public partial class MainForm : Form
             {
 
                 player.HealthPoint--;
+                SoundEffects.Play(GameAssets.hitHurt);
                 currentEnemy.HealthPoint--;
                 CheckEnemyDeath(currentEnemy, i);
                 continue;
@@ -125,8 +122,10 @@ public partial class MainForm : Form
 
                 if (currentBullet.Bounds.IntersectsWith(currentEnemy.Bounds))
                 {
-                    currentBullet.Dispose();
                     Player.bullets.RemoveAt(j);
+
+                    SoundEffects.Play(GameAssets.hitHurt);
+
                     currentEnemy.HealthPoint--;
 
                     if (CheckEnemyDeath(currentEnemy, i))
@@ -143,10 +142,10 @@ public partial class MainForm : Form
             SoundEffects.Play(GameAssets.Explosion);
             enemy.DropCoin();
             Player.CurrentScore += enemy.Score;
-            enemy.Dispose();
             Enemy.enemies.RemoveAt(enemyIndex);
             return true;
         }
+
         return false;
     }
 
@@ -159,12 +158,17 @@ public partial class MainForm : Form
             if (player.Bounds.IntersectsWith(currentCoin.Bounds))
             {
                 SoundEffects.Play(GameAssets.CoinPickup);
+
                 if (currentCoin.kind == CoinKind.Silver) Player.TotalSilverCoinValues += currentCoin.value;
                 else if (currentCoin.kind == CoinKind.Gold) Player.TotalGoldCoinValues += currentCoin.value;
 
                 Coin.coins.RemoveAt(i);
-                currentCoin.Dispose();
             }
+
+            currentCoin.Top += 1;
+
+            if (currentCoin.Top >= MainForm.Instance.ClientSize.Height)
+                Coin.coins.RemoveAt(i);
         }
     }
 
@@ -189,7 +193,6 @@ public partial class MainForm : Form
 
     private void MainForm_Load(object sender, EventArgs e)
     {
-
         MusicPlayer.Play(@"Resources\Musics&Sounds\GameMusic.wav");
     }
 }

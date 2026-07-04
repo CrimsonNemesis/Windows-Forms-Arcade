@@ -2,7 +2,7 @@
 
 namespace Arcade_Game;
 
-internal class Player : PictureBox
+internal class Player : GameObject
 {
     public static List<PlayerBullet> bullets = new();
 
@@ -37,10 +37,11 @@ internal class Player : PictureBox
             {
                 _HP = 0;
                 Player.HighScore = Math.Max(Player.CurrentScore, Player.HighScore);
+
                 //SavePlayerDataToDb();
                 SoundEffects.Play(GameAssets.Explosion);
+
                 MainForm.Instance.Timer.Stop();
-                this.Dispose();
             }
         }
     }
@@ -52,8 +53,6 @@ internal class Player : PictureBox
         windowHeight = MainForm.Instance.ClientSize.Height;
 
         this.Image = skin;
-        this.SizeMode = PictureBoxSizeMode.StretchImage;
-        this.BackColor = Color.Transparent;
         this.Size = new Size(90, 90);
         this.Location = new Point(windowWidth / 2 - 45, windowHeight - 90 - 15);
     }
@@ -92,7 +91,7 @@ internal class Player : PictureBox
         if (e.KeyCode == Keys.Down) goDown = false;
     }
 
-    public new void Move()
+    public void Move()
     {
         if (goLeft && this.Location.X >= 15) this.Left -= Speed;
         if (goRight && this.Location.X <= windowWidth - 90 - 15) this.Left += Speed;
