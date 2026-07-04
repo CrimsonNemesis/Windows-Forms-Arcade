@@ -66,7 +66,7 @@ class StandardEnemy : Enemy
 {
     public StandardEnemy(Point startLocation, CoinSpecification? loot = null) : base(startLocation, loot)
     {
-        this.Image = GameAssets.NormalEnemyStandard;
+        this.Image = AssetManager.StandardEnemy;
 
         Score = 5;
         Speed = 2;
@@ -79,7 +79,7 @@ class ShooterEnemy : Enemy
 
     public ShooterEnemy(Point startLocation, CoinSpecification? loot = null) : base(startLocation, loot)
     {
-        this.Image = GameAssets.NormalEnemyShooter;
+        this.Image = AssetManager.ShooterEnemy;
 
         Score = 15;
         Speed = 2;
@@ -100,7 +100,7 @@ class ScoutEnemy : Enemy
 
     public ScoutEnemy(Point startLocation, CoinSpecification? loot = null) : base(startLocation, loot)
     {
-        this.Image = GameAssets.NormalEnemyScout;
+        this.Image = AssetManager.ScoutEnemy;
 
         Score = 10;
         Speed = 3;
@@ -132,7 +132,7 @@ class TerroristEnemy : Enemy
 
     public TerroristEnemy(Point startLocation, CoinSpecification? loot = null) : base(startLocation, loot)
     {
-        this.Image = GameAssets.NormalEnemyTerrorist;
+        this.Image = AssetManager.TerroristEnemy;
 
         Score = 10;
         Speed = 2;

@@ -32,6 +32,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             Timer = new System.Windows.Forms.Timer(components);
             pH = new Label();
+            playerScore = new Label();
+            theCoins = new Label();
+            silCoins = new Label();
             SuspendLayout();
             // 
             // Timer
@@ -42,12 +45,50 @@
             // pH
             // 
             pH.AutoSize = true;
-            pH.ForeColor = Color.White;
-            pH.Location = new Point(12, 9);
+            pH.BackColor = Color.Transparent;
+            pH.Font = new Font("Simplified Arabic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            pH.ForeColor = Color.LightCoral;
+            pH.Location = new Point(12, 13);
             pH.Name = "pH";
-            pH.Size = new Size(85, 15);
+            pH.Size = new Size(177, 35);
             pH.TabIndex = 0;
-            pH.Text = "Player's Health";
+            pH.Text = "Player's Health : 3";
+            // 
+            // playerScore
+            // 
+            playerScore.AutoSize = true;
+            playerScore.BackColor = Color.Transparent;
+            playerScore.Font = new Font("Simplified Arabic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            playerScore.ForeColor = Color.Chartreuse;
+            playerScore.Location = new Point(1075, 13);
+            playerScore.Name = "playerScore";
+            playerScore.Size = new Size(97, 35);
+            playerScore.TabIndex = 3;
+            playerScore.Text = "Score : 0";
+            // 
+            // theCoins
+            // 
+            theCoins.AutoSize = true;
+            theCoins.BackColor = Color.Transparent;
+            theCoins.Font = new Font("Simplified Arabic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            theCoins.ForeColor = Color.Gold;
+            theCoins.Location = new Point(814, 13);
+            theCoins.Name = "theCoins";
+            theCoins.Size = new Size(111, 35);
+            theCoins.TabIndex = 4;
+            theCoins.Text = "GCoins : 0";
+            // 
+            // silCoins
+            // 
+            silCoins.AutoSize = true;
+            silCoins.BackColor = Color.Transparent;
+            silCoins.Font = new Font("Simplified Arabic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            silCoins.ForeColor = Color.Silver;
+            silCoins.Location = new Point(946, 13);
+            silCoins.Name = "silCoins";
+            silCoins.Size = new Size(109, 35);
+            silCoins.TabIndex = 5;
+            silCoins.Text = "SCoins : 0";
             // 
             // MainForm
             // 
@@ -57,9 +98,13 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1184, 641);
+            Controls.Add(silCoins);
+            Controls.Add(theCoins);
+            Controls.Add(playerScore);
             Controls.Add(pH);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            KeyPreview = true;
             Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "MainForm";
@@ -74,5 +119,8 @@
 
         public System.Windows.Forms.Timer Timer;
         private Label pH;
+        private Label playerScore;
+        private Label theCoins;
+        private Label silCoins;
     }
 }

@@ -9,6 +9,9 @@ public partial class MainForm : Form
     {
         Instance = this;
         InitializeComponent();
+        this.KeyPreview = true;
+        this.ActiveControl = null;
+        this.Focus();
         this.DoubleBuffered = true;
 
         SetupGame();
@@ -26,11 +29,11 @@ public partial class MainForm : Form
         player = new Player(AssetManager.Player);
 
         // test
-        Enemy.enemies.Add(new StandardEnemy(new(400, 25), new(5, CoinKind.Gold)));
+        Enemy.enemies.Add(new StandardEnemy(new(400, 75), new(5, CoinKind.Gold)));
         Enemy.enemies.Add(new TankEnemy(new(100, 50), new(1, CoinKind.Gold)));
-        Enemy.enemies.Add(new ShooterEnemy(new(30, 400), new(5, CoinKind.Silver)));
-        Enemy.enemies.Add(new ScoutEnemy(new(60, 60), new(1, CoinKind.Silver)));
-        Enemy.enemies.Add(new TerroristEnemy(new(100, 200)));
+        Enemy.enemies.Add(new ShooterEnemy(new(30, 300), new(5, CoinKind.Silver)));
+        Enemy.enemies.Add(new ScoutEnemy(new(60, 200), new(1, CoinKind.Silver)));
+        Enemy.enemies.Add(new TerroristEnemy(new(150, 200)));
     }
 
     private void LoadPlayerDataFromDb()
@@ -58,6 +61,12 @@ public partial class MainForm : Form
         UpdateEnemyBullets();
         UpdateEnemies();
         UpdateCoins();
+        pH.Text = $"Player's Health : {player.HealthPoint}";
+        playerScore.Text = $"Score : {Player.CurrentScore}";
+        theCoins.Text = $"GCoins : {Player.TotalGoldCoinValues}";
+        silCoins.Text = $"SCoins : {Player.TotalSilverCoinValues}";
+
+
 
         this.Invalidate();
     }
@@ -195,4 +204,11 @@ public partial class MainForm : Form
     {
         MusicPlayer.Play(@"Resources\Musics&Sounds\GameMusic.wav");
     }
+
+    private void backBTN_Click(object sender, EventArgs e)
+    {
+        MessageBox.Show("Back Clicked");
+    }
+
+    
 }
