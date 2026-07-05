@@ -35,6 +35,7 @@
             playerScore = new Label();
             theCoins = new Label();
             silCoins = new Label();
+            wavey = new Label();
             SuspendLayout();
             // 
             // Timer
@@ -90,6 +91,18 @@
             silCoins.TabIndex = 5;
             silCoins.Text = "SCoins : 0";
             // 
+            // wavey
+            // 
+            wavey.AutoSize = true;
+            wavey.BackColor = Color.Transparent;
+            wavey.Font = new Font("Century", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            wavey.ForeColor = Color.Tomato;
+            wavey.Location = new Point(521, 15);
+            wavey.Name = "wavey";
+            wavey.Size = new Size(150, 38);
+            wavey.TabIndex = 6;
+            wavey.Text = "WAVE 1";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -98,6 +111,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1184, 641);
+            Controls.Add(wavey);
             Controls.Add(silCoins);
             Controls.Add(theCoins);
             Controls.Add(playerScore);
@@ -122,5 +136,6 @@
         private Label playerScore;
         private Label theCoins;
         private Label silCoins;
+        private Label wavey;
     }
 }

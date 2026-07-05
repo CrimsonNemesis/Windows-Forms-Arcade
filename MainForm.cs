@@ -28,12 +28,7 @@ public partial class MainForm : Form
 
         player = new Player(AssetManager.Player);
 
-        // test
-        Enemy.enemies.Add(new StandardEnemy(new(400, 75), new(5, CoinKind.Gold)));
-        Enemy.enemies.Add(new TankEnemy(new(100, 50), new(1, CoinKind.Gold)));
-        Enemy.enemies.Add(new ShooterEnemy(new(30, 300), new(5, CoinKind.Silver)));
-        Enemy.enemies.Add(new ScoutEnemy(new(60, 200), new(1, CoinKind.Silver)));
-        Enemy.enemies.Add(new TerroristEnemy(new(150, 200)));
+        WaveManager.LoadWave();
     }
 
     private void LoadPlayerDataFromDb()
@@ -65,8 +60,12 @@ public partial class MainForm : Form
         playerScore.Text = $"Score : {Player.CurrentScore}";
         theCoins.Text = $"GCoins : {Player.TotalGoldCoinValues}";
         silCoins.Text = $"SCoins : {Player.TotalSilverCoinValues}";
+        wavey.Text = $"Wave {WaveManager.CurrentWave}";
 
-
+        if (Enemy.enemies.Count == 0)
+        {
+            WaveManager.NextWave();
+        }
 
         this.Invalidate();
     }

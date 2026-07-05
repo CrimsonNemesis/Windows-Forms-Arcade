@@ -5,6 +5,8 @@ internal static class SoundEffects
 {
     public static void Play(string path)
     {
+        if (GameSettings.SfxVolume <= 0)
+            return;
         var reader = new AudioFileReader(path);
 
         reader.Volume = GameSettings.SfxVolume;
@@ -24,6 +26,7 @@ internal static class SoundEffects
 
     public static void SetVolume(float volume)
     {
+
         GameSettings.SfxVolume = volume;
     }
 }

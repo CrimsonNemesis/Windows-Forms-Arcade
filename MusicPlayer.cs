@@ -20,6 +20,8 @@ internal static class MusicPlayer
         currentMusic = path;
 
         audio = new AudioFileReader(path);
+        audio.Volume = GameSettings.MusicVolume;
+
         output = new WaveOutEvent();
         output.Init(audio);
 
@@ -48,6 +50,8 @@ internal static class MusicPlayer
 
     public static void SetVolume(float volume)
     {
+        GameSettings.MusicVolume = volume;
+
         if (audio != null)
             audio.Volume = volume;
     }
