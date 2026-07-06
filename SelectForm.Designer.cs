@@ -47,12 +47,13 @@
             btnNew.FlatStyle = FlatStyle.Flat;
             btnNew.Font = new Font("Impact", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnNew.ForeColor = Color.Black;
-            btnNew.Location = new Point(602, 339);
+            btnNew.Location = new Point(553, 339);
             btnNew.Name = "btnNew";
             btnNew.Size = new Size(186, 69);
             btnNew.TabIndex = 0;
             btnNew.Text = "New Player";
             btnNew.UseVisualStyleBackColor = false;
+            btnNew.Click += btnNew_Click;
             // 
             // gameDbContextBindingSource
             // 
@@ -68,7 +69,7 @@
             btnLoad.FlatStyle = FlatStyle.Flat;
             btnLoad.Font = new Font("Impact", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnLoad.ForeColor = Color.Black;
-            btnLoad.Location = new Point(12, 339);
+            btnLoad.Location = new Point(65, 339);
             btnLoad.Name = "btnLoad";
             btnLoad.Size = new Size(186, 69);
             btnLoad.TabIndex = 2;
@@ -88,20 +89,20 @@
             // 
             lstProfiles.Font = new Font("Lucida Sans Unicode", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lstProfiles.FormattingEnabled = true;
-            lstProfiles.Location = new Point(12, 22);
+            lstProfiles.Location = new Point(3, 30);
             lstProfiles.Name = "lstProfiles";
-            lstProfiles.Size = new Size(449, 256);
+            lstProfiles.Size = new Size(395, 256);
             lstProfiles.TabIndex = 4;
             // 
             // simpText
             // 
             simpText.AutoSize = true;
             simpText.Font = new Font("Cascadia Code SemiBold", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            simpText.Location = new Point(467, 22);
+            simpText.Location = new Point(404, 30);
             simpText.Name = "simpText";
-            simpText.Size = new Size(351, 245);
+            simpText.Size = new Size(399, 245);
             simpText.TabIndex = 5;
-            simpText.Text = "Please Choose the \r\nProfile from the \r\nnames on the\r\nleft side and Load \r\nit or make a New \r\nProfile  by clicking \r\non the New Player !";
+            simpText.Text = "Hello and Welcome !\r\nPlease Choose your \r\nprofile from left and \r\nclick on the Load Player\r\nor write your name as \r\na new player and then\r\nclick on New Player !";
             // 
             // SelectForm
             // 
@@ -121,10 +122,9 @@
             Name = "SelectForm";
             Text = "SelectForm";
             FormClosing += Form_FormClosing;
+            Load += SelectForm_Load;
             ((System.ComponentModel.ISupportInitialize)gameDbContextBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)playerProfileBindingSource).EndInit();
-            btnNew.Click += btnNew_Click;
-            Load += SelectForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

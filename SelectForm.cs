@@ -20,7 +20,7 @@ namespace Arcade_Game
             Application.Exit();
         }
 
-       
+
 
         private void btnNew_Click(object sender, EventArgs e)
         {
@@ -71,6 +71,11 @@ namespace Arcade_Game
         private void SelectForm_Load(object sender, EventArgs e)
         {
             MusicPlayer.Play(@"Resources\Musics&Sounds\TheTheme.wav");
+            using (var db = new GameDbContext())
+            {
+                lstProfiles.DataSource = db.PlayerProfiles.ToList();
+                lstProfiles.DisplayMember = "ProfileName";
+            }
         }
 
         
