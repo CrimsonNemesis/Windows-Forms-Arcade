@@ -154,13 +154,13 @@ class TerroristEnemy : Enemy
 
 class TankEnemy : Enemy
 {
-    public override int HealthPoint { get; set; } = 6;
+    public override int HealthPoint { get; set; } = 200;
     private const int CoolDown = 2000;
 
     public TankEnemy(Point startLocation, CoinSpecification? loot = null) : base(startLocation, loot)
     {
         this.Image = AssetManager.TankEnemy;
-        this.Size = new Size(125, 75);
+        this.Size = new Size(200, 120);
         Score = 25;
         Speed = 2;
     }
