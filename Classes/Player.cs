@@ -38,7 +38,7 @@ internal class Player : GameObject
                 _HP = 0;
                 Player.HighScore = Math.Max(Player.CurrentScore, Player.HighScore);
 
-                //SavePlayerDataToDb();
+                SavePlayerDataToDb();
                 SoundEffects.Play(GameAssets.Explosion);
 
                 MainForm.Instance.Timer.Stop();

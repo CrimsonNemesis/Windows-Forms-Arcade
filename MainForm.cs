@@ -24,7 +24,7 @@ public partial class MainForm : Form
         this.KeyUp += MainFormKeyUp;
         this.Paint += MainFormPaint;
 
-        //LoadPlayerDataFromDb();
+        LoadPlayerDataFromDb();
 
         player = new Player(AssetManager.Player);
 

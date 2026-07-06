@@ -35,7 +35,7 @@ public class GameDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlite("Data Source=GameData.db");
+        optionsBuilder.UseSqlite(@"Data Source=..\..\..\GameData.db");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
