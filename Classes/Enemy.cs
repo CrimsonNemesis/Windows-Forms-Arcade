@@ -64,9 +64,11 @@ internal abstract class Enemy : GameObject
 
 class StandardEnemy : Enemy
 {
+    
     public StandardEnemy(Point startLocation, CoinSpecification? loot = null) : base(startLocation, loot)
     {
         this.Image = AssetManager.StandardEnemy;
+        this.HealthPoint = HealthPoint + WaveManager.EnemyHealthBonus;
 
         Score = 5;
         Speed = 3;
@@ -80,6 +82,8 @@ class ShooterEnemy : Enemy
     public ShooterEnemy(Point startLocation, CoinSpecification? loot = null) : base(startLocation, loot)
     {
         this.Image = AssetManager.ShooterEnemy;
+        this.HealthPoint = HealthPoint + WaveManager.EnemyHealthBonus;
+
 
         Score = 15;
         Speed = 2;
@@ -101,6 +105,7 @@ class ScoutEnemy : Enemy
     public ScoutEnemy(Point startLocation, CoinSpecification? loot = null) : base(startLocation, loot)
     {
         this.Image = AssetManager.ScoutEnemy;
+        this.HealthPoint = HealthPoint + WaveManager.EnemyHealthBonus;
 
         Score = 10;
         Speed = 3;
@@ -133,6 +138,7 @@ class TerroristEnemy : Enemy
     public TerroristEnemy(Point startLocation, CoinSpecification? loot = null) : base(startLocation, loot)
     {
         this.Image = AssetManager.TerroristEnemy;
+        this.HealthPoint = HealthPoint + WaveManager.EnemyHealthBonus;
 
         Score = 10;
         Speed = 2;

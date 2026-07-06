@@ -4,6 +4,8 @@ internal static class WaveManager
 {
     public static int CurrentWave = 1;
 
+    public static int EnemyHealthBonus = 0;
+
     public static void LoadWave()
     {
         Enemy.enemies.Clear();
@@ -264,9 +266,9 @@ internal static class WaveManager
     {
         CurrentWave++;
 
-        if (CurrentWave % 3 == 1)
+        if (CurrentWave % 3 == 1 && CurrentWave > 1)
         {
-            
+            EnemyHealthBonus++;
         }
         if (CurrentWave <= 10)
         {
