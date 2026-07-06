@@ -69,28 +69,28 @@
             // 
             // theCoins
             // 
-            theCoins.AutoSize = true;
+            theCoins.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             theCoins.BackColor = Color.Transparent;
             theCoins.Font = new Font("Simplified Arabic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             theCoins.ForeColor = Color.Gold;
-            theCoins.Location = new Point(1029, 16);
+            theCoins.Location = new Point(1101, 19);
             theCoins.Name = "theCoins";
             theCoins.RightToLeft = RightToLeft.No;
-            theCoins.Size = new Size(144, 35);
+            theCoins.Size = new Size(300, 45);
             theCoins.TabIndex = 4;
             theCoins.Text = "0 : Gold Coins";
             theCoins.TextAlign = ContentAlignment.MiddleRight;
             // 
             // silCoins
             // 
-            silCoins.AutoSize = true;
+            silCoins.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             silCoins.BackColor = Color.Transparent;
             silCoins.Font = new Font("Simplified Arabic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             silCoins.ForeColor = Color.Silver;
-            silCoins.Location = new Point(1029, 52);
+            silCoins.Location = new Point(1101, 69);
             silCoins.Name = "silCoins";
             silCoins.RightToLeft = RightToLeft.No;
-            silCoins.Size = new Size(150, 35);
+            silCoins.Size = new Size(300, 45);
             silCoins.TabIndex = 5;
             silCoins.Text = "0 : Silver Coins";
             silCoins.TextAlign = ContentAlignment.MiddleRight;
