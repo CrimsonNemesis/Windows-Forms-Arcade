@@ -69,6 +69,8 @@ class StandardEnemy : Enemy
     {
         this.Image = AssetManager.StandardEnemy;
         this.HealthPoint = HealthPoint + WaveManager.EnemyHealthBonus;
+        this.Speed = Speed * WaveManager.EnemySpeedBonus;
+
 
         Score = 5;
         Speed = 3;
@@ -106,6 +108,8 @@ class ScoutEnemy : Enemy
     {
         this.Image = AssetManager.ScoutEnemy;
         this.HealthPoint = HealthPoint + WaveManager.EnemyHealthBonus;
+        this.Speed = Speed * WaveManager.EnemySpeedBonus;
+
 
         Score = 10;
         Speed = 3;
@@ -139,6 +143,8 @@ class TerroristEnemy : Enemy
     {
         this.Image = AssetManager.TerroristEnemy;
         this.HealthPoint = HealthPoint + WaveManager.EnemyHealthBonus;
+        this.Speed = Speed * WaveManager.EnemySpeedBonus;
+
 
         Score = 10;
         Speed = 2;

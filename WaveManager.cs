@@ -5,6 +5,7 @@ internal static class WaveManager
     public static int CurrentWave = 1;
 
     public static int EnemyHealthBonus = 0;
+    public static int EnemySpeedBonus = 1;
 
     public static void LoadWave()
     {
@@ -266,9 +267,14 @@ internal static class WaveManager
     {
         CurrentWave++;
 
+        
         if (CurrentWave % 3 == 1 && CurrentWave > 1)
         {
             EnemyHealthBonus++;
+        }
+        if (CurrentWave % 5 == 0)
+        {
+            EnemySpeedBonus++;
         }
         if (CurrentWave <= 10)
         {
