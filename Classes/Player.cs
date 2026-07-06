@@ -19,7 +19,7 @@ internal class Player : GameObject
     private DateTime lastTimeImpactWithEnemy = DateTime.MinValue;
     private const int DelayAfterImpact = 500;
 
-    bool goLeft, goRight, goUp, goDown;
+    bool goLeft, goRight, goUp, goDown, isShooting;
     int windowWidth, windowHeight;
 
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -80,7 +80,7 @@ internal class Player : GameObject
         if (e.KeyCode == Keys.Right) goRight = true;
         if (e.KeyCode == Keys.Up) goUp = true;
         if (e.KeyCode == Keys.Down) goDown = true;
-        if (e.KeyCode == Keys.Space) Shoot(0, 1);
+        if (e.KeyCode == Keys.Space) isShooting = true;
     }
 
     public void KeyUp(KeyEventArgs e)
@@ -89,14 +89,16 @@ internal class Player : GameObject
         if (e.KeyCode == Keys.Right) goRight = false;
         if (e.KeyCode == Keys.Up) goUp = false;
         if (e.KeyCode == Keys.Down) goDown = false;
+        if (e.KeyCode == Keys.Space) isShooting = false;
     }
 
-    public void Move()
+    public void Update()
     {
         if (goLeft && this.Location.X >= 15) this.Left -= Speed;
         if (goRight && this.Location.X <= windowWidth - 90 - 15) this.Left += Speed;
         if (goUp && this.Location.Y >= 15) this.Top -= Speed;
         if (goDown && this.Location.Y <= windowHeight - 90 - 15) this.Top += Speed;
+        if (isShooting && this.CanShoot()) Shoot(0, 1);
     }
 
     public bool CanShoot()
@@ -121,10 +123,7 @@ internal class Player : GameObject
 
     private void Shoot(int dirX, int dirY)
     {
-        if (!this.CanShoot()) return;
         SoundEffects.Play(GameAssets.Shoot);
-
-
 
         PlayerBullet bullet = new(this, dirX, dirY, 15);
         bullets.Add(bullet);

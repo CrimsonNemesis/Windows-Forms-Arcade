@@ -50,16 +50,17 @@ public partial class MainForm : Form
     {
         if (player == null || player.HealthPoint <= 0) return;
 
-        player.Move();
+        player.Update();
 
         UpdatePlayerBullets();
         UpdateEnemyBullets();
         UpdateEnemies();
         UpdateCoins();
-        pH.Text = $"Player's Health : {player.HealthPoint}";
+
+        pH.Text = $"Health Point : {player.HealthPoint}";
         playerScore.Text = $"Score : {Player.CurrentScore}";
-        theCoins.Text = $"GCoins : {Player.TotalGoldCoinValues}";
-        silCoins.Text = $"SCoins : {Player.TotalSilverCoinValues}";
+        theCoins.Text = $"{Player.TotalGoldCoinValues} : Gold Coins";
+        silCoins.Text = $"{Player.TotalSilverCoinValues} : Silver Coins";
         wavey.Text = $"Wave {WaveManager.CurrentWave}";
 
         if (Enemy.enemies.Count == 0)

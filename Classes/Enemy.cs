@@ -69,7 +69,7 @@ class StandardEnemy : Enemy
         this.Image = AssetManager.StandardEnemy;
 
         Score = 5;
-        Speed = 2;
+        Speed = 3;
     }
 }
 

@@ -49,11 +49,11 @@
             pH.BackColor = Color.Transparent;
             pH.Font = new Font("Simplified Arabic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             pH.ForeColor = Color.LightCoral;
-            pH.Location = new Point(12, 13);
+            pH.Location = new Point(12, 24);
             pH.Name = "pH";
-            pH.Size = new Size(177, 35);
+            pH.Size = new Size(198, 45);
             pH.TabIndex = 0;
-            pH.Text = "Player's Health : 3";
+            pH.Text = "Health Point : 3";
             // 
             // playerScore
             // 
@@ -61,9 +61,9 @@
             playerScore.BackColor = Color.Transparent;
             playerScore.Font = new Font("Simplified Arabic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             playerScore.ForeColor = Color.Chartreuse;
-            playerScore.Location = new Point(1075, 13);
+            playerScore.Location = new Point(12, 69);
             playerScore.Name = "playerScore";
-            playerScore.Size = new Size(97, 35);
+            playerScore.Size = new Size(125, 45);
             playerScore.TabIndex = 3;
             playerScore.Text = "Score : 0";
             // 
@@ -73,11 +73,13 @@
             theCoins.BackColor = Color.Transparent;
             theCoins.Font = new Font("Simplified Arabic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             theCoins.ForeColor = Color.Gold;
-            theCoins.Location = new Point(814, 13);
+            theCoins.Location = new Point(1216, 19);
             theCoins.Name = "theCoins";
-            theCoins.Size = new Size(111, 35);
+            theCoins.RightToLeft = RightToLeft.No;
+            theCoins.Size = new Size(185, 45);
             theCoins.TabIndex = 4;
-            theCoins.Text = "GCoins : 0";
+            theCoins.Text = "0 : Gold Coins";
+            theCoins.TextAlign = ContentAlignment.MiddleRight;
             // 
             // silCoins
             // 
@@ -85,11 +87,13 @@
             silCoins.BackColor = Color.Transparent;
             silCoins.Font = new Font("Simplified Arabic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             silCoins.ForeColor = Color.Silver;
-            silCoins.Location = new Point(946, 13);
+            silCoins.Location = new Point(1208, 69);
             silCoins.Name = "silCoins";
-            silCoins.Size = new Size(109, 35);
+            silCoins.RightToLeft = RightToLeft.No;
+            silCoins.Size = new Size(193, 45);
             silCoins.TabIndex = 5;
-            silCoins.Text = "SCoins : 0";
+            silCoins.Text = "0 : Silver Coins";
+            silCoins.TextAlign = ContentAlignment.MiddleRight;
             // 
             // wavey
             // 
@@ -97,20 +101,20 @@
             wavey.BackColor = Color.Transparent;
             wavey.Font = new Font("Century", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             wavey.ForeColor = Color.Tomato;
-            wavey.Location = new Point(521, 15);
+            wavey.Location = new Point(622, 17);
             wavey.Name = "wavey";
-            wavey.Size = new Size(150, 38);
+            wavey.Size = new Size(185, 47);
             wavey.TabIndex = 6;
             wavey.Text = "WAVE 1";
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Desktop;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImage = Properties.Resources.SpaceBackGround2;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1184, 641);
+            ClientSize = new Size(1413, 914);
             Controls.Add(wavey);
             Controls.Add(silCoins);
             Controls.Add(theCoins);
@@ -119,7 +123,6 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             KeyPreview = true;
-            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "MainForm";
             Text = "Space Invaders";
