@@ -73,7 +73,7 @@
             theCoins.BackColor = Color.Transparent;
             theCoins.Font = new Font("Simplified Arabic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             theCoins.ForeColor = Color.Gold;
-            theCoins.Location = new Point(1101, 19);
+            theCoins.Location = new Point(1166, 24);
             theCoins.Name = "theCoins";
             theCoins.RightToLeft = RightToLeft.No;
             theCoins.Size = new Size(300, 45);
@@ -87,7 +87,7 @@
             silCoins.BackColor = Color.Transparent;
             silCoins.Font = new Font("Simplified Arabic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             silCoins.ForeColor = Color.Silver;
-            silCoins.Location = new Point(1101, 69);
+            silCoins.Location = new Point(1166, 74);
             silCoins.Name = "silCoins";
             silCoins.RightToLeft = RightToLeft.No;
             silCoins.Size = new Size(300, 45);
@@ -101,7 +101,7 @@
             wavey.BackColor = Color.Transparent;
             wavey.Font = new Font("Century", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             wavey.ForeColor = Color.Tomato;
-            wavey.Location = new Point(622, 17);
+            wavey.Location = new Point(644, 17);
             wavey.Name = "wavey";
             wavey.Size = new Size(185, 47);
             wavey.TabIndex = 6;
@@ -114,7 +114,7 @@
             BackColor = SystemColors.Desktop;
             BackgroundImage = Properties.Resources.SpaceBackGround2;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1413, 914);
+            ClientSize = new Size(1478, 914);
             Controls.Add(wavey);
             Controls.Add(silCoins);
             Controls.Add(theCoins);
