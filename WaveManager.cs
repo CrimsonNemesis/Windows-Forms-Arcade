@@ -264,6 +264,10 @@ internal static class WaveManager
     {
         CurrentWave++;
 
+        if (CurrentWave % 3 == 1)
+        {
+            
+        }
         if (CurrentWave <= 10)
         {
             LoadWave();

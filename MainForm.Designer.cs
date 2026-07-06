@@ -49,9 +49,9 @@
             pH.BackColor = Color.Transparent;
             pH.Font = new Font("Simplified Arabic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             pH.ForeColor = Color.LightCoral;
-            pH.Location = new Point(12, 24);
+            pH.Location = new Point(10, 18);
             pH.Name = "pH";
-            pH.Size = new Size(198, 45);
+            pH.Size = new Size(154, 35);
             pH.TabIndex = 0;
             pH.Text = "Health Point : 3";
             // 
@@ -61,9 +61,9 @@
             playerScore.BackColor = Color.Transparent;
             playerScore.Font = new Font("Simplified Arabic", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             playerScore.ForeColor = Color.Chartreuse;
-            playerScore.Location = new Point(12, 69);
+            playerScore.Location = new Point(10, 52);
             playerScore.Name = "playerScore";
-            playerScore.Size = new Size(125, 45);
+            playerScore.Size = new Size(97, 35);
             playerScore.TabIndex = 3;
             playerScore.Text = "Score : 0";
             // 
@@ -101,20 +101,20 @@
             wavey.BackColor = Color.Transparent;
             wavey.Font = new Font("Century", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             wavey.ForeColor = Color.Tomato;
-            wavey.Location = new Point(622, 17);
+            wavey.Location = new Point(544, 13);
             wavey.Name = "wavey";
-            wavey.Size = new Size(185, 47);
+            wavey.Size = new Size(150, 38);
             wavey.TabIndex = 6;
             wavey.Text = "WAVE 1";
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Desktop;
             BackgroundImage = Properties.Resources.SpaceBackGround2;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1413, 914);
+            ClientSize = new Size(1199, 562);
             Controls.Add(wavey);
             Controls.Add(silCoins);
             Controls.Add(theCoins);
@@ -123,6 +123,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             KeyPreview = true;
+            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "MainForm";
             Text = "Space Invaders";
