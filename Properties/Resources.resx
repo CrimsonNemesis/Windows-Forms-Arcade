@@ -124,9 +124,6 @@
   <data name="PixelEnemyBullet" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PixelPics\PixelEnemyBullet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="NormalBulletPlayer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\NormalPics\NormalBulletPlayer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="PixelSpecialPlayer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PixelPics\PixelSpecialPlayer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -237,5 +234,20 @@
   </data>
   <data name="SpaceBackGround2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Background&amp;Title\SpaceBackGround2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NormalBulletPlayer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NormalPics\NormalBulletPlayer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SpecialNormalBulletPlayer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NormalPics\NormalBulletPlayerGreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SpecialPixelPlayerBullet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PixelPics\SpecialPixelPlayerBullet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AsteroidBeltBackGround" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Background&amp;Title\AsteroidBeltBackGround.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="extraLife" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PixelPics\extraLife.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

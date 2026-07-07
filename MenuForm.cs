@@ -52,5 +52,12 @@ namespace Arcade_Game
             superbeje.Show();
             this.Hide();
         }
+
+        private void Shop_Click(object sender, EventArgs e)
+        {
+            Shop miow = new Shop();
+            miow.Show();
+            this.Hide();
+        }
     }
 }

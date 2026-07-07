@@ -71,6 +71,16 @@ namespace Arcade_Game.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap AsteroidBeltBackGround {
+            get {
+                object obj = ResourceManager.GetObject("AsteroidBeltBackGround", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream CoinPickup {
@@ -85,6 +95,16 @@ namespace Arcade_Game.Properties {
         internal static System.IO.UnmanagedMemoryStream Explosion {
             get {
                 return ResourceManager.GetStream("Explosion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap extraLife {
+            get {
+                object obj = ResourceManager.GetObject("extraLife", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -430,6 +450,26 @@ namespace Arcade_Game.Properties {
         internal static System.Drawing.Bitmap SpaceBackGround2 {
             get {
                 object obj = ResourceManager.GetObject("SpaceBackGround2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SpecialNormalBulletPlayer {
+            get {
+                object obj = ResourceManager.GetObject("SpecialNormalBulletPlayer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SpecialPixelPlayerBullet {
+            get {
+                object obj = ResourceManager.GetObject("SpecialPixelPlayerBullet", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
