@@ -27,6 +27,22 @@ public partial class MainForm : Form
         LoadPlayerDataFromDb();
 
         player = new Player(AssetManager.Player);
+        using (var db = new GameDbContext())
+        {
+            var profile = db.PlayerProfiles
+                            .First(p => p.Id == GameSession.CurrentPlayerId);
+
+            if (profile.ExtraLifeEquipped && profile.ExtraLives > 0)
+            {
+                player.HealthPoint++;
+
+                profile.ExtraLives--;
+
+                profile.ExtraLifeEquipped = false;
+
+                db.SaveChanges();
+            }
+        }
 
         WaveManager.LoadWave();
     }
@@ -38,8 +54,8 @@ public partial class MainForm : Form
             var activeProfile = db.PlayerProfiles.FirstOrDefault(p => p.Id == GameSession.CurrentPlayerId);
             if (activeProfile != null)
             {
-                Player.TotalGoldCoinValues = 0;
-                Player.TotalSilverCoinValues = 0;
+                Player.TotalGoldCoinValues = activeProfile.TotalGoldCoinValues;
+                Player.TotalSilverCoinValues = activeProfile.TotalSilverCoinValues;
                 Player.CurrentScore = 0;
                 Player.HighScore = activeProfile.HighScore;
             }

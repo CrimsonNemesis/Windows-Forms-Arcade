@@ -44,12 +44,29 @@
             label3 = new Label();
             label4 = new Label();
             label5 = new Label();
+            AstBackBuybtn = new CheckBox();
+            label6 = new Label();
+            label7 = new Label();
+            AstBackEquipbtn = new CheckBox();
+            SpePlaBullBuybtn = new CheckBox();
+            SpePlaBullEqubtn = new CheckBox();
+            SpePlaySkinBuybtn = new CheckBox();
+            SpePlaySkinEqubtn = new CheckBox();
+            OneExLifeBuybtn = new CheckBox();
+            button1 = new Button();
+            pictureBox7 = new PictureBox();
+            pictureBox8 = new PictureBox();
+            silverCoinlbl = new Label();
+            goldCoinlbl = new Label();
+            OneExLifeEqubtn = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -225,12 +242,214 @@
             label5.TabIndex = 14;
             label5.Text = "150 SCoin";
             // 
+            // AstBackBuybtn
+            // 
+            AstBackBuybtn.AutoSize = true;
+            AstBackBuybtn.BackColor = Color.Transparent;
+            AstBackBuybtn.Font = new Font("MV Boli", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            AstBackBuybtn.ForeColor = Color.White;
+            AstBackBuybtn.Location = new Point(682, 132);
+            AstBackBuybtn.Name = "AstBackBuybtn";
+            AstBackBuybtn.Size = new Size(15, 14);
+            AstBackBuybtn.TabIndex = 15;
+            AstBackBuybtn.UseVisualStyleBackColor = false;
+            AstBackBuybtn.CheckedChanged += AstBackBuybtn_CheckedChanged;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.BackColor = Color.Black;
+            label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.ForeColor = Color.White;
+            label6.Location = new Point(659, 78);
+            label6.Name = "label6";
+            label6.Size = new Size(60, 21);
+            label6.TabIndex = 16;
+            label6.Text = "Bought";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.BackColor = Color.Black;
+            label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.ForeColor = Color.White;
+            label7.Location = new Point(725, 78);
+            label7.Name = "label7";
+            label7.Size = new Size(49, 21);
+            label7.TabIndex = 17;
+            label7.Text = "Equip";
+            // 
+            // AstBackEquipbtn
+            // 
+            AstBackEquipbtn.AutoSize = true;
+            AstBackEquipbtn.BackColor = Color.Transparent;
+            AstBackEquipbtn.Font = new Font("MV Boli", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            AstBackEquipbtn.ForeColor = Color.White;
+            AstBackEquipbtn.Location = new Point(742, 132);
+            AstBackEquipbtn.Name = "AstBackEquipbtn";
+            AstBackEquipbtn.Size = new Size(15, 14);
+            AstBackEquipbtn.TabIndex = 18;
+            AstBackEquipbtn.UseVisualStyleBackColor = false;
+            AstBackEquipbtn.CheckedChanged += AstBackEquipbtn_CheckedChanged;
+            // 
+            // SpePlaBullBuybtn
+            // 
+            SpePlaBullBuybtn.AutoSize = true;
+            SpePlaBullBuybtn.BackColor = Color.Transparent;
+            SpePlaBullBuybtn.Font = new Font("MV Boli", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            SpePlaBullBuybtn.ForeColor = Color.White;
+            SpePlaBullBuybtn.Location = new Point(682, 210);
+            SpePlaBullBuybtn.Name = "SpePlaBullBuybtn";
+            SpePlaBullBuybtn.Size = new Size(15, 14);
+            SpePlaBullBuybtn.TabIndex = 19;
+            SpePlaBullBuybtn.UseVisualStyleBackColor = false;
+            SpePlaBullBuybtn.CheckedChanged += SpePlaBullBuybtn_CheckedChanged;
+            // 
+            // SpePlaBullEqubtn
+            // 
+            SpePlaBullEqubtn.AutoSize = true;
+            SpePlaBullEqubtn.BackColor = Color.Transparent;
+            SpePlaBullEqubtn.Font = new Font("MV Boli", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            SpePlaBullEqubtn.ForeColor = Color.White;
+            SpePlaBullEqubtn.Location = new Point(742, 210);
+            SpePlaBullEqubtn.Name = "SpePlaBullEqubtn";
+            SpePlaBullEqubtn.Size = new Size(15, 14);
+            SpePlaBullEqubtn.TabIndex = 20;
+            SpePlaBullEqubtn.UseVisualStyleBackColor = false;
+            SpePlaBullEqubtn.CheckedChanged += SpePlaBullEqubtn_CheckedChanged;
+            // 
+            // SpePlaySkinBuybtn
+            // 
+            SpePlaySkinBuybtn.AutoSize = true;
+            SpePlaySkinBuybtn.BackColor = Color.Transparent;
+            SpePlaySkinBuybtn.Font = new Font("MV Boli", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            SpePlaySkinBuybtn.ForeColor = Color.White;
+            SpePlaySkinBuybtn.Location = new Point(682, 296);
+            SpePlaySkinBuybtn.Name = "SpePlaySkinBuybtn";
+            SpePlaySkinBuybtn.Size = new Size(15, 14);
+            SpePlaySkinBuybtn.TabIndex = 21;
+            SpePlaySkinBuybtn.UseVisualStyleBackColor = false;
+            SpePlaySkinBuybtn.CheckedChanged += SpePlaySkinBuybtn_CheckedChanged;
+            // 
+            // SpePlaySkinEqubtn
+            // 
+            SpePlaySkinEqubtn.AutoSize = true;
+            SpePlaySkinEqubtn.BackColor = Color.Transparent;
+            SpePlaySkinEqubtn.Font = new Font("MV Boli", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            SpePlaySkinEqubtn.ForeColor = Color.White;
+            SpePlaySkinEqubtn.Location = new Point(742, 296);
+            SpePlaySkinEqubtn.Name = "SpePlaySkinEqubtn";
+            SpePlaySkinEqubtn.Size = new Size(15, 14);
+            SpePlaySkinEqubtn.TabIndex = 22;
+            SpePlaySkinEqubtn.UseVisualStyleBackColor = false;
+            SpePlaySkinEqubtn.CheckedChanged += SpePlaySkinEqubtn_CheckedChanged;
+            // 
+            // OneExLifeBuybtn
+            // 
+            OneExLifeBuybtn.AutoSize = true;
+            OneExLifeBuybtn.BackColor = Color.Transparent;
+            OneExLifeBuybtn.Font = new Font("MV Boli", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            OneExLifeBuybtn.ForeColor = Color.White;
+            OneExLifeBuybtn.Location = new Point(682, 388);
+            OneExLifeBuybtn.Name = "OneExLifeBuybtn";
+            OneExLifeBuybtn.Size = new Size(15, 14);
+            OneExLifeBuybtn.TabIndex = 24;
+            OneExLifeBuybtn.UseVisualStyleBackColor = false;
+            OneExLifeBuybtn.CheckedChanged += OneExLifeBuybtn_CheckedChanged;
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.Chartreuse;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Lucida Handwriting", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button1.Location = new Point(81, 20);
+            button1.Name = "button1";
+            button1.Size = new Size(168, 66);
+            button1.TabIndex = 25;
+            button1.Text = "Back";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
+            // 
+            // pictureBox7
+            // 
+            pictureBox7.BackColor = Color.Transparent;
+            pictureBox7.Image = Properties.Resources.NormalSilver1Coin;
+            pictureBox7.Location = new Point(506, 12);
+            pictureBox7.Name = "pictureBox7";
+            pictureBox7.Size = new Size(53, 47);
+            pictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox7.TabIndex = 26;
+            pictureBox7.TabStop = false;
+            // 
+            // pictureBox8
+            // 
+            pictureBox8.BackColor = Color.Transparent;
+            pictureBox8.Image = Properties.Resources.NormalGolden1Coin;
+            pictureBox8.Location = new Point(573, 12);
+            pictureBox8.Name = "pictureBox8";
+            pictureBox8.Size = new Size(53, 47);
+            pictureBox8.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox8.TabIndex = 27;
+            pictureBox8.TabStop = false;
+            // 
+            // silverCoinlbl
+            // 
+            silverCoinlbl.AutoSize = true;
+            silverCoinlbl.BackColor = Color.Black;
+            silverCoinlbl.Font = new Font("Consolas", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            silverCoinlbl.ForeColor = Color.White;
+            silverCoinlbl.Location = new Point(522, 80);
+            silverCoinlbl.Name = "silverCoinlbl";
+            silverCoinlbl.Size = new Size(63, 19);
+            silverCoinlbl.TabIndex = 28;
+            silverCoinlbl.Text = "label8";
+            silverCoinlbl.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // goldCoinlbl
+            // 
+            goldCoinlbl.AutoSize = true;
+            goldCoinlbl.BackColor = Color.Black;
+            goldCoinlbl.Font = new Font("Consolas", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            goldCoinlbl.ForeColor = Color.White;
+            goldCoinlbl.Location = new Point(591, 80);
+            goldCoinlbl.Name = "goldCoinlbl";
+            goldCoinlbl.Size = new Size(63, 19);
+            goldCoinlbl.TabIndex = 29;
+            goldCoinlbl.Text = "label8";
+            goldCoinlbl.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // OneExLifeEqubtn
+            // 
+            OneExLifeEqubtn.AutoSize = true;
+            OneExLifeEqubtn.BackColor = Color.Transparent;
+            OneExLifeEqubtn.Font = new Font("MV Boli", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            OneExLifeEqubtn.ForeColor = Color.White;
+            OneExLifeEqubtn.Location = new Point(742, 388);
+            OneExLifeEqubtn.Name = "OneExLifeEqubtn";
+            OneExLifeEqubtn.Size = new Size(15, 14);
+            OneExLifeEqubtn.TabIndex = 30;
+            OneExLifeEqubtn.UseVisualStyleBackColor = false;
+            // 
             // Shop
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.SpaceBackGround;
             ClientSize = new Size(800, 450);
+            Controls.Add(OneExLifeEqubtn);
+            Controls.Add(silverCoinlbl);
+            Controls.Add(pictureBox8);
+            Controls.Add(pictureBox7);
+            Controls.Add(button1);
+            Controls.Add(OneExLifeBuybtn);
+            Controls.Add(SpePlaySkinEqubtn);
+            Controls.Add(SpePlaySkinBuybtn);
+            Controls.Add(SpePlaBullEqubtn);
+            Controls.Add(SpePlaBullBuybtn);
+            Controls.Add(AstBackEquipbtn);
+            Controls.Add(label7);
+            Controls.Add(label6);
+            Controls.Add(AstBackBuybtn);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -246,18 +465,22 @@
             Controls.Add(pictureBox1);
             Controls.Add(label1);
             Controls.Add(pictureBox3);
+            Controls.Add(goldCoinlbl);
             DoubleBuffered = true;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "Shop";
             Text = "Shop";
             FormClosing += Form_FormClosing;
+            Load += ShopForm_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -279,5 +502,20 @@
         private Label label3;
         private Label label4;
         private Label label5;
+        private CheckBox AstBackBuybtn;
+        private Label label6;
+        private Label label7;
+        private CheckBox AstBackEquipbtn;
+        private CheckBox SpePlaBullBuybtn;
+        private CheckBox SpePlaBullEqubtn;
+        private CheckBox SpePlaySkinBuybtn;
+        private CheckBox SpePlaySkinEqubtn;
+        private CheckBox OneExLifeBuybtn;
+        private Button button1;
+        private PictureBox pictureBox7;
+        private PictureBox pictureBox8;
+        private Label silverCoinlbl;
+        private Label goldCoinlbl;
+        private CheckBox OneExLifeEqubtn;
     }
 }

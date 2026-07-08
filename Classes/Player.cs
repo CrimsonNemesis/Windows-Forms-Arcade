@@ -42,6 +42,7 @@ internal class Player : GameObject
                 SoundEffects.Play(GameAssets.Explosion);
 
                 MainForm.Instance.Timer.Stop();
+
             }
         }
     }
@@ -64,8 +65,8 @@ internal class Player : GameObject
             var activeProfile = db.PlayerProfiles.FirstOrDefault(p => p.Id == GameSession.CurrentPlayerId);
             if (activeProfile != null)
             {
-                activeProfile.TotalGoldCoinValues += Player.TotalGoldCoinValues;
-                activeProfile.TotalSilverCoinValues += Player.TotalSilverCoinValues;
+                activeProfile.TotalGoldCoinValues = Player.TotalGoldCoinValues;
+                activeProfile.TotalSilverCoinValues = Player.TotalSilverCoinValues;
 
                 activeProfile.HighScore = Math.Max(Player.HighScore, activeProfile.HighScore);
 

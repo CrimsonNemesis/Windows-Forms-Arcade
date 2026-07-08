@@ -15,6 +15,7 @@ public class PlayerProfile
     public int TotalSilverCoinValues { get; set; }
     public int HighScore { get; set; }
     public int ExtraLives { get; set; }
+    public bool ExtraLifeEquipped { get; set; }
 }
 
 public class ShopItem
