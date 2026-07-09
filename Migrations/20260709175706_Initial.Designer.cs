@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Arcade_Game.Migrations
 {
     [DbContext(typeof(GameDbContext))]
-    [Migration("20260709102731_Initial")]
+    [Migration("20260709175706_Initial")]
     partial class Initial
     {
         /// <inheritdoc />

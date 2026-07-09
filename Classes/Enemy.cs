@@ -1,6 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Security.Cryptography.X509Certificates;
-using static System.Windows.Forms.AxHost;
 
 namespace Arcade_Game;
 
@@ -12,7 +10,7 @@ internal abstract class Enemy : GameObject
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public virtual int HealthPoint { get; set; } = 2;
 
-    public CoinSpecification? Loot { get; }
+    public IDropSpecification? Loot { get; }
 
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public int Score { get; protected set; }
@@ -23,7 +21,7 @@ internal abstract class Enemy : GameObject
 
     protected Point Invert = new Point(1, 1);
 
-    public Enemy(Point startLocation, CoinSpecification? loot = null)
+    public Enemy(Point startLocation, IDropSpecification? loot = null)
     {
         this.Size = new Size(60, 60);
         this.Loot = loot;
@@ -51,13 +49,21 @@ internal abstract class Enemy : GameObject
         this.Top += Speed * Invert.Y;
     }
 
-    public void DropCoin()
+    public void DropLoot()
     {
         if (Loot != null)
         {
             int centerX = this.Left + this.Width / 2;
             int centerY = this.Top + this.Height / 2;
-            Coin.coins.Add(new Coin(Loot.Value, Loot.Kind, centerX, centerY));
+
+            if (Loot is CoinSpecification coinSpec)
+            {
+                Collectable.collectables.Add(new Coin(coinSpec.Value, coinSpec.Kind, centerX, centerY));
+            }
+            else if (Loot is PowerUpSpecification powerSpec)
+            {
+                Collectable.collectables.Add(new PowerUp(powerSpec.Type, centerX, centerY));
+            }
         }
     }
 }
@@ -65,7 +71,7 @@ internal abstract class Enemy : GameObject
 class StandardEnemy : Enemy
 {
     
-    public StandardEnemy(Point startLocation, CoinSpecification? loot = null) : base(startLocation, loot)
+    public StandardEnemy(Point startLocation, IDropSpecification? loot = null) : base(startLocation, loot)
     {
         this.Image = AssetManager.StandardEnemy;
         this.HealthPoint = HealthPoint + WaveManager.EnemyHealthBonus;
@@ -81,7 +87,7 @@ class ShooterEnemy : Enemy
 {
     private const int CoolDown = 3500;
 
-    public ShooterEnemy(Point startLocation, CoinSpecification? loot = null) : base(startLocation, loot)
+    public ShooterEnemy(Point startLocation, IDropSpecification? loot = null) : base(startLocation, loot)
     {
         this.Image = AssetManager.ShooterEnemy;
         this.HealthPoint = HealthPoint + WaveManager.EnemyHealthBonus;
@@ -104,7 +110,7 @@ class ScoutEnemy : Enemy
     private static readonly Random rand = new();
     private DateTime lastInvertTime = DateTime.Now;
 
-    public ScoutEnemy(Point startLocation, CoinSpecification? loot = null) : base(startLocation, loot)
+    public ScoutEnemy(Point startLocation, IDropSpecification? loot = null) : base(startLocation, loot)
     {
         this.Image = AssetManager.ScoutEnemy;
         this.HealthPoint = HealthPoint + WaveManager.EnemyHealthBonus;
@@ -139,7 +145,7 @@ class TerroristEnemy : Enemy
 {
     public override int HealthPoint { get; set; } = 1;
 
-    public TerroristEnemy(Point startLocation, CoinSpecification? loot = null) : base(startLocation, loot)
+    public TerroristEnemy(Point startLocation, IDropSpecification? loot = null) : base(startLocation, loot)
     {
         this.Image = AssetManager.TerroristEnemy;
         this.HealthPoint = HealthPoint + WaveManager.EnemyHealthBonus;
@@ -169,7 +175,7 @@ class TankEnemy : Enemy
     public override int HealthPoint { get; set; } = 200;
     private const int CoolDown = 3500;
 
-    public TankEnemy(Point startLocation, CoinSpecification? loot = null) : base(startLocation, loot)
+    public TankEnemy(Point startLocation, IDropSpecification? loot = null) : base(startLocation, loot)
     {
         this.Image = AssetManager.TankEnemy;
         this.Size = new Size(200, 120);

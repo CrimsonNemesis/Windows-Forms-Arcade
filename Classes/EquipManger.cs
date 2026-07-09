@@ -20,14 +20,6 @@ public class EquipmentManager
         };
     }
 
-    public void TriggerEquipAction(int itemId)
-    {
-        if (_itemActions.ContainsKey(itemId))
-        {
-            _itemActions[itemId].Invoke();
-        }
-    }
-
 
     private void EquipSpaceship2()
     {

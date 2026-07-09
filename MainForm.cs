@@ -23,7 +23,7 @@ public partial class MainForm : Form
         Player.bullets.Clear();
         Enemy.enemies.Clear();
         Enemy.bullets.Clear();
-        Coin.coins.Clear();
+        Collectable.collectables.Clear();
 
         this.KeyDown += MainFormKeyDown;
         this.KeyUp += MainFormKeyUp;
@@ -57,7 +57,7 @@ public partial class MainForm : Form
         UpdatePlayerBullets();
         UpdateEnemyBullets();
         UpdateEnemies();
-        UpdateCoins();
+        UpdateCollectables();
 
         pH.Text = $"Health Point : {player.HealthPoint}";
         playerScore.Text = $"Score : {Player.CurrentScore}";
@@ -151,7 +151,7 @@ public partial class MainForm : Form
         if (enemy.HealthPoint <= 0)
         {
             SoundEffects.Play(GameAssets.Explosion);
-            enemy.DropCoin();
+            enemy.DropLoot();
             Player.CurrentScore += enemy.Score;
             Enemy.enemies.RemoveAt(enemyIndex);
             return true;
@@ -160,35 +160,25 @@ public partial class MainForm : Form
         return false;
     }
 
-    private void UpdateCoins()
+    private void UpdateCollectables()
     {
-        for (int i = Coin.coins.Count - 1; i >= 0; i--)
+        for (int i = Collectable.collectables.Count - 1; i >= 0; i--)
         {
-            Coin currentCoin = Coin.coins[i];
-            if (player.Bounds.IntersectsWith(currentCoin.Bounds))
+            Collectable drop = Collectable.collectables[i];
+            drop.Move();
+
+            if (player.Bounds.IntersectsWith(drop.Bounds))
             {
                 SoundEffects.Play(GameAssets.CoinPickup);
-
-                if (currentCoin.kind == CoinKind.Silver)
-                {
-                    Player.TotalSilverCoinValues += currentCoin.value;
-                    Player.MatchSilverCoins += currentCoin.value;
-                }
-                else if (currentCoin.kind == CoinKind.Gold)
-                {
-                    Player.TotalGoldCoinValues += currentCoin.value;
-                    Player.MatchGoldCoins += currentCoin.value;
-                }
-
-                Coin.coins.RemoveAt(i);
+                drop.ApplyEffect();
+                Collectable.collectables.RemoveAt(i);
                 continue;
             }
 
-            currentCoin.Top += 1;
-
-            if (currentCoin.Top >= MainForm.Instance.ClientSize.Height)
+            // Remove if out of bounds
+            if (drop.Top >= MainForm.Instance.ClientSize.Height)
             {
-                Coin.coins.RemoveAt(i);
+                Collectable.collectables.RemoveAt(i);
             }
         }
     }
@@ -209,7 +199,8 @@ public partial class MainForm : Form
         foreach (var enemy in Enemy.enemies) e.Graphics.DrawImage(enemy.Image, enemy.Bounds);
         foreach (var bullet in Player.bullets) e.Graphics.DrawImage(bullet.Image, bullet.Bounds);
         foreach (var bullet in Enemy.bullets) e.Graphics.DrawImage(bullet.Image, bullet.Bounds);
-        foreach (var coin in Coin.coins) e.Graphics.DrawImage(coin.Image, coin.Bounds);
+        foreach (var drop in Collectable.collectables) e.Graphics.DrawImage(drop.Image, drop.Bounds);
+        
     }
 
     private void MainForm_Load(object sender, EventArgs e)
