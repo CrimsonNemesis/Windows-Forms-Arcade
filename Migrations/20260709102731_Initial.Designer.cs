@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Arcade_Game.Migrations
 {
     [DbContext(typeof(GameDbContext))]
-    [Migration("20260703202728_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20260709102731_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -19,13 +19,34 @@ namespace Arcade_Game.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.9");
 
-            modelBuilder.Entity("Arcade_Game.PlayerProfile", b =>
+            modelBuilder.Entity("Arcade_Game.PlayerItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("ExtraLives")
+                    b.Property<bool>("IsEquipped")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PlayerProfileId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ShopItemId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PlayerProfileId");
+
+                    b.HasIndex("ShopItemId");
+
+                    b.ToTable("PlayerItems");
+                });
+
+            modelBuilder.Entity("Arcade_Game.PlayerProfile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("HighScore")
@@ -59,12 +80,6 @@ namespace Arcade_Game.Migrations
                     b.Property<int>("CurrencyType")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("IsEquipped")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsPurchased")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -79,11 +94,9 @@ namespace Arcade_Game.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            Id = 3,
                             Category = "Skin",
                             CurrencyType = 1,
-                            IsEquipped = false,
-                            IsPurchased = false,
                             Name = "Spaceship 2",
                             Price = 500
                         },
@@ -92,18 +105,14 @@ namespace Arcade_Game.Migrations
                             Id = 2,
                             Category = "Bullet",
                             CurrencyType = 0,
-                            IsEquipped = false,
-                            IsPurchased = false,
                             Name = "Green Bullets",
                             Price = 300
                         },
                         new
                         {
-                            Id = 3,
+                            Id = 1,
                             Category = "Theme",
                             CurrencyType = 1,
-                            IsEquipped = false,
-                            IsPurchased = false,
                             Name = "Neon Background",
                             Price = 400
                         },
@@ -112,11 +121,33 @@ namespace Arcade_Game.Migrations
                             Id = 4,
                             Category = "Consumable",
                             CurrencyType = 0,
-                            IsEquipped = false,
-                            IsPurchased = false,
                             Name = "Extra Life",
                             Price = 150
                         });
+                });
+
+            modelBuilder.Entity("Arcade_Game.PlayerItem", b =>
+                {
+                    b.HasOne("Arcade_Game.PlayerProfile", "PlayerProfile")
+                        .WithMany("Inventory")
+                        .HasForeignKey("PlayerProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Arcade_Game.ShopItem", "ShopItem")
+                        .WithMany()
+                        .HasForeignKey("ShopItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PlayerProfile");
+
+                    b.Navigation("ShopItem");
+                });
+
+            modelBuilder.Entity("Arcade_Game.PlayerProfile", b =>
+                {
+                    b.Navigation("Inventory");
                 });
 #pragma warning restore 612, 618
         }

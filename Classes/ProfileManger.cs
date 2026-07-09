@@ -6,12 +6,13 @@ public class ProfileManager
     {
         using (var db = new GameDbContext())
         {
+            db.Database.EnsureCreated();
             var newProfile = new PlayerProfile
             {
                 ProfileName = profileName,
                 TotalGoldCoinValues = 0,
                 TotalSilverCoinValues = 0,
-                HighScore = 0
+                HighScore = 0,
             };
 
             db.PlayerProfiles.Add(newProfile);
@@ -25,6 +26,7 @@ public class ProfileManager
     {
         using (var db = new GameDbContext())
         {
+            db.Database.EnsureCreated();
             var profileExists = db.PlayerProfiles.Any(p => p.Id == profileId);
 
             if (profileExists)
@@ -40,6 +42,7 @@ public class ProfileManager
     {
         using (var db = new GameDbContext())
         {
+            db.Database.EnsureCreated();
             return db.PlayerProfiles.ToList();
         }
     }

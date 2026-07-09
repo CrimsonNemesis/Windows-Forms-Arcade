@@ -46,7 +46,6 @@ namespace Arcade_Game
             PlayerProfile theNewProfile = pM.CreateNewProfile(txtName.Text);
             txtName.Clear();
             RefreshProfilesList();
-
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
