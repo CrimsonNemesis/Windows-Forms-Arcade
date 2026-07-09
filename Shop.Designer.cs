@@ -59,6 +59,7 @@
             silverCoinlbl = new Label();
             goldCoinlbl = new Label();
             OneExLifeEqubtn = new CheckBox();
+            ExLivesCountlbl = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -80,7 +81,6 @@
             label1.Size = new Size(175, 81);
             label1.TabIndex = 0;
             label1.Text = "Shop";
-            
             // 
             // pictureBox1
             // 
@@ -144,7 +144,7 @@
             pictureBox6.BackColor = Color.Transparent;
             pictureBox6.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox6.Image = Properties.Resources.extraLife;
-            pictureBox6.Location = new Point(72, 360);
+            pictureBox6.Location = new Point(121, 360);
             pictureBox6.Name = "pictureBox6";
             pictureBox6.Size = new Size(66, 68);
             pictureBox6.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -432,6 +432,18 @@
             OneExLifeEqubtn.UseVisualStyleBackColor = false;
             OneExLifeEqubtn.CheckedChanged += OneExLifeEqubtn_CheckedChanged;
             // 
+            // ExLivesCountlbl
+            // 
+            ExLivesCountlbl.AutoSize = true;
+            ExLivesCountlbl.BackColor = Color.Transparent;
+            ExLivesCountlbl.Font = new Font("Segoe Print", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ExLivesCountlbl.ForeColor = Color.White;
+            ExLivesCountlbl.Location = new Point(12, 360);
+            ExLivesCountlbl.Name = "ExLivesCountlbl";
+            ExLivesCountlbl.Size = new Size(60, 28);
+            ExLivesCountlbl.TabIndex = 31;
+            ExLivesCountlbl.Text = "label8";
+            // 
             // Shop
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -468,6 +480,7 @@
             Controls.Add(label1);
             Controls.Add(pictureBox3);
             Controls.Add(goldCoinlbl);
+            Controls.Add(ExLivesCountlbl);
             DoubleBuffered = true;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
@@ -519,5 +532,6 @@
         private Label silverCoinlbl;
         private Label goldCoinlbl;
         private CheckBox OneExLifeEqubtn;
+        private Label ExLivesCountlbl;
     }
 }

@@ -20,6 +20,11 @@ public partial class MainForm : Form
 
     private void SetupGame()
     {
+        Player.bullets.Clear();
+        Enemy.enemies.Clear();
+        Enemy.bullets.Clear();
+        Coin.coins.Clear();
+
         this.KeyDown += MainFormKeyDown;
         this.KeyUp += MainFormKeyUp;
         this.Paint += MainFormPaint;
@@ -27,13 +32,13 @@ public partial class MainForm : Form
         Player.LoadPlayerDataFromDb();
         Player.CurrentScore = 0;
 
-        player = new Player(AssetManager.Player);
-        
+        WaveManager.CurrentWave = 1;
 
+        player = new Player(AssetManager.Player);
         WaveManager.LoadWave();
     }
 
-    
+
 
     private void TimerEvent(object sender, EventArgs e)
     {
@@ -152,21 +157,31 @@ public partial class MainForm : Form
         for (int i = Coin.coins.Count - 1; i >= 0; i--)
         {
             Coin currentCoin = Coin.coins[i];
-
             if (player.Bounds.IntersectsWith(currentCoin.Bounds))
             {
                 SoundEffects.Play(GameAssets.CoinPickup);
 
-                if (currentCoin.kind == CoinKind.Silver) Player.TotalSilverCoinValues += currentCoin.value;
-                else if (currentCoin.kind == CoinKind.Gold) Player.TotalGoldCoinValues += currentCoin.value;
+                if (currentCoin.kind == CoinKind.Silver)
+                {
+                    Player.TotalSilverCoinValues += currentCoin.value;
+                    Player.MatchSilverCoins += currentCoin.value;
+                }
+                else if (currentCoin.kind == CoinKind.Gold)
+                {
+                    Player.TotalGoldCoinValues += currentCoin.value;
+                    Player.MatchGoldCoins += currentCoin.value;
+                }
 
                 Coin.coins.RemoveAt(i);
+                continue;
             }
 
             currentCoin.Top += 1;
 
             if (currentCoin.Top >= MainForm.Instance.ClientSize.Height)
+            {
                 Coin.coins.RemoveAt(i);
+            }
         }
     }
 
@@ -199,5 +214,15 @@ public partial class MainForm : Form
         MessageBox.Show("Back Clicked");
     }
 
-    
+    public void ShowGameOver()
+    {
+        string statsMessage = "GAME OVER!\n\n" + $"Score: {Player.CurrentScore}\n" + $"Gold Coins Collected: {Player.MatchGoldCoins}\n" + $"Silver Coins Collected: {Player.MatchSilverCoins}";
+
+        MessageBox.Show(statsMessage, "Match Finished", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        MenuForm menu = new MenuForm();
+        menu.Show();
+
+        this.Hide();
+    }
 }

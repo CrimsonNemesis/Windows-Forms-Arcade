@@ -79,7 +79,7 @@ class StandardEnemy : Enemy
 
 class ShooterEnemy : Enemy
 {
-    private const int CoolDown = 2000;
+    private const int CoolDown = 3500;
 
     public ShooterEnemy(Point startLocation, CoinSpecification? loot = null) : base(startLocation, loot)
     {

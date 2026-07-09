@@ -60,16 +60,32 @@ namespace Arcade_Game
 
         private void UpdateItemUi(List<ShopMenuViewModel> menuList, int itemId, CheckBox buyBox, CheckBox equipBox)
         {
-            var itemStatus = menuList.FirstOrDefault(i => i.ShopItemId == itemId);
-            if (itemStatus == null) return;
+            var items = menuList.Where(i => i.ShopItemId == itemId).ToList();
+            var firstItem = items.FirstOrDefault();
 
-            if (itemStatus.IsPurchased)
+            if (itemId == ExtraLife)
+            {
+                using (var db = new GameDbContext())
+                {
+                    int ownedCount = db.PlayerItems.Count(pi => pi.PlayerProfileId == GameSession.CurrentPlayerId && pi.ShopItemId == ExtraLife);
+                    bool anyEquipped = db.PlayerItems.Any(pi => pi.PlayerProfileId == GameSession.CurrentPlayerId && pi.ShopItemId == ExtraLife && pi.IsEquipped);
+
+                    buyBox.Enabled = true;
+                    buyBox.Checked = false;
+
+                    equipBox.Enabled = ownedCount > 0;
+                    equipBox.Checked = anyEquipped;
+                    ExLivesCountlbl.Text = $"Extra Lives\n       {ownedCount}";
+                }
+                return;
+            }
+            if (firstItem != null && firstItem.IsPurchased)
             {
                 buyBox.Checked = true;
                 buyBox.Enabled = false;
 
                 equipBox.Enabled = true;
-                equipBox.Checked = itemStatus.IsEquipped;
+                equipBox.Checked = firstItem.IsEquipped;
             }
             else
             {
@@ -103,7 +119,32 @@ namespace Arcade_Game
 
         private void HandleEquipAction(int itemId)
         {
-            shopManager.EquipItem(itemId);
+            if (itemId == ExtraLife)
+            {
+                using (var db = new GameDbContext())
+                {
+                    var allExtraLives = db.PlayerItems.Where(pi => pi.PlayerProfileId == GameSession.CurrentPlayerId && pi.ShopItemId == ExtraLife).ToList();
+
+                    if (allExtraLives.Any())
+                    {
+                        bool currentlyEquipped = allExtraLives.Any(pi => pi.IsEquipped);
+
+                        foreach (var item in allExtraLives) item.IsEquipped = false;
+
+                        if (!currentlyEquipped)
+                        {
+                            allExtraLives.First().IsEquipped = true;
+                        }
+
+                        db.SaveChanges();
+                    }
+                }
+            }
+            else
+            {
+                shopManager.EquipItem(itemId);
+            }
+
             RefreshShop();
         }
 
@@ -154,5 +195,7 @@ namespace Arcade_Game
             if (isUpdatingUi || !OneExLifeEqubtn.Checked) return;
             HandleEquipAction(ExtraLife);
         }
+
+        
     }
 }

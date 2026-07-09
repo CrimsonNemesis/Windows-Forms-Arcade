@@ -9,6 +9,8 @@ internal class Player : GameObject
     public static int TotalSilverCoinValues = 0;
     public static int TotalGoldCoinValues = 0;
     public static int CurrentScore = 0;
+    public static int MatchGoldCoins = 0;
+    public static int MatchSilverCoins = 0;
     public static int HighScore { get; set; }
 
     public static Player Instance { get; private set; }
@@ -43,9 +45,12 @@ internal class Player : GameObject
 
                 MainForm.Instance.Timer.Stop();
 
+                MainForm.Instance.ShowGameOver();
+
             }
         }
     }
+
 
     public Player(Image skin)
     {
@@ -56,6 +61,30 @@ internal class Player : GameObject
         this.Image = skin;
         this.Size = new Size(90, 90);
         this.Location = new Point(windowWidth / 2 - 45, windowHeight - 90 - 15);
+
+        if (ConsumeEquippedExtraLife())
+        {
+            _HP = 4;
+        }
+    }
+
+    private bool ConsumeEquippedExtraLife()
+    {
+        using (var db = new GameDbContext())
+        {
+            var equippedLife = db.PlayerItems.FirstOrDefault(pi =>
+                pi.PlayerProfileId == GameSession.CurrentPlayerId &&
+                pi.ShopItemId == 4 &&
+                pi.IsEquipped);
+
+            if (equippedLife != null)
+            {
+                db.PlayerItems.Remove(equippedLife);
+                db.SaveChanges();
+                return true;
+            }
+            return false;
+        }
     }
 
     public static void SavePlayerDataToDb()
@@ -140,6 +169,10 @@ internal class Player : GameObject
                 Player.TotalGoldCoinValues = activeProfile.TotalGoldCoinValues;
                 Player.TotalSilverCoinValues = activeProfile.TotalSilverCoinValues;
                 Player.HighScore = activeProfile.HighScore;
+                Player.MatchGoldCoins = 0;
+                Player.MatchSilverCoins = 0;
+                Player.CurrentScore = 0;
+
             }
         }
     }
