@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace Arcade_Game;
 
@@ -9,12 +11,11 @@ public class EquipmentManager
 
     public EquipmentManager()
     {
-        // Map Database IDs to C# Functions
         _itemActions = new Dictionary<int, Action>
         {
-            { 1, EquipSpaceship2 },
+            { 1, ApplyNeonBackground },
             { 2, EquipGreenBullets },
-            { 3, ApplyNeonBackground },
+            { 3, EquipSpaceship2 },
             { 4, EquipExtraLife }
         };
     }
@@ -27,24 +28,63 @@ public class EquipmentManager
         }
     }
 
-    // --- GAMEPLAY LOGIC ---
+
     private void EquipSpaceship2()
     {
-        Console.WriteLine("Spaceship 2 active: Updating player sprite.");
+        UpdateEquipmentInDatabase(3, "Skin");
     }
 
     private void EquipGreenBullets()
     {
-        Console.WriteLine("Green Bullets active: Setting damage type to toxic.");
+        UpdateEquipmentInDatabase(2, "Bullet");
     }
 
     private void ApplyNeonBackground()
     {
-        Console.WriteLine("Neon Theme active: Changing level background.");
+        UpdateEquipmentInDatabase(1, "Theme");
     }
 
     private void EquipExtraLife()
     {
-        Console.WriteLine("Extra Life Perk active: Player will revive once upon dying.");
+        using (var db = new GameDbContext())
+        {
+            int currentPlayerId = GameSession.CurrentPlayerId;
+
+            var playerItem = db.PlayerItems
+                .FirstOrDefault(pi => pi.PlayerProfileId == currentPlayerId && pi.ShopItemId == 4);
+
+            if (playerItem != null)
+            {
+                playerItem.IsEquipped = true;
+                db.SaveChanges();
+            }
+        }
+    }
+
+    private void UpdateEquipmentInDatabase(int shopItemId, string category)
+    {
+        using (var db = new GameDbContext())
+        {
+            int currentPlayerId = GameSession.CurrentPlayerId;
+
+            var equippedItemsInSubcategory = db.PlayerItems
+                .Include(pi => pi.ShopItem)
+                .Where(pi => pi.PlayerProfileId == currentPlayerId && pi.ShopItem.Category == category);
+
+            foreach (var item in equippedItemsInSubcategory)
+            {
+                item.IsEquipped = false;
+            }
+
+            var targetItem = db.PlayerItems
+                .FirstOrDefault(pi => pi.PlayerProfileId == currentPlayerId && pi.ShopItemId == shopItemId);
+
+            if (targetItem != null)
+            {
+                targetItem.IsEquipped = true;
+            }
+
+            db.SaveChanges();
+        }
     }
 }

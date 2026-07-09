@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -18,69 +18,22 @@ namespace Arcade_Game
 
         private readonly ShopManager shopManager = new ShopManager();
 
-        private const int AsteroidTheme = 3;
+        private const int NeonTheme = 1;
         private const int GreenBullet = 2;
-        private const int SpaceShip2 = 1;
+        private const int SpaceShip2 = 3;
         private const int ExtraLife = 4;
 
+        private bool isUpdatingUi = false;
 
-        private void RefreshShop()
-        {
-            using (var db = new GameDbContext())
-            {
-                var profile = db.PlayerProfiles
-                    .First(p => p.Id == GameSession.CurrentPlayerId);
-
-                goldCoinlbl.Text = profile.TotalGoldCoinValues.ToString();
-                silverCoinlbl.Text = profile.TotalSilverCoinValues.ToString();
-
-                var items = db.ShopItems.ToList();
-
-                foreach (var item in items)
-                {
-                    switch (item.Id)
-                    {
-                        case SpaceShip2:
-                            SpePlaySkinBuybtn.Checked = item.IsPurchased;
-                            SpePlaySkinEqubtn.Checked = item.IsEquipped;
-                            SpePlaySkinEqubtn.Enabled = item.IsPurchased;
-                            break;
-
-                        case GreenBullet:
-                            SpePlaBullBuybtn.Checked = item.IsPurchased;
-                            SpePlaBullEqubtn.Checked = item.IsEquipped;
-                            SpePlaBullEqubtn.Enabled = item.IsPurchased;
-                            break;
-
-                        case AsteroidTheme:
-                            AstBackBuybtn.Checked = item.IsPurchased;
-                            AstBackEquipbtn.Checked = item.IsEquipped;
-                            AstBackEquipbtn.Enabled = item.IsPurchased;
-                            break;
-
-                        case ExtraLife:
-                            OneExLifeBuybtn.Enabled = profile.ExtraLives == 0;
-                            OneExLifeEqubtn.Enabled = profile.ExtraLives > 0;
-                            OneExLifeEqubtn.Checked = profile.ExtraLifeEquipped;
-                            break;
-                    }
-                }
-            }
-        }
         private void ShopForm_Load(object sender, EventArgs e)
         {
-             RefreshShop();
+            RefreshShop();
         }
 
         private void Form_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
         }
-
-        
-        
-
-
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -89,105 +42,116 @@ namespace Arcade_Game
             this.Hide();
         }
 
+        private void RefreshShop()
+        {
+            isUpdatingUi = true;
+
+            List<ShopMenuViewModel> shopMenu = shopManager.GetShopMenu();
+
+            UpdateItemUi(shopMenu, NeonTheme, AstBackBuybtn, AstBackEquipbtn);
+            UpdateItemUi(shopMenu, GreenBullet, SpePlaBullBuybtn, SpePlaBullEqubtn);
+            UpdateItemUi(shopMenu, SpaceShip2, SpePlaySkinBuybtn, SpePlaySkinEqubtn);
+            UpdateItemUi(shopMenu, ExtraLife, OneExLifeBuybtn, OneExLifeEqubtn);
+
+            isUpdatingUi = false;
+        }
+
+        private void UpdateItemUi(List<ShopMenuViewModel> menuList, int itemId, CheckBox buyBox, CheckBox equipBox)
+        {
+            var itemStatus = menuList.FirstOrDefault(i => i.ShopItemId == itemId);
+
+            if (itemStatus == null) return;
+
+            if (itemStatus.IsPurchased)
+            {
+                buyBox.Enabled = false;
+                buyBox.Checked = true;
+
+                equipBox.Enabled = !itemStatus.IsEquipped;
+                equipBox.Checked = itemStatus.IsEquipped;
+            }
+            else
+            {
+                buyBox.Enabled = itemStatus.CanAfford;
+                buyBox.Checked = false;
+
+                equipBox.Enabled = false;
+                equipBox.Checked = false;
+            }
+        }
+
+
+
+
+
+        private void HandleBuyAction(int itemId, CheckBox currentBox)
+        {
+            if (shopManager.BuyItem(itemId))
+            {
+                MessageBox.Show("Item Bought Successfully !");
+                RefreshShop();
+            }
+            else
+            {
+                isUpdatingUi = true;
+                currentBox.Checked = false;
+                isUpdatingUi = false;
+                MessageBox.Show("Not Enough Coins !");
+            }
+        }
+
+        private void HandleEquipAction(int itemId)
+        {
+            shopManager.EquipItem(itemId);
+            RefreshShop();
+        }
+
         private void AstBackBuybtn_CheckedChanged(object sender, EventArgs e)
         {
-            if (!AstBackBuybtn.Checked)
-                return;
-
-            if (!shopManager.BuyItem(AsteroidTheme))
-                AstBackBuybtn.Checked = false;
-
-            RefreshShop();
+            if (isUpdatingUi || !AstBackBuybtn.Checked) return;
+            HandleBuyAction(NeonTheme, AstBackBuybtn);
         }
 
         private void AstBackEquipbtn_CheckedChanged(object sender, EventArgs e)
         {
-            if (!AstBackEquipbtn.Checked)
-                return;
-
-            shopManager.EquipItem(AsteroidTheme);
-
-            RefreshShop();
+            if (isUpdatingUi || !AstBackEquipbtn.Checked) return;
+            HandleEquipAction(NeonTheme);
         }
 
         private void SpePlaBullBuybtn_CheckedChanged(object sender, EventArgs e)
         {
-            if (!SpePlaBullBuybtn.Checked)
-                return;
-
-            if (!shopManager.BuyItem(GreenBullet))
-                SpePlaBullBuybtn.Checked = false;
-
-            RefreshShop();
+            if (isUpdatingUi || !SpePlaBullBuybtn.Checked) return;
+            HandleBuyAction(GreenBullet, SpePlaBullBuybtn);
         }
 
         private void SpePlaBullEqubtn_CheckedChanged(object sender, EventArgs e)
         {
-            if (!SpePlaBullEqubtn.Checked)
-                return;
-
-            shopManager.EquipItem(GreenBullet);
-
-            RefreshShop();
+            if (isUpdatingUi || !SpePlaBullEqubtn.Checked) return;
+            HandleEquipAction(GreenBullet);
         }
 
         private void SpePlaySkinBuybtn_CheckedChanged(object sender, EventArgs e)
         {
-            if (!SpePlaySkinBuybtn.Checked)
-                return;
-
-            if (!shopManager.BuyItem(SpaceShip2))
-                SpePlaySkinBuybtn.Checked = false;
-
-            RefreshShop();
+            if (isUpdatingUi || !SpePlaySkinBuybtn.Checked) return;
+            HandleBuyAction(SpaceShip2, SpePlaySkinBuybtn);
         }
 
         private void SpePlaySkinEqubtn_CheckedChanged(object sender, EventArgs e)
         {
-            if (!SpePlaySkinEqubtn.Checked)
-                return;
-
-            shopManager.EquipItem(SpaceShip2);
-
-            RefreshShop();
+            if (isUpdatingUi || !SpePlaySkinEqubtn.Checked) return;
+            HandleEquipAction(SpaceShip2);
         }
 
         private void OneExLifeBuybtn_CheckedChanged(object sender, EventArgs e)
         {
-            if (!OneExLifeBuybtn.Checked)
-                return;
-
-            if (!shopManager.BuyItem(ExtraLife))
-                OneExLifeBuybtn.Checked = false;
-
-            RefreshShop();
+            if (isUpdatingUi || !OneExLifeBuybtn.Checked) return;
+            HandleBuyAction(ExtraLife, OneExLifeBuybtn);
         }
 
         private void OneExLifeEqubtn_CheckedChanged(object sender, EventArgs e)
         {
-            using (var db = new GameDbContext())
-            {
-                var profile = db.PlayerProfiles
-                                .First(p => p.Id == GameSession.CurrentPlayerId);
-
-                if (OneExLifeEqubtn.Checked)
-                {
-                    if (profile.ExtraLives <= 0)
-                    {
-                        OneExLifeEqubtn.Checked = false;
-                        return;
-                    }
-
-                    profile.ExtraLifeEquipped = true;
-                }
-                else
-                {
-                    profile.ExtraLifeEquipped = false;
-                }
-
-                db.SaveChanges();
-                RefreshShop();
-            }
+            if (isUpdatingUi || !OneExLifeEqubtn.Checked) return;
+            HandleEquipAction(ExtraLife);
         }
     }
 }

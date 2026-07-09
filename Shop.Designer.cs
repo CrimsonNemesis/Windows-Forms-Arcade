@@ -80,6 +80,7 @@
             label1.Size = new Size(175, 81);
             label1.TabIndex = 0;
             label1.Text = "Shop";
+            
             // 
             // pictureBox1
             // 
@@ -429,6 +430,7 @@
             OneExLifeEqubtn.Size = new Size(15, 14);
             OneExLifeEqubtn.TabIndex = 30;
             OneExLifeEqubtn.UseVisualStyleBackColor = false;
+            OneExLifeEqubtn.CheckedChanged += OneExLifeEqubtn_CheckedChanged;
             // 
             // Shop
             // 

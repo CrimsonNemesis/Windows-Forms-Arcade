@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -10,6 +11,8 @@ namespace Arcade_Game
 {
     public partial class SelectForm : Form
     {
+        private ProfileManager pM = new ProfileManager();
+
         public SelectForm()
         {
             InitializeComponent();
@@ -19,65 +22,48 @@ namespace Arcade_Game
         {
             Application.Exit();
         }
-
-
-
-        private void btnNew_Click(object sender, EventArgs e)
+        private void RefreshProfilesList()
         {
-            if (string.IsNullOrWhiteSpace(txtName.Text))
-                return;
-
-            using (var db = new GameDbContext())
-            {
-                var profile = new PlayerProfile
-                {
-                    ProfileName = txtName.Text,
-                    HighScore = 0,
-                    TotalGoldCoinValues = 0,
-                    TotalSilverCoinValues = 0,
-                    ExtraLives = 0
-                };
-
-                db.PlayerProfiles.Add(profile);
-                db.SaveChanges();
-            }
-
-            using (var db = new GameDbContext())
-            {
-                lstProfiles.DataSource = db.PlayerProfiles.ToList();
-                lstProfiles.DisplayMember = "ProfileName";
-            }
-        }
-
-
-
-
-
-        private void btnLoad_Click(object sender, EventArgs e)
-        {
-            if (lstProfiles.SelectedItem == null)
-                return;
-
-            PlayerProfile profile = (PlayerProfile)lstProfiles.SelectedItem;
-
-            GameSession.CurrentPlayerId = profile.Id;
-
-            MenuForm menu = new MenuForm();
-            menu.Show();
-
-            this.Hide();
+            lstProfiles.DataSource = pM.GetAllProfiles();
+            lstProfiles.DisplayMember = "ProfileName";
+            lstProfiles.ValueMember = "Id";
         }
 
         private void SelectForm_Load(object sender, EventArgs e)
         {
             MusicPlayer.Play(@"Resources\Musics&Sounds\TheTheme.wav");
-            using (var db = new GameDbContext())
-            {
-                lstProfiles.DataSource = db.PlayerProfiles.ToList();
-                lstProfiles.DisplayMember = "ProfileName";
-            }
+            RefreshProfilesList();
         }
 
-        
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtName.Text))
+            {
+                MessageBox.Show("Enter a Name in the label between two buttons first !");
+                return;
+            }
+
+            PlayerProfile theNewProfile = pM.CreateNewProfile(txtName.Text);
+            txtName.Clear();
+            RefreshProfilesList();
+
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            if (lstProfiles.SelectedItem == null)
+            {
+                MessageBox.Show("Please Choose a Profile from the list first !");
+                return;
+            }
+
+            PlayerProfile selectedProfile = (PlayerProfile)lstProfiles.SelectedItem;
+            if (pM.SelectProfile(selectedProfile.Id))
+            {
+                MenuForm menu = new MenuForm();
+                menu.Show();
+                this.Hide();
+            }
+        }
     }
 }

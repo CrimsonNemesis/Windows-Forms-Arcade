@@ -70,9 +70,9 @@ public class GameDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<ShopItem>().HasData(
-            new ShopItem { Id = 1, Name = "Spaceship 2", Category = "Skin", Price = 500, CurrencyType = CoinKind.Gold },
+            new ShopItem { Id = 3, Name = "Spaceship 2", Category = "Skin", Price = 500, CurrencyType = CoinKind.Gold },
             new ShopItem { Id = 2, Name = "Green Bullets", Category = "Bullet", Price = 300, CurrencyType = CoinKind.Silver },
-            new ShopItem { Id = 3, Name = "Neon Background", Category = "Theme", Price = 400, CurrencyType = CoinKind.Gold },
+            new ShopItem { Id = 1, Name = "Neon Background", Category = "Theme", Price = 400, CurrencyType = CoinKind.Gold },
             new ShopItem { Id = 4, Name = "Extra Life", Category = "Consumable", Price = 150, CurrencyType = CoinKind.Silver }
         );
     }

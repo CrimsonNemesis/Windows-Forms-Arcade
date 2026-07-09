@@ -27,22 +27,7 @@ public partial class MainForm : Form
         LoadPlayerDataFromDb();
 
         player = new Player(AssetManager.Player);
-        using (var db = new GameDbContext())
-        {
-            var profile = db.PlayerProfiles
-                            .First(p => p.Id == GameSession.CurrentPlayerId);
-
-            if (profile.ExtraLifeEquipped && profile.ExtraLives > 0)
-            {
-                player.HealthPoint++;
-
-                profile.ExtraLives--;
-
-                profile.ExtraLifeEquipped = false;
-
-                db.SaveChanges();
-            }
-        }
+        
 
         WaveManager.LoadWave();
     }
