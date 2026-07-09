@@ -47,6 +47,8 @@ namespace Arcade_Game
 
         private void RefreshShop()
         {
+            isUpdatingUi = true;
+
             List<ShopMenuViewModel> shopMenu = shopManager.GetShopMenu();
 
             UpdateItemUi(shopMenu, NeonTheme, AstBackBuybtn, AstBackEquipbtn);
@@ -56,6 +58,8 @@ namespace Arcade_Game
 
             goldCoinlbl.Text = $"{Player.TotalGoldCoinValues}";
             silverCoinlbl.Text = $"{Player.TotalSilverCoinValues}";
+
+            isUpdatingUi = false;
         }
 
         private void UpdateItemUi(List<ShopMenuViewModel> menuList, int itemId, CheckBox buyBox, CheckBox equipBox)
