@@ -27,7 +27,10 @@ namespace Arcade_Game
 
         private void ShopForm_Load(object sender, EventArgs e)
         {
+            Player.LoadPlayerDataFromDb();
+
             RefreshShop();
+
         }
 
         private void Form_FormClosing(object sender, FormClosingEventArgs e)
@@ -44,8 +47,6 @@ namespace Arcade_Game
 
         private void RefreshShop()
         {
-            isUpdatingUi = true;
-
             List<ShopMenuViewModel> shopMenu = shopManager.GetShopMenu();
 
             UpdateItemUi(shopMenu, NeonTheme, AstBackBuybtn, AstBackEquipbtn);
@@ -53,26 +54,26 @@ namespace Arcade_Game
             UpdateItemUi(shopMenu, SpaceShip2, SpePlaySkinBuybtn, SpePlaySkinEqubtn);
             UpdateItemUi(shopMenu, ExtraLife, OneExLifeBuybtn, OneExLifeEqubtn);
 
-            isUpdatingUi = false;
+            goldCoinlbl.Text = $"{Player.TotalGoldCoinValues}";
+            silverCoinlbl.Text = $"{Player.TotalSilverCoinValues}";
         }
 
         private void UpdateItemUi(List<ShopMenuViewModel> menuList, int itemId, CheckBox buyBox, CheckBox equipBox)
         {
             var itemStatus = menuList.FirstOrDefault(i => i.ShopItemId == itemId);
-
             if (itemStatus == null) return;
 
             if (itemStatus.IsPurchased)
             {
-                buyBox.Enabled = false;
                 buyBox.Checked = true;
+                buyBox.Enabled = false;
 
-                equipBox.Enabled = !itemStatus.IsEquipped;
+                equipBox.Enabled = true;
                 equipBox.Checked = itemStatus.IsEquipped;
             }
             else
             {
-                buyBox.Enabled = itemStatus.CanAfford;
+                buyBox.Enabled = true;
                 buyBox.Checked = false;
 
                 equipBox.Enabled = false;

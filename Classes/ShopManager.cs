@@ -60,11 +60,13 @@ public class ShopManager
             if (item.CurrencyType == CoinKind.Gold && profile.TotalGoldCoinValues >= item.Price)
             {
                 profile.TotalGoldCoinValues -= item.Price;
+                Player.TotalGoldCoinValues = profile.TotalGoldCoinValues;
                 purchaseSuccessful = true;
             }
             else if (item.CurrencyType == CoinKind.Silver && profile.TotalSilverCoinValues >= item.Price)
             {
                 profile.TotalSilverCoinValues -= item.Price;
+                Player.TotalSilverCoinValues = profile.TotalSilverCoinValues;
                 purchaseSuccessful = true;
             }
 

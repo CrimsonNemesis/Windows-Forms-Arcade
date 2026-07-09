@@ -58,7 +58,7 @@ internal class Player : GameObject
         this.Location = new Point(windowWidth / 2 - 45, windowHeight - 90 - 15);
     }
 
-    private void SavePlayerDataToDb()
+    public static void SavePlayerDataToDb()
     {
         using (var db = new GameDbContext())
         {
@@ -128,5 +128,19 @@ internal class Player : GameObject
 
         PlayerBullet bullet = new(this, dirX, dirY, 15);
         bullets.Add(bullet);
+    }
+
+    public static void LoadPlayerDataFromDb()
+    {
+        using (var db = new GameDbContext())
+        {
+            var activeProfile = db.PlayerProfiles.FirstOrDefault(p => p.Id == GameSession.CurrentPlayerId);
+            if (activeProfile != null)
+            {
+                Player.TotalGoldCoinValues = activeProfile.TotalGoldCoinValues;
+                Player.TotalSilverCoinValues = activeProfile.TotalSilverCoinValues;
+                Player.HighScore = activeProfile.HighScore;
+            }
+        }
     }
 }

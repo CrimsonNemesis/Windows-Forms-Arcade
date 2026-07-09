@@ -24,7 +24,8 @@ public partial class MainForm : Form
         this.KeyUp += MainFormKeyUp;
         this.Paint += MainFormPaint;
 
-        LoadPlayerDataFromDb();
+        Player.LoadPlayerDataFromDb();
+        Player.CurrentScore = 0;
 
         player = new Player(AssetManager.Player);
         
@@ -32,20 +33,7 @@ public partial class MainForm : Form
         WaveManager.LoadWave();
     }
 
-    private void LoadPlayerDataFromDb()
-    {
-        using (var db = new GameDbContext())
-        {
-            var activeProfile = db.PlayerProfiles.FirstOrDefault(p => p.Id == GameSession.CurrentPlayerId);
-            if (activeProfile != null)
-            {
-                Player.TotalGoldCoinValues = activeProfile.TotalGoldCoinValues;
-                Player.TotalSilverCoinValues = activeProfile.TotalSilverCoinValues;
-                Player.CurrentScore = 0;
-                Player.HighScore = activeProfile.HighScore;
-            }
-        }
-    }
+    
 
     private void TimerEvent(object sender, EventArgs e)
     {

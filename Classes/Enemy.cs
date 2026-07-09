@@ -167,7 +167,7 @@ class TerroristEnemy : Enemy
 class TankEnemy : Enemy
 {
     public override int HealthPoint { get; set; } = 200;
-    private const int CoolDown = 2000;
+    private const int CoolDown = 3500;
 
     public TankEnemy(Point startLocation, CoinSpecification? loot = null) : base(startLocation, loot)
     {
