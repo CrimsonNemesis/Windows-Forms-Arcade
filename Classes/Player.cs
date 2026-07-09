@@ -13,6 +13,10 @@ internal class Player : GameObject
     public static int MatchSilverCoins = 0;
     public static int HighScore { get; set; }
 
+    public static bool HasSpecialTheme = false;
+    public static bool HasSpecialBullet = false;
+    public static bool HasSpecialSkin = false;
+
     public static Player Instance { get; private set; }
 
     private DateTime lastTimeShot = DateTime.MinValue;
@@ -172,8 +176,16 @@ internal class Player : GameObject
                 Player.MatchGoldCoins = 0;
                 Player.MatchSilverCoins = 0;
                 Player.CurrentScore = 0;
-
             }
+
+            var equippedItems = db.PlayerItems
+                .Where(pi => pi.PlayerProfileId == GameSession.CurrentPlayerId && pi.IsEquipped)
+                .Select(pi => pi.ShopItemId)
+                .ToList();
+
+            HasSpecialTheme = equippedItems.Contains(1);
+            HasSpecialBullet = equippedItems.Contains(2);
+            HasSpecialSkin = equippedItems.Contains(3);
         }
     }
 }

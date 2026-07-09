@@ -15,6 +15,9 @@ internal class GameAssets
 
     public static readonly Image gameTitle = Properties.Resources.gameTitle;
     public static readonly Image SpaceBackGround = Properties.Resources.SpaceBackGround;
+    public static readonly Image SpaceBackGround2 = Properties.Resources.SpaceBackGround2;
+    public static readonly Image AsteroidBeltBackGround = Properties.Resources.AsteroidBeltBackGround;
+
     public static readonly byte[] GameIcon = Properties.Resources.GameIcon;
 
 
@@ -56,6 +59,9 @@ internal class GameAssets
 
     public static readonly Image PixelBulletPlayer = Properties.Resources.PixelPlayerBullet;
     public static readonly Image PixelBulletEnemy = Properties.Resources.PixelEnemyBullet;
+    public static readonly Image SpecialPixelPlayerBullet = Properties.Resources.SpecialPixelPlayerBullet;
+    public static readonly Image SpecialNormalPlayerBullet = Properties.Resources.SpecialNormalBulletPlayer;
+
 
 
 

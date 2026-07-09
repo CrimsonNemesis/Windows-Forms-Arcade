@@ -31,8 +31,16 @@ public partial class MainForm : Form
 
         Player.LoadPlayerDataFromDb();
         Player.CurrentScore = 0;
-
         WaveManager.CurrentWave = 1;
+
+        if (Player.HasSpecialTheme)
+        {
+            this.BackgroundImage = GameAssets.AsteroidBeltBackGround;
+        }
+        else
+        {
+            this.BackgroundImage = GameAssets.SpaceBackGround2;
+        }
 
         player = new Player(AssetManager.Player);
         WaveManager.LoadWave();

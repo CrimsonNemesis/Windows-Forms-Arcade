@@ -2,10 +2,17 @@
 
 internal static class AssetManager
 {
-    public static Image Player =>
-        GameSettings.PixelMode
-        ? GameAssets.PixelPlayer
-        : GameAssets.NormalPlayer;
+    public static Image Player
+    {
+        get
+        {
+            if (Arcade_Game.Player.HasSpecialSkin)
+            {
+                return GameSettings.PixelMode ? GameAssets.PixelSpecialPlayer : GameAssets.NormalSpecialPlayer;
+            }
+            return GameSettings.PixelMode ? GameAssets.PixelPlayer : GameAssets.NormalPlayer;
+        }
+    }
 
     public static Image SpecialPlayer =>
         GameSettings.PixelMode
@@ -37,10 +44,17 @@ internal static class AssetManager
         ? GameAssets.PixelEnemyTank
         : GameAssets.NormalEnemyTank;
 
-    public static Image PlayerBullet =>
-        GameSettings.PixelMode
-        ? GameAssets.PixelBulletPlayer
-        : GameAssets.NormalBulletPlayer;
+    public static Image PlayerBullet
+    {
+        get
+        {
+            if (Arcade_Game.Player.HasSpecialBullet)
+            {
+                return GameSettings.PixelMode ? GameAssets.SpecialPixelPlayerBullet : GameAssets.SpecialNormalPlayerBullet;
+            }
+            return GameSettings.PixelMode ? GameAssets.PixelBulletPlayer : GameAssets.NormalBulletPlayer;
+        }
+    }
 
     public static Image EnemyBullet =>
         GameSettings.PixelMode
