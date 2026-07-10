@@ -78,8 +78,8 @@ public partial class Shop : Form
         var item = menuList.FirstOrDefault(i => i.ShopItemId == itemId);
         if (item == null) return;
 
-        boughtLbl.Text = $"Bought: {item.OwnedQuantity}";
-        equippedLbl.Text = $"Equipped: {item.EquippedQuantity}";
+        boughtLbl.Text = $"Bought:\n    {item.OwnedQuantity}";
+        equippedLbl.Text = $"Equipped:\n      {item.EquippedQuantity}";
 
         // Disable logic based on quantities
         plusBtn.Enabled = item.EquippedQuantity < item.OwnedQuantity;

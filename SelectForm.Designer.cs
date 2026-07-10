@@ -36,9 +36,10 @@
             btnLoad = new Button();
             txtName = new TextBox();
             lstProfiles = new ListBox();
-            simpText = new Label();
+            pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)gameDbContextBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)playerProfileBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // btnNew
@@ -47,7 +48,7 @@
             btnNew.FlatStyle = FlatStyle.Flat;
             btnNew.Font = new Font("Impact", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnNew.ForeColor = Color.Black;
-            btnNew.Location = new Point(553, 339);
+            btnNew.Location = new Point(554, 357);
             btnNew.Name = "btnNew";
             btnNew.Size = new Size(186, 69);
             btnNew.TabIndex = 0;
@@ -69,7 +70,7 @@
             btnLoad.FlatStyle = FlatStyle.Flat;
             btnLoad.Font = new Font("Impact", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnLoad.ForeColor = Color.Black;
-            btnLoad.Location = new Point(65, 339);
+            btnLoad.Location = new Point(61, 357);
             btnLoad.Name = "btnLoad";
             btnLoad.Size = new Size(186, 69);
             btnLoad.TabIndex = 2;
@@ -79,44 +80,45 @@
             // 
             // txtName
             // 
-            txtName.Font = new Font("Constantia", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtName.Location = new Point(300, 368);
+            txtName.BackColor = Color.Snow;
+            txtName.Font = new Font("Kristen ITC", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtName.Location = new Point(301, 386);
             txtName.Name = "txtName";
-            txtName.Size = new Size(203, 27);
+            txtName.Size = new Size(203, 36);
             txtName.TabIndex = 3;
+            txtName.TextAlign = HorizontalAlignment.Center;
             // 
             // lstProfiles
             // 
             lstProfiles.Font = new Font("Lucida Sans Unicode", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lstProfiles.FormattingEnabled = true;
-            lstProfiles.Location = new Point(2, 58);
+            lstProfiles.Location = new Point(124, 113);
             lstProfiles.Name = "lstProfiles";
-            lstProfiles.Size = new Size(380, 256);
+            lstProfiles.Size = new Size(547, 228);
             lstProfiles.TabIndex = 4;
             // 
-            // simpText
+            // pictureBox1
             // 
-            simpText.AutoSize = true;
-            simpText.Font = new Font("Cascadia Code SemiBold", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            simpText.Location = new Point(398, 58);
-            simpText.Name = "simpText";
-            simpText.Size = new Size(399, 245);
-            simpText.TabIndex = 5;
-            simpText.Text = "Hello and Welcome !\r\nPlease Choose your \r\nprofile from left and \r\nclick on the Load Player\r\nor write your name as \r\na new player and then\r\nclick on New Player !";
+            pictureBox1.Image = Properties.Resources.gameTitle;
+            pictureBox1.Location = new Point(149, 3);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(501, 243);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 5;
+            pictureBox1.TabStop = false;
             // 
             // SelectForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.RosyBrown;
-            BackgroundImage = Properties.Resources.SelectFormBackGround;
             BackgroundImageLayout = ImageLayout.Zoom;
             ClientSize = new Size(800, 450);
-            Controls.Add(simpText);
             Controls.Add(lstProfiles);
             Controls.Add(txtName);
             Controls.Add(btnLoad);
             Controls.Add(btnNew);
+            Controls.Add(pictureBox1);
             DoubleBuffered = true;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
@@ -126,6 +128,7 @@
             Load += SelectForm_Load;
             ((System.ComponentModel.ISupportInitialize)gameDbContextBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)playerProfileBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -138,6 +141,6 @@
         private Button btnLoad;
         private TextBox txtName;
         private ListBox lstProfiles;
-        private Label simpText;
+        private PictureBox pictureBox1;
     }
 }
