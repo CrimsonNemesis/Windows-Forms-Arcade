@@ -29,98 +29,24 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(About));
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
             button1 = new Button();
             pictureBox1 = new PictureBox();
+            label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
-            // 
-            // textBox1
-            // 
-            textBox1.BackColor = Color.FromArgb(128, 255, 255);
-            textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Font = new Font("Comic Sans MS", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(215, 48);
-            textBox1.Margin = new Padding(3, 4, 3, 3);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(408, 67);
-            textBox1.TabIndex = 0;
-            textBox1.Tag = "";
-            textBox1.Text = "Created By Amir Reza Safari & Sina Motamedi Nejad";
-            textBox1.TextAlign = HorizontalAlignment.Center;
-            textBox1.TextChanged += textBox1_TextChanged;
-            // 
-            // textBox2
-            // 
-            textBox2.BackColor = Color.FromArgb(128, 255, 255);
-            textBox2.BorderStyle = BorderStyle.None;
-            textBox2.Font = new Font("Cascadia Code", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox2.Location = new Point(480, 137);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(143, 38);
-            textBox2.TabIndex = 1;
-            textBox2.Tag = "";
-            textBox2.Text = "404521426";
-            textBox2.TextAlign = HorizontalAlignment.Center;
-            // 
-            // textBox3
-            // 
-            textBox3.BackColor = Color.FromArgb(128, 255, 255);
-            textBox3.BorderStyle = BorderStyle.None;
-            textBox3.Font = new Font("Comic Sans MS", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox3.Location = new Point(215, 137);
-            textBox3.Margin = new Padding(0);
-            textBox3.Multiline = true;
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(245, 86);
-            textBox3.TabIndex = 2;
-            textBox3.Tag = "";
-            textBox3.Text = " Student's Codes";
-            textBox3.TextAlign = HorizontalAlignment.Center;
-            // 
-            // textBox4
-            // 
-            textBox4.BackColor = Color.FromArgb(128, 255, 255);
-            textBox4.BorderStyle = BorderStyle.None;
-            textBox4.Font = new Font("Cascadia Code", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox4.Location = new Point(480, 185);
-            textBox4.Multiline = true;
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(143, 38);
-            textBox4.TabIndex = 3;
-            textBox4.Tag = "";
-            textBox4.Text = "404522088";
-            textBox4.TextAlign = HorizontalAlignment.Center;
-            // 
-            // textBox5
-            // 
-            textBox5.BackColor = Color.LightSkyBlue;
-            textBox5.BorderStyle = BorderStyle.None;
-            textBox5.Font = new Font("Comic Sans MS", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox5.Location = new Point(54, 262);
-            textBox5.Margin = new Padding(0);
-            textBox5.Multiline = true;
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(699, 144);
-            textBox5.TabIndex = 4;
-            textBox5.Tag = "";
-            textBox5.Text = "                        Created by                                  Microsoft Visual Studio , SQLite DB ,      Pixart and generative Ais , C# & sfxr ";
-            textBox5.TextAlign = HorizontalAlignment.Center;
             // 
             // button1
             // 
             button1.BackColor = Color.DarkSalmon;
             button1.BackgroundImageLayout = ImageLayout.Center;
             button1.Font = new Font("Ink Free", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(644, 81);
+            button1.Location = new Point(638, 76);
             button1.Name = "button1";
-            button1.Size = new Size(120, 108);
+            button1.Size = new Size(133, 126);
             button1.TabIndex = 5;
             button1.Text = "back";
             button1.UseVisualStyleBackColor = false;
@@ -138,19 +64,85 @@
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.Aquamarine;
+            label1.Font = new Font("Comic Sans MS", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(239, 46);
+            label1.Margin = new Padding(10);
+            label1.Name = "label1";
+            label1.Padding = new Padding(10);
+            label1.Size = new Size(365, 78);
+            label1.TabIndex = 7;
+            label1.Text = "Created By Amir Reza Safari and \r\n           Sina Motamedi Nejad";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.Aquamarine;
+            label2.Font = new Font("Comic Sans MS", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Location = new Point(239, 137);
+            label2.Margin = new Padding(0);
+            label2.Name = "label2";
+            label2.Padding = new Padding(8, 2, 8, 2);
+            label2.Size = new Size(169, 94);
+            label2.TabIndex = 8;
+            label2.Text = "Student \r\nCodes";
+            label2.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.Aquamarine;
+            label3.Font = new Font("Comic Sans MS", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(470, 182);
+            label3.Margin = new Padding(10);
+            label3.Name = "label3";
+            label3.Padding = new Padding(3, 10, 1, 10);
+            label3.Size = new Size(134, 49);
+            label3.TabIndex = 9;
+            label3.Text = "404522088";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = Color.Aquamarine;
+            label4.Font = new Font("Comic Sans MS", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Location = new Point(470, 137);
+            label4.Margin = new Padding(10);
+            label4.Name = "label4";
+            label4.Padding = new Padding(4, 10, 4, 10);
+            label4.Size = new Size(134, 49);
+            label4.TabIndex = 10;
+            label4.Text = "404521426";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = Color.MediumTurquoise;
+            label5.Font = new Font("Comic Sans MS", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Location = new Point(54, 274);
+            label5.Name = "label5";
+            label5.Padding = new Padding(20, 30, 20, 30);
+            label5.Size = new Size(708, 126);
+            label5.TabIndex = 11;
+            label5.Text = "Created By Microsoft Visual Studio , SQLite DB , Picsart , \r\njsfxr , C# , Entity Framework and Generative AIs ";
+            label5.TextAlign = ContentAlignment.TopCenter;
+            // 
             // About
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.SpaceBackGround;
             ClientSize = new Size(800, 450);
+            Controls.Add(label5);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(label1);
             Controls.Add(pictureBox1);
             Controls.Add(button1);
-            Controls.Add(textBox5);
-            Controls.Add(textBox4);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "About";
@@ -163,13 +155,12 @@
         }
 
         #endregion
-
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
-        private TextBox textBox5;
         private Button button1;
         private PictureBox pictureBox1;
+        private Label label1;
+        private Label label2;
+        private Label label3;
+        private Label label4;
+        private Label label5;
     }
 }

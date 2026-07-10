@@ -61,8 +61,8 @@ public partial class MainForm : Form
 
         pH.Text = $"Health Point : {player.HealthPoint}";
         playerScore.Text = $"Score : {Player.CurrentScore}";
-        theCoins.Text = $"{Player.TotalGoldCoinValues} : Gold Coins";
-        silCoins.Text = $"{Player.TotalSilverCoinValues} : Silver Coins";
+        theCoins.Text = $"Gold Coins : {Player.TotalGoldCoinValues}";
+        silCoins.Text = $"Silver Coins : {Player.TotalSilverCoinValues}";
         wavey.Text = $"Wave {WaveManager.CurrentWave}";
 
         if (Enemy.enemies.Count == 0)
