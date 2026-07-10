@@ -89,16 +89,16 @@
             // 
             lstProfiles.Font = new Font("Lucida Sans Unicode", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lstProfiles.FormattingEnabled = true;
-            lstProfiles.Location = new Point(3, 30);
+            lstProfiles.Location = new Point(2, 58);
             lstProfiles.Name = "lstProfiles";
-            lstProfiles.Size = new Size(395, 256);
+            lstProfiles.Size = new Size(380, 256);
             lstProfiles.TabIndex = 4;
             // 
             // simpText
             // 
             simpText.AutoSize = true;
             simpText.Font = new Font("Cascadia Code SemiBold", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            simpText.Location = new Point(404, 30);
+            simpText.Location = new Point(398, 58);
             simpText.Name = "simpText";
             simpText.Size = new Size(399, 245);
             simpText.TabIndex = 5;
@@ -109,6 +109,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.RosyBrown;
+            BackgroundImage = Properties.Resources.SelectFormBackGround;
             BackgroundImageLayout = ImageLayout.Zoom;
             ClientSize = new Size(800, 450);
             Controls.Add(simpText);
