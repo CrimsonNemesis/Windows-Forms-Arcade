@@ -61,6 +61,7 @@ internal class GameAssets
     public static readonly Image PixelBulletEnemy = Properties.Resources.PixelEnemyBullet;
     public static readonly Image SpecialPixelPlayerBullet = Properties.Resources.SpecialPixelPlayerBullet;
     public static readonly Image SpecialNormalPlayerBullet = Properties.Resources.SpecialNormalBulletPlayer;
+    public static readonly Image QuestionMark = Properties.Resources.QuestionMark;
 
 
 

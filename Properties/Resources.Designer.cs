@@ -418,9 +418,9 @@ namespace Arcade_Game.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap SelectFormBackGround {
+        internal static System.Drawing.Bitmap QuestionMark {
             get {
-                object obj = ResourceManager.GetObject("SelectFormBackGround", resourceCulture);
+                object obj = ResourceManager.GetObject("QuestionMark", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

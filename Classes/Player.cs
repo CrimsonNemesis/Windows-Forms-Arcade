@@ -16,6 +16,7 @@ internal class Player : GameObject
     public static bool HasSpecialTheme = false;
     public static bool HasSpecialBullet = false;
     public static bool HasSpecialSkin = false;
+    public static bool tripleShoot = false;
 
     public static Player Instance { get; private set; }
 
@@ -66,28 +67,28 @@ internal class Player : GameObject
         this.Size = new Size(90, 90);
         this.Location = new Point(windowWidth / 2 - 45, windowHeight - 90 - 15);
 
-        if (ConsumeEquippedExtraLife())
-        {
-            _HP = 4;
-        }
+        int extraLivesCount = ConsumeEquippedExtraLives();
+        _HP = 3 + extraLivesCount;
     }
 
-    private bool ConsumeEquippedExtraLife()
+    private int ConsumeEquippedExtraLives()
     {
         using (var db = new GameDbContext())
         {
-            var equippedLife = db.PlayerItems.FirstOrDefault(pi =>
+            var equippedLives = db.PlayerItems.Where(pi =>
                 pi.PlayerProfileId == GameSession.CurrentPlayerId &&
                 pi.ShopItemId == 4 &&
-                pi.IsEquipped);
+                pi.IsEquipped).ToList();
 
-            if (equippedLife != null)
+            int count = equippedLives.Count;
+
+            if (count > 0)
             {
-                db.PlayerItems.Remove(equippedLife);
+                db.PlayerItems.RemoveRange(equippedLives);
                 db.SaveChanges();
-                return true;
             }
-            return false;
+
+            return count;
         }
     }
 
@@ -133,6 +134,11 @@ internal class Player : GameObject
         if (goUp && this.Location.Y >= 15) this.Top -= Speed;
         if (goDown && this.Location.Y <= windowHeight - 90 - 15) this.Top += Speed;
         if (isShooting && this.CanShoot()) Shoot(0, 1);
+        if (isShooting && this.CanShoot() && tripleShoot)
+        {
+            Shoot(-1, 1);
+            Shoot(1, 1);
+        }
     }
 
     public bool CanShoot()
@@ -161,6 +167,11 @@ internal class Player : GameObject
 
         PlayerBullet bullet = new(this, dirX, dirY, 15);
         bullets.Add(bullet);
+    }
+
+    public static void ActivatePowerUp(PowerUpType type)
+    {
+        
     }
 
     public static void LoadPlayerDataFromDb()
