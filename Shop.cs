@@ -1,205 +1,153 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿namespace Arcade_Game;
 
-namespace Arcade_Game
+public partial class Shop : Form
 {
-    public partial class Shop : Form
+    public Shop()
     {
-        public Shop()
+        InitializeComponent();
+    }
+
+    private readonly ShopManager shopManager = new ShopManager();
+
+    private const int NeonTheme = 1;
+    private const int GreenBullet = 2;
+    private const int SpaceShip2 = 3;
+    private const int ExtraLife = 4;
+
+    private void ShopForm_Load(object sender, EventArgs e)
+    {
+        Player.LoadPlayerDataFromDb();
+        RefreshShop();
+    }
+
+    private void Form_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        Application.Exit();
+    }
+
+    private void button1_Click(object sender, EventArgs e)
+    {
+        MenuForm hello = new MenuForm();
+        hello.Show();
+        this.Hide();
+    }
+
+    private void RefreshShop()
+    {
+        List<ShopMenuViewModel> shopMenu = shopManager.GetShopMenu();
+
+        // Update Standard Items
+        UpdateNormalItemUi(shopMenu, NeonTheme, AstBackBtn);
+        UpdateNormalItemUi(shopMenu, GreenBullet, SpePlaBullBtn);
+        UpdateNormalItemUi(shopMenu, SpaceShip2, SpePlaySkinBtn);
+
+        // Update Consumable Item
+        UpdateConsumableUi(shopMenu, ExtraLife, OneExLifeBuyBtn, OneExLifePlusBtn, OneExLifeMinusBtn, ExLivesBoughtLbl, ExLivesEquippedLbl);
+
+        goldCoinlbl.Text = $"{Player.TotalGoldCoinValues}";
+        silverCoinlbl.Text = $"{Player.TotalSilverCoinValues}";
+    }
+
+    private void UpdateNormalItemUi(List<ShopMenuViewModel> menuList, int itemId, Button actionBtn)
+    {
+        var item = menuList.FirstOrDefault(i => i.ShopItemId == itemId);
+        if (item == null) return;
+
+        if (!item.IsPurchased)
         {
-            InitializeComponent();
+            actionBtn.Text = "Buy";
+            actionBtn.BackColor = Color.LightGray;
+            actionBtn.ForeColor = Color.Black;
         }
-
-        private readonly ShopManager shopManager = new ShopManager();
-
-        private const int NeonTheme = 1;
-        private const int GreenBullet = 2;
-        private const int SpaceShip2 = 3;
-        private const int ExtraLife = 4;
-
-        private bool isUpdatingUi = false;
-
-        private void ShopForm_Load(object sender, EventArgs e)
+        else if (!item.IsEquipped)
         {
-            Player.LoadPlayerDataFromDb();
-
-            RefreshShop();
-
+            actionBtn.Text = "Equip";
+            actionBtn.BackColor = Color.DodgerBlue;
+            actionBtn.ForeColor = Color.White;
         }
-
-        private void Form_FormClosing(object sender, FormClosingEventArgs e)
+        else
         {
-            Application.Exit();
+            actionBtn.Text = "Unequip";
+            actionBtn.BackColor = Color.Crimson;
+            actionBtn.ForeColor = Color.White;
         }
+    }
 
-        private void button1_Click(object sender, EventArgs e)
+    private void UpdateConsumableUi(List<ShopMenuViewModel> menuList, int itemId, Button buyBtn, Button plusBtn, Button minusBtn, Label boughtLbl, Label equippedLbl)
+    {
+        var item = menuList.FirstOrDefault(i => i.ShopItemId == itemId);
+        if (item == null) return;
+
+        boughtLbl.Text = $"Bought: {item.OwnedQuantity}";
+        equippedLbl.Text = $"Equipped: {item.EquippedQuantity}";
+
+        // Disable logic based on quantities
+        plusBtn.Enabled = item.EquippedQuantity < item.OwnedQuantity;
+        minusBtn.Enabled = item.EquippedQuantity > 0;
+    }
+
+    private void HandleNormalItemClick(int itemId)
+    {
+        var item = shopManager.GetShopMenu().FirstOrDefault(i => i.ShopItemId == itemId);
+        if (item == null) return;
+
+        if (!item.IsPurchased)
         {
-            MenuForm hello = new MenuForm();
-            hello.Show();
-            this.Hide();
-        }
-
-        private void RefreshShop()
-        {
-            isUpdatingUi = true;
-
-            List<ShopMenuViewModel> shopMenu = shopManager.GetShopMenu();
-
-            UpdateItemUi(shopMenu, NeonTheme, AstBackBuybtn, AstBackEquipbtn);
-            UpdateItemUi(shopMenu, GreenBullet, SpePlaBullBuybtn, SpePlaBullEqubtn);
-            UpdateItemUi(shopMenu, SpaceShip2, SpePlaySkinBuybtn, SpePlaySkinEqubtn);
-            UpdateItemUi(shopMenu, ExtraLife, OneExLifeBuybtn, OneExLifeEqubtn);
-
-            goldCoinlbl.Text = $"{Player.TotalGoldCoinValues}";
-            silverCoinlbl.Text = $"{Player.TotalSilverCoinValues}";
-
-            isUpdatingUi = false;
-        }
-
-        private void UpdateItemUi(List<ShopMenuViewModel> menuList, int itemId, CheckBox buyBox, CheckBox equipBox)
-        {
-            var items = menuList.Where(i => i.ShopItemId == itemId).ToList();
-            var firstItem = items.FirstOrDefault();
-
-            if (itemId == ExtraLife)
+            if (shopManager.BuyItem(itemId, out string message))
             {
-                using (var db = new GameDbContext())
-                {
-                    int ownedCount = db.PlayerItems.Count(pi => pi.PlayerProfileId == GameSession.CurrentPlayerId && pi.ShopItemId == ExtraLife);
-                    bool anyEquipped = db.PlayerItems.Any(pi => pi.PlayerProfileId == GameSession.CurrentPlayerId && pi.ShopItemId == ExtraLife && pi.IsEquipped);
-
-                    buyBox.Enabled = true;
-                    buyBox.Checked = false;
-
-                    equipBox.Enabled = ownedCount > 0;
-                    equipBox.Checked = anyEquipped;
-                    ExLivesCountlbl.Text = $"Extra Lives\n       {ownedCount}";
-                }
-                return;
-            }
-            if (firstItem != null && firstItem.IsPurchased)
-            {
-                buyBox.Checked = true;
-                buyBox.Enabled = false;
-
-                equipBox.Enabled = true;
-                equipBox.Checked = firstItem.IsEquipped;
-            }
-            else
-            {
-                buyBox.Enabled = true;
-                buyBox.Checked = false;
-
-                equipBox.Enabled = false;
-                equipBox.Checked = false;
-            }
-        }
-
-
-
-
-
-        private void HandleBuyAction(int itemId, CheckBox currentBox)
-        {
-            if (shopManager.BuyItem(itemId))
-            {
-                MessageBox.Show("Item Bought Successfully !");
-                RefreshShop();
+                MessageBox.Show(message, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                isUpdatingUi = true;
-                currentBox.Checked = false;
-                isUpdatingUi = false;
-                MessageBox.Show("Not Enough Coins !");
+                MessageBox.Show(message, "Purchase Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
-        private void HandleEquipAction(int itemId)
+        else
         {
-            if (itemId == ExtraLife)
-            {
-                using (var db = new GameDbContext())
-                {
-                    var allExtraLives = db.PlayerItems.Where(pi => pi.PlayerProfileId == GameSession.CurrentPlayerId && pi.ShopItemId == ExtraLife).ToList();
-
-                    if (allExtraLives.Any())
-                    {
-                        bool currentlyEquipped = allExtraLives.Any(pi => pi.IsEquipped);
-
-                        foreach (var item in allExtraLives) item.IsEquipped = false;
-
-                        if (!currentlyEquipped)
-                        {
-                            allExtraLives.First().IsEquipped = true;
-                        }
-
-                        db.SaveChanges();
-                    }
-                }
-            }
-            else
-            {
-                shopManager.EquipItem(itemId);
-            }
-
-            RefreshShop();
+            shopManager.ToggleEquipItem(itemId);
         }
+        RefreshShop();
+    }
 
-        private void AstBackBuybtn_CheckedChanged(object sender, EventArgs e)
+    // --- WinForms Button Click Events ---
+
+    private void AstBackBtn_Click(object sender, EventArgs e)
+    {
+        HandleNormalItemClick(NeonTheme);
+    }
+
+    private void SpePlaBullBtn_Click(object sender, EventArgs e)
+    {
+        HandleNormalItemClick(GreenBullet);
+    }
+
+    private void SpePlaySkinBtn_Click(object sender, EventArgs e)
+    {
+        HandleNormalItemClick(SpaceShip2);
+    }
+
+    private void OneExLifeBuyBtn_Click(object sender, EventArgs e)
+    {
+        if (shopManager.BuyItem(ExtraLife, out string message))
         {
-            if (isUpdatingUi || !AstBackBuybtn.Checked) return;
-            HandleBuyAction(NeonTheme, AstBackBuybtn);
+            // Purchase successful, no need to spam message boxes for consumables unless you want to
         }
-
-        private void AstBackEquipbtn_CheckedChanged(object sender, EventArgs e)
+        else
         {
-            if (isUpdatingUi || !AstBackEquipbtn.Checked) return;
-            HandleEquipAction(NeonTheme);
+            MessageBox.Show(message, "Purchase Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
+        RefreshShop();
+    }
 
-        private void SpePlaBullBuybtn_CheckedChanged(object sender, EventArgs e)
-        {
-            if (isUpdatingUi || !SpePlaBullBuybtn.Checked) return;
-            HandleBuyAction(GreenBullet, SpePlaBullBuybtn);
-        }
+    private void OneExLifePlusBtn_Click(object sender, EventArgs e)
+    {
+        shopManager.AdjustConsumableEquip(ExtraLife, 1);
+        RefreshShop();
+    }
 
-        private void SpePlaBullEqubtn_CheckedChanged(object sender, EventArgs e)
-        {
-            if (isUpdatingUi || !SpePlaBullEqubtn.Checked) return;
-            HandleEquipAction(GreenBullet);
-        }
-
-        private void SpePlaySkinBuybtn_CheckedChanged(object sender, EventArgs e)
-        {
-            if (isUpdatingUi || !SpePlaySkinBuybtn.Checked) return;
-            HandleBuyAction(SpaceShip2, SpePlaySkinBuybtn);
-        }
-
-        private void SpePlaySkinEqubtn_CheckedChanged(object sender, EventArgs e)
-        {
-            if (isUpdatingUi || !SpePlaySkinEqubtn.Checked) return;
-            HandleEquipAction(SpaceShip2);
-        }
-
-        private void OneExLifeBuybtn_CheckedChanged(object sender, EventArgs e)
-        {
-            if (isUpdatingUi || !OneExLifeBuybtn.Checked) return;
-            HandleBuyAction(ExtraLife, OneExLifeBuybtn);
-        }
-
-        private void OneExLifeEqubtn_CheckedChanged(object sender, EventArgs e)
-        {
-            if (isUpdatingUi || !OneExLifeEqubtn.Checked) return;
-            HandleEquipAction(ExtraLife);
-        }
-
-        
+    private void OneExLifeMinusBtn_Click(object sender, EventArgs e)
+    {
+        shopManager.AdjustConsumableEquip(ExtraLife, -1);
+        RefreshShop();
     }
 }

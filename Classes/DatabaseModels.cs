@@ -54,6 +54,10 @@ public class ShopMenuViewModel
     public bool IsPurchased { get; set; }
     public bool IsEquipped { get; set; }
     public bool CanAfford { get; set; }
+
+    // Added for consumable tracking
+    public int OwnedQuantity { get; set; }
+    public int EquippedQuantity { get; set; }
 }
 
 public class GameDbContext : DbContext

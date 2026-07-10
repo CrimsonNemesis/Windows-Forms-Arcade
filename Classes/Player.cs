@@ -67,28 +67,28 @@ internal class Player : GameObject
         this.Size = new Size(90, 90);
         this.Location = new Point(windowWidth / 2 - 45, windowHeight - 90 - 15);
 
-        if (ConsumeEquippedExtraLife())
-        {
-            _HP = 4;
-        }
+        int extraLivesCount = ConsumeEquippedExtraLives();
+        _HP = 3 + extraLivesCount;
     }
 
-    private bool ConsumeEquippedExtraLife()
+    private int ConsumeEquippedExtraLives()
     {
         using (var db = new GameDbContext())
         {
-            var equippedLife = db.PlayerItems.FirstOrDefault(pi =>
+            var equippedLives = db.PlayerItems.Where(pi =>
                 pi.PlayerProfileId == GameSession.CurrentPlayerId &&
                 pi.ShopItemId == 4 &&
-                pi.IsEquipped);
+                pi.IsEquipped).ToList();
 
-            if (equippedLife != null)
+            int count = equippedLives.Count;
+
+            if (count > 0)
             {
-                db.PlayerItems.Remove(equippedLife);
+                db.PlayerItems.RemoveRange(equippedLives);
                 db.SaveChanges();
-                return true;
             }
-            return false;
+
+            return count;
         }
     }
 

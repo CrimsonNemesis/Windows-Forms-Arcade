@@ -1,12 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Arcade_Game;
 
 public class ShopManager
 {
-    // Generates a complete list of items, merging catalog data with the current player's inventory
     public List<ShopMenuViewModel> GetShopMenu()
     {
         using (var db = new GameDbContext())
@@ -21,8 +18,10 @@ public class ShopManager
 
             foreach (var item in allShopItems)
             {
-                var inventoryEntry = playerInventory.FirstOrDefault(inv => inv.ShopItemId == item.Id);
-                bool isOwned = inventoryEntry != null;
+                var inventoryEntries = playerInventory.Where(inv => inv.ShopItemId == item.Id).ToList();
+                bool isOwned = inventoryEntries.Any();
+                int ownedQuantity = inventoryEntries.Count;
+                int equippedQuantity = inventoryEntries.Count(inv => inv.IsEquipped);
 
                 bool canAfford = (item.CurrencyType == CoinKind.Gold && profile.TotalGoldCoinValues >= item.Price) ||
                                  (item.CurrencyType == CoinKind.Silver && profile.TotalSilverCoinValues >= item.Price);
@@ -35,16 +34,19 @@ public class ShopManager
                     Price = item.Price,
                     CurrencyType = item.CurrencyType,
                     IsPurchased = isOwned,
-                    IsEquipped = isOwned && inventoryEntry.IsEquipped,
-                    CanAfford = canAfford
+                    IsEquipped = isOwned && inventoryEntries.Any(inv => inv.IsEquipped),
+                    CanAfford = canAfford,
+                    OwnedQuantity = ownedQuantity,
+                    EquippedQuantity = equippedQuantity
                 });
             }
             return menuList;
         }
     }
 
-    public bool BuyItem(int itemId)
+    public bool BuyItem(int itemId, out string message)
     {
+        message = "";
         using (var db = new GameDbContext())
         {
             var item = db.ShopItems.FirstOrDefault(i => i.Id == itemId);
@@ -52,8 +54,13 @@ public class ShopManager
 
             if (item == null || profile == null) return false;
 
+            // Block multiple purchases ONLY for non-consumables
             bool alreadyOwned = db.PlayerItems.Any(pi => pi.PlayerProfileId == profile.Id && pi.ShopItemId == item.Id);
-            if (alreadyOwned) return false;
+            if (alreadyOwned && item.Category != "Consumable")
+            {
+                message = "You already own this item!";
+                return false;
+            }
 
             bool purchaseSuccessful = false;
 
@@ -80,39 +87,71 @@ public class ShopManager
                 });
 
                 db.SaveChanges();
+                message = "Item Bought Successfully!";
                 return true;
             }
+
+            message = "Not Enough Coins!";
             return false;
         }
     }
 
-    public void EquipItem(int itemId)
+    public void ToggleEquipItem(int itemId)
     {
         using (var db = new GameDbContext())
         {
-            var inventoryItem = db.PlayerItems
-                .Include(pi => pi.ShopItem)
-                .FirstOrDefault(pi => pi.PlayerProfileId == GameSession.CurrentPlayerId && pi.ShopItemId == itemId);
+            var itemDefinition = db.ShopItems.FirstOrDefault(i => i.Id == itemId);
+            if (itemDefinition == null || itemDefinition.Category == "Consumable") return;
 
-            if (inventoryItem != null)
+            var inventoryItems = db.PlayerItems
+                .Where(pi => pi.PlayerProfileId == GameSession.CurrentPlayerId && pi.ShopItemId == itemId)
+                .ToList();
+
+            if (!inventoryItems.Any()) return;
+
+            bool isCurrentlyEquipped = inventoryItems.Any(i => i.IsEquipped);
+
+            if (isCurrentlyEquipped)
             {
-                var categoryToEquip = inventoryItem.ShopItem.Category;
-
-                // Unequip any currently equipped item in the SAME category for this player
+                // Unequip logic
+                foreach (var invItem in inventoryItems) invItem.IsEquipped = false;
+            }
+            else
+            {
+                // Equip logic: First unequip everything else in the same category
                 var itemsInSameCategory = db.PlayerItems
                     .Include(pi => pi.ShopItem)
-                    .Where(pi => pi.PlayerProfileId == GameSession.CurrentPlayerId && pi.ShopItem.Category == categoryToEquip)
+                    .Where(pi => pi.PlayerProfileId == GameSession.CurrentPlayerId && pi.ShopItem.Category == itemDefinition.Category)
                     .ToList();
 
-                foreach (var item in itemsInSameCategory)
-                {
-                    item.IsEquipped = false;
-                }
+                foreach (var item in itemsInSameCategory) item.IsEquipped = false;
 
-                // Equip the selected item
-                inventoryItem.IsEquipped = true;
-                db.SaveChanges();
+                // Equip the target item
+                inventoryItems.First().IsEquipped = true;
             }
+            db.SaveChanges();
+        }
+    }
+
+    public void AdjustConsumableEquip(int itemId, int amount)
+    {
+        using (var db = new GameDbContext())
+        {
+            var inventoryItems = db.PlayerItems
+                .Where(pi => pi.PlayerProfileId == GameSession.CurrentPlayerId && pi.ShopItemId == itemId)
+                .ToList();
+
+            if (amount > 0) // Try to equip one more
+            {
+                var unequipped = inventoryItems.FirstOrDefault(i => !i.IsEquipped);
+                if (unequipped != null) unequipped.IsEquipped = true;
+            }
+            else if (amount < 0) // Try to unequip one
+            {
+                var equipped = inventoryItems.FirstOrDefault(i => i.IsEquipped);
+                if (equipped != null) equipped.IsEquipped = false;
+            }
+            db.SaveChanges();
         }
     }
 }
