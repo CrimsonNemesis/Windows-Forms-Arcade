@@ -50,7 +50,7 @@ public partial class MainForm : Form
 
     private void TimerEvent(object sender, EventArgs e)
     {
-        if (player == null || player.HealthPoint <= 0) return;
+        if (player == null) return;
 
         player.Update();
 
@@ -64,6 +64,12 @@ public partial class MainForm : Form
         theCoins.Text = $"Gold Coins : {Player.TotalGoldCoinValues}";
         silCoins.Text = $"Silver Coins : {Player.TotalSilverCoinValues}";
         wavey.Text = $"Wave {WaveManager.CurrentWave}";
+
+        if (player.HealthPoint <= 0)
+        {
+            ShowGameOver();
+            return;
+        }
 
         if (Enemy.enemies.Count == 0)
         {
@@ -215,8 +221,9 @@ public partial class MainForm : Form
 
     public void ShowGameOver()
     {
+        Timer.Stop();
+        SoundEffects.Play(GameAssets.Explosion);
         string statsMessage = "GAME OVER!\n\n" + $"Score: {Player.CurrentScore}\n" + $"Gold Coins Collected: {Player.MatchGoldCoins}\n" + $"Silver Coins Collected: {Player.MatchSilverCoins}";
-
         MessageBox.Show(statsMessage, "Match Finished", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         MenuForm menu = new MenuForm();

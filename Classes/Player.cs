@@ -50,7 +50,6 @@ internal class Player : GameObject
 
                 MainForm.Instance.Timer.Stop();
 
-                MainForm.Instance.ShowGameOver();
 
             }
         }
