@@ -1,4 +1,7 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.ComponentModel;
 
 namespace Arcade_Game;
 
@@ -35,7 +38,6 @@ internal abstract class Enemy : GameObject
             lastTimeShot = DateTime.Now;
             return true;
         }
-
         return false;
     }
 
@@ -70,16 +72,13 @@ internal abstract class Enemy : GameObject
 
 class StandardEnemy : Enemy
 {
-    
     public StandardEnemy(Point startLocation) : base(startLocation)
     {
         this.Image = AssetManager.StandardEnemy;
-        this.HealthPoint = HealthPoint + WaveManager.EnemyHealthBonus;
-        this.Speed = Speed * WaveManager.EnemySpeedBonus;
-
 
         Score = 5;
-        Speed = 3;
+        this.HealthPoint = 2 + WaveManager.EnemyHealthBonus;
+        this.Speed = 3 + WaveManager.EnemySpeedBonus;
     }
 }
 
@@ -90,11 +89,9 @@ class ShooterEnemy : Enemy
     public ShooterEnemy(Point startLocation) : base(startLocation)
     {
         this.Image = AssetManager.ShooterEnemy;
-        this.HealthPoint = HealthPoint + WaveManager.EnemyHealthBonus;
-
 
         Score = 15;
-        Speed = 2;
+        this.HealthPoint = 2 + WaveManager.EnemyHealthBonus;
     }
 
     public override void Shoot()
@@ -113,12 +110,10 @@ class ScoutEnemy : Enemy
     public ScoutEnemy(Point startLocation) : base(startLocation)
     {
         this.Image = AssetManager.ScoutEnemy;
-        this.HealthPoint = HealthPoint + WaveManager.EnemyHealthBonus;
-        this.Speed = Speed * WaveManager.EnemySpeedBonus;
-
 
         Score = 10;
-        Speed = 3;
+        this.HealthPoint = 2 + WaveManager.EnemyHealthBonus;
+        this.Speed = 3 + WaveManager.EnemySpeedBonus;
     }
 
     public override void Move()
@@ -148,12 +143,10 @@ class TerroristEnemy : Enemy
     public TerroristEnemy(Point startLocation) : base(startLocation)
     {
         this.Image = AssetManager.TerroristEnemy;
-        this.HealthPoint = HealthPoint + WaveManager.EnemyHealthBonus;
-        this.Speed = Speed * WaveManager.EnemySpeedBonus;
-
 
         Score = 10;
-        Speed = 2;
+        this.HealthPoint = 1 + WaveManager.EnemyHealthBonus;
+        this.Speed = 2 + WaveManager.EnemySpeedBonus;
     }
 
     public override void Move()
@@ -179,8 +172,8 @@ class TankEnemy : Enemy
     {
         this.Image = AssetManager.TankEnemy;
         this.Size = new Size(200, 120);
+
         Score = 25;
-        Speed = 2;
     }
 
     public override void Move()
@@ -199,7 +192,8 @@ class TankEnemy : Enemy
             new EnemyBullet(this, 0, 1, 5), new EnemyBullet(this, 0, -1, 5),
             new EnemyBullet(this, 1, 0, 5), new EnemyBullet(this, -1, 0, 5),
             new EnemyBullet(this, 1, 1, 5), new EnemyBullet(this, 1, -1, 5),
-            new EnemyBullet(this, -1, -1, 5), new EnemyBullet(this, -1, 1, 5)
+            new EnemyBullet(this, 1, -1, 5), new EnemyBullet(this, -1, -1, 5),
+            new EnemyBullet(this, -1, 1, 5)
         };
 
         foreach (var bullet in tankBullets) bullets.Add(bullet);

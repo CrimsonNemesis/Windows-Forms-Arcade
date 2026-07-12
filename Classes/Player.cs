@@ -18,6 +18,10 @@ internal class Player : GameObject
     public static bool HasSpecialSkin = false;
     public static bool tripleShoot = false;
 
+    public DateTime TripleShotEndTime { get; private set; } = DateTime.MinValue;
+    public DateTime ShieldEndTime { get; private set; } = DateTime.MinValue;
+    public DateTime FireRateEndTime { get; private set; } = DateTime.MinValue;
+    public bool IsShielded => DateTime.Now < ShieldEndTime;
     public static Player Instance { get; private set; }
 
     private DateTime lastTimeShot = DateTime.MinValue;
@@ -142,7 +146,9 @@ internal class Player : GameObject
 
     public bool CanShoot()
     {
-        if ((DateTime.Now - this.lastTimeShot).TotalMilliseconds >= CoolDown)
+        int currentCooldown = (DateTime.Now < FireRateEndTime) ? (CoolDown / 2) : CoolDown;
+
+        if ((DateTime.Now - this.lastTimeShot).TotalMilliseconds >= currentCooldown)
         {
             this.lastTimeShot = DateTime.Now;
             return true;
@@ -164,13 +170,37 @@ internal class Player : GameObject
     {
         SoundEffects.Play(GameAssets.Shoot);
 
-        PlayerBullet bullet = new(this, dirX, dirY, 15);
-        bullets.Add(bullet);
+        if (DateTime.Now < TripleShotEndTime)
+        {
+            bullets.Add(new PlayerBullet(this, dirX, dirY, 15));    // مستقیم
+            bullets.Add(new PlayerBullet(this, -1, 1, 15));         // مایل به چپ
+            bullets.Add(new PlayerBullet(this, 1, 1, 15));          // مایل به راست
+        }
+        else
+        {
+            bullets.Add(new PlayerBullet(this, dirX, dirY, 15));
+        }
     }
 
     public static void ActivatePowerUp(PowerUpType type)
     {
-        
+        if (Instance == null) return;
+
+        switch (type)
+        {
+            case PowerUpType.TripleShot:
+                Instance.TripleShotEndTime = DateTime.Now.AddSeconds(10);
+                break;
+            case PowerUpType.Shield:
+                Instance.ShieldEndTime = DateTime.Now.AddSeconds(5);
+                break;
+            case PowerUpType.HealthPack:
+                Instance.HealthPoint++;
+                break;
+            case PowerUpType.FireRateBooster:
+                Instance.FireRateEndTime = DateTime.Now.AddSeconds(10);
+                break;
+        }
     }
 
     public static void LoadPlayerDataFromDb()

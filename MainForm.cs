@@ -20,6 +20,10 @@ public partial class MainForm : Form
 
     private void SetupGame()
     {
+        WaveManager.CurrentWave = 1;
+        WaveManager.EnemyHealthBonus = 0;
+        WaveManager.EnemySpeedBonus = 0;
+
         Player.bullets.Clear();
         Enemy.enemies.Clear();
         Enemy.bullets.Clear();
@@ -31,7 +35,6 @@ public partial class MainForm : Form
 
         Player.LoadPlayerDataFromDb();
         Player.CurrentScore = 0;
-        WaveManager.CurrentWave = 1;
 
         if (Player.HasSpecialTheme)
         {
@@ -108,8 +111,11 @@ public partial class MainForm : Form
 
             if (bullet.Bounds.IntersectsWith(player.Bounds))
             {
-                player.HealthPoint--;
-                SoundEffects.Play(GameAssets.hitHurt);
+                if (!player.IsShielded)
+                {
+                    player.HealthPoint--;
+                    SoundEffects.Play(GameAssets.hitHurt);
+                }
                 Enemy.bullets.RemoveAt(i);
             }
         }
@@ -125,9 +131,12 @@ public partial class MainForm : Form
 
             if (currentEnemy.Bounds.IntersectsWith(player.Bounds) && player.CanGetHitByImpact())
             {
+                if (!player.IsShielded)
+                {
+                    player.HealthPoint--;
+                    SoundEffects.Play(GameAssets.hitHurt);
+                }
 
-                player.HealthPoint--;
-                SoundEffects.Play(GameAssets.hitHurt);
                 currentEnemy.HealthPoint--;
                 CheckEnemyDeath(currentEnemy, i);
                 continue;
@@ -201,12 +210,23 @@ public partial class MainForm : Form
     {
         e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
 
-        if (player != null && player.HealthPoint > 0) e.Graphics.DrawImage(player.Image, player.Bounds);
+        if (player != null && player.HealthPoint > 0)
+        {
+            e.Graphics.DrawImage(player.Image, player.Bounds);
+
+            if (player.IsShielded)
+            {
+                using (Pen shieldPen = new Pen(Color.Cyan, 3))
+                {
+                    e.Graphics.DrawEllipse(shieldPen, player.Bounds.X - 5, player.Bounds.Y - 5, player.Bounds.Width + 10, player.Bounds.Height + 10);
+                }
+            }
+        }
+
         foreach (var enemy in Enemy.enemies) e.Graphics.DrawImage(enemy.Image, enemy.Bounds);
         foreach (var bullet in Player.bullets) e.Graphics.DrawImage(bullet.Image, bullet.Bounds);
         foreach (var bullet in Enemy.bullets) e.Graphics.DrawImage(bullet.Image, bullet.Bounds);
         foreach (var drop in Collectable.collectables) e.Graphics.DrawImage(drop.Image, drop.Bounds);
-        
     }
 
     private void MainForm_Load(object sender, EventArgs e)
