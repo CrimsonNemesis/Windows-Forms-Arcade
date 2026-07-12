@@ -122,12 +122,12 @@
             label5.AutoSize = true;
             label5.BackColor = Color.MediumTurquoise;
             label5.Font = new Font("Comic Sans MS", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(54, 274);
+            label5.Location = new Point(48, 274);
             label5.Name = "label5";
             label5.Padding = new Padding(20, 30, 20, 30);
-            label5.Size = new Size(708, 126);
+            label5.Size = new Size(712, 126);
             label5.TabIndex = 11;
-            label5.Text = "Created By Microsoft Visual Studio , SQLite DB , Picsart , \r\njsfxr , C# , Entity Framework and Generative AIs ";
+            label5.Text = "Created By Microsoft Visual Studio , SQLite DB , Pixilart , \r\njsfxr , C# , Entity Framework and Generative AIs ";
             label5.TextAlign = ContentAlignment.TopCenter;
             // 
             // About

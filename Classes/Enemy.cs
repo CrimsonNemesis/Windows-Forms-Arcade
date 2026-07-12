@@ -173,6 +173,7 @@ class TankEnemy : Enemy
     {
         this.Image = AssetManager.TankEnemy;
         this.Size = new Size(200, 120);
+        this.Speed = 2;
 
         Score = 25;
     }
