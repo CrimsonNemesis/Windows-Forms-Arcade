@@ -61,6 +61,7 @@ public partial class MainForm : Form
         UpdateEnemyBullets();
         UpdateEnemies();
         UpdateCollectables();
+        UpdatePowerUpUI();
 
         pH.Text = $"Health Point : {player.HealthPoint}";
         playerScore.Text = $"Score : {Player.CurrentScore}";
@@ -158,6 +159,45 @@ public partial class MainForm : Form
                         break;
                 }
             }
+        }
+    }
+
+    private void UpdatePowerUpUI()
+    {
+        if (player == null || player.HealthPoint <= 0) return;
+
+        DateTime now = DateTime.Now;
+
+        PowerUpPicBox.Visible = false;
+        PowerUpTimer.Visible = false;
+
+        if (player.ShieldEndTime > now)
+        {
+            PowerUpPicBox.Image = Properties.Resources.ShieldPowerUp;
+
+            int secondsLeft = (int)Math.Ceiling((player.ShieldEndTime - now).TotalSeconds);
+            PowerUpTimer.Text = $"{secondsLeft}s";
+
+            PowerUpPicBox.Visible = true;
+            PowerUpTimer.Visible = true;
+        }
+        else if (player.FireRateEndTime > now)
+        {
+            PowerUpPicBox.Image = Properties.Resources.FireRateBulletPowerUp;
+            int secondsLeft = (int)Math.Ceiling((player.FireRateEndTime - now).TotalSeconds);
+            PowerUpTimer.Text = $"{secondsLeft}s";
+
+            PowerUpPicBox.Visible = true;
+            PowerUpTimer.Visible = true;
+        }
+        else if (player.TripleShotEndTime > now)
+        {
+            PowerUpPicBox.Image = Properties.Resources.TrippleShotBulletPowerUp;
+            int secondsLeft = (int)Math.Ceiling((player.TripleShotEndTime - now).TotalSeconds);
+            PowerUpTimer.Text = $"{secondsLeft}s";
+
+            PowerUpPicBox.Visible = true;
+            PowerUpTimer.Visible = true;
         }
     }
 

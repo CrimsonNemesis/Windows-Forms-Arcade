@@ -109,6 +109,16 @@ namespace Arcade_Game.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FireRateBulletPowerUp {
+            get {
+                object obj = ResourceManager.GetObject("FireRateBulletPowerUp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] GameIcon {
@@ -426,6 +436,16 @@ namespace Arcade_Game.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ShieldPowerUp {
+            get {
+                object obj = ResourceManager.GetObject("ShieldPowerUp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream Shoot {
@@ -490,6 +510,16 @@ namespace Arcade_Game.Properties {
         internal static System.IO.UnmanagedMemoryStream TheTheme {
             get {
                 return ResourceManager.GetStream("TheTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TrippleShotBulletPowerUp {
+            get {
+                object obj = ResourceManager.GetObject("TrippleShotBulletPowerUp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

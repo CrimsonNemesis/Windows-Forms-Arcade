@@ -36,6 +36,9 @@
             theCoins = new Label();
             silCoins = new Label();
             wavey = new Label();
+            PowerUpPicBox = new PictureBox();
+            PowerUpTimer = new Label();
+            ((System.ComponentModel.ISupportInitialize)PowerUpPicBox).BeginInit();
             SuspendLayout();
             // 
             // Timer
@@ -107,6 +110,30 @@
             wavey.TabIndex = 6;
             wavey.Text = "WAVE 1";
             // 
+            // PowerUpPicBox
+            // 
+            PowerUpPicBox.BackColor = Color.Transparent;
+            PowerUpPicBox.Image = Properties.Resources.TrippleShotBulletPowerUp;
+            PowerUpPicBox.Location = new Point(113, -51);
+            PowerUpPicBox.Name = "PowerUpPicBox";
+            PowerUpPicBox.Size = new Size(278, 221);
+            PowerUpPicBox.SizeMode = PictureBoxSizeMode.Zoom;
+            PowerUpPicBox.TabIndex = 7;
+            PowerUpPicBox.TabStop = false;
+            PowerUpPicBox.Visible = false;
+            // 
+            // PowerUpTimer
+            // 
+            PowerUpTimer.AutoSize = true;
+            PowerUpTimer.BackColor = Color.Transparent;
+            PowerUpTimer.Font = new Font("Century", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            PowerUpTimer.ForeColor = Color.White;
+            PowerUpTimer.Location = new Point(310, 30);
+            PowerUpTimer.Name = "PowerUpTimer";
+            PowerUpTimer.Size = new Size(107, 38);
+            PowerUpTimer.TabIndex = 8;
+            PowerUpTimer.Text = "label1";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -115,11 +142,13 @@
             BackgroundImage = Properties.Resources.SpaceBackGround2;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1199, 562);
+            Controls.Add(PowerUpTimer);
             Controls.Add(wavey);
             Controls.Add(silCoins);
             Controls.Add(theCoins);
             Controls.Add(playerScore);
             Controls.Add(pH);
+            Controls.Add(PowerUpPicBox);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             KeyPreview = true;
@@ -129,6 +158,7 @@
             Text = "Space Invaders";
             FormClosing += Form_FormClosing;
             Load += MainForm_Load;
+            ((System.ComponentModel.ISupportInitialize)PowerUpPicBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -141,5 +171,7 @@
         private Label theCoins;
         private Label silCoins;
         private Label wavey;
+        private PictureBox PowerUpPicBox;
+        private Label PowerUpTimer;
     }
 }

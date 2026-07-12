@@ -18,6 +18,9 @@
     <None Remove="Resources\Musics&amp;Sounds\MenuMusic.wav" />
     <None Remove="Resources\Musics&amp;Sounds\Shoot.wav" />
     <None Remove="Resources\Musics&amp;Sounds\TheTheme.wav" />
+    <None Remove="Resources\PixelPics\FireRateBulletPowerUp.png" />
+    <None Remove="Resources\PixelPics\ShieldPowerUp.png" />
+    <None Remove="Resources\PixelPics\TrippleShotBulletPowerUp.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,6 +43,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Musics&amp;Sounds\TheTheme.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PixelPics\FireRateBulletPowerUp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PixelPics\ShieldPowerUp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\PixelPics\TrippleShotBulletPowerUp.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
