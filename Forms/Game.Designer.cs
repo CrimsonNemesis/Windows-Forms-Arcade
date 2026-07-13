@@ -64,7 +64,7 @@
             theCoins.BackColor = Color.Transparent;
             theCoins.Font = new Font("Simplified Arabic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             theCoins.ForeColor = Color.Gold;
-            theCoins.Location = new Point(1613, 23);
+            theCoins.Location = new Point(566, 23);
             theCoins.Name = "theCoins";
             theCoins.RightToLeft = RightToLeft.No;
             theCoins.Size = new Size(299, 45);
@@ -78,7 +78,7 @@
             silCoins.BackColor = Color.Transparent;
             silCoins.Font = new Font("Simplified Arabic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             silCoins.ForeColor = Color.Silver;
-            silCoins.Location = new Point(1613, 68);
+            silCoins.Location = new Point(566, 68);
             silCoins.Name = "silCoins";
             silCoins.RightToLeft = RightToLeft.No;
             silCoins.Size = new Size(299, 45);
@@ -93,7 +93,7 @@
             wavey.BackColor = Color.Transparent;
             wavey.Font = new Font("Century", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             wavey.ForeColor = Color.Tomato;
-            wavey.Location = new Point(889, 21);
+            wavey.Location = new Point(365, 21);
             wavey.Name = "wavey";
             wavey.Size = new Size(185, 47);
             wavey.TabIndex = 6;
@@ -102,10 +102,10 @@
             // 
             // PowerUpPicBox
             // 
-            PowerUpPicBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            PowerUpPicBox.Anchor = AnchorStyles.Top;
             PowerUpPicBox.BackColor = Color.Transparent;
             PowerUpPicBox.Image = Properties.Resources.TrippleShotBulletPowerUp;
-            PowerUpPicBox.Location = new Point(1397, 21);
+            PowerUpPicBox.Location = new Point(646, 23);
             PowerUpPicBox.Margin = new Padding(3, 4, 3, 4);
             PowerUpPicBox.Name = "PowerUpPicBox";
             PowerUpPicBox.Size = new Size(129, 109);
@@ -116,12 +116,12 @@
             // 
             // PowerUpTimer
             // 
-            PowerUpTimer.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            PowerUpTimer.Anchor = AnchorStyles.Top;
             PowerUpTimer.AutoSize = true;
             PowerUpTimer.BackColor = Color.Transparent;
             PowerUpTimer.Font = new Font("Century", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             PowerUpTimer.ForeColor = Color.White;
-            PowerUpTimer.Location = new Point(1259, 50);
+            PowerUpTimer.Location = new Point(508, 50);
             PowerUpTimer.Name = "PowerUpTimer";
             PowerUpTimer.Size = new Size(132, 47);
             PowerUpTimer.TabIndex = 8;
@@ -142,7 +142,7 @@
             BackColor = SystemColors.Desktop;
             BackgroundImage = Properties.Resources.SpaceBackGround2;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1924, 1055);
+            ClientSize = new Size(877, 562);
             Controls.Add(healthBar);
             Controls.Add(PowerUpTimer);
             Controls.Add(wavey);
