@@ -7,7 +7,7 @@ public partial class Game : Base
     private PausePrompt pausePrmpt = new PausePrompt();
     private System.Diagnostics.Stopwatch gameTimer = new System.Diagnostics.Stopwatch();
     private double deltaTime = 0;
-    private double timeScale = 0.4;
+    private double timeScale = 0.25;
 
     public Game()
     {
