@@ -7,6 +7,12 @@ public partial class SelectProfile : Base
     public SelectProfile()
     {
         InitializeComponent();
+
+        typeof(TableLayoutPanel).GetProperty("DoubleBuffered",
+            System.Reflection.BindingFlags.NonPublic |
+            System.Reflection.BindingFlags.Instance)
+            ?.SetValue(tableLayoutPanel1, true, null);
+
         this.FullScreen();
     }
 
@@ -21,7 +27,7 @@ public partial class SelectProfile : Base
     {
         if (string.IsNullOrWhiteSpace(txtName.Text))
         {
-            MessageBox.Show("Enter a name in the label between two buttons first!");
+            MessageBox.Show("Enter a name in the label between two buttons first!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return;
         }
 

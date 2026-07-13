@@ -31,74 +31,101 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Guide));
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
-            Backbtn = new Button();
             label1 = new Label();
             label2 = new Label();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            Backbtn = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // pictureBox1
             // 
-            pictureBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            pictureBox1.Anchor = AnchorStyles.None;
             pictureBox1.BackColor = Color.Transparent;
             pictureBox1.BackgroundImageLayout = ImageLayout.None;
             pictureBox1.Image = Properties.Resources.Arrows;
-            pictureBox1.Location = new Point(696, 10);
+            pictureBox1.Location = new Point(668, 28);
+            pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(278, 139);
+            pictureBox1.Size = new Size(368, 224);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
             // pictureBox2
             // 
-            pictureBox2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            pictureBox2.Anchor = AnchorStyles.None;
             pictureBox2.BackColor = Color.Transparent;
             pictureBox2.Image = Properties.Resources.SpaceKey;
-            pictureBox2.Location = new Point(696, 348);
+            pictureBox2.Location = new Point(610, 313);
+            pictureBox2.Margin = new Padding(3, 4, 3, 4);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(259, 150);
+            pictureBox2.Size = new Size(485, 213);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 1;
             pictureBox2.TabStop = false;
             // 
-            // Backbtn
-            // 
-            Backbtn.Anchor = AnchorStyles.Left;
-            Backbtn.BackColor = Color.SpringGreen;
-            Backbtn.FlatStyle = FlatStyle.Flat;
-            Backbtn.Font = new Font("Segoe Print", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Backbtn.Location = new Point(161, 244);
-            Backbtn.Name = "Backbtn";
-            Backbtn.Size = new Size(160, 62);
-            Backbtn.TabIndex = 4;
-            Backbtn.Text = "Back";
-            Backbtn.UseVisualStyleBackColor = false;
-            Backbtn.Click += Backbtn_Click;
-            // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.None;
             label1.BackColor = Color.Cyan;
             label1.Font = new Font("Kristen ITC", 24F);
-            label1.Location = new Point(43, 22);
+            label1.Location = new Point(27, 4);
             label1.Name = "label1";
-            label1.Size = new Size(391, 148);
+            label1.Size = new Size(514, 272);
             label1.TabIndex = 5;
             label1.Text = "Use the ARROW keys to move the spaceship!";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
-            label2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            label2.Anchor = AnchorStyles.None;
             label2.BackColor = Color.FromArgb(255, 128, 128);
             label2.Font = new Font("Kristen ITC", 24F);
-            label2.Location = new Point(43, 361);
+            label2.Location = new Point(27, 284);
             label2.Name = "label2";
-            label2.Size = new Size(391, 148);
+            label2.Size = new Size(514, 272);
             label2.TabIndex = 5;
             label2.Text = "Use the SPACE key to destroy your enemies!\r\n";
             label2.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.BackColor = Color.Transparent;
+            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.Controls.Add(pictureBox1, 1, 0);
+            tableLayoutPanel1.Controls.Add(label1, 0, 0);
+            tableLayoutPanel1.Controls.Add(label2, 0, 1);
+            tableLayoutPanel1.Controls.Add(pictureBox2, 1, 1);
+            tableLayoutPanel1.Controls.Add(Backbtn, 0, 2);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 3;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 150F));
+            tableLayoutPanel1.Size = new Size(1137, 710);
+            tableLayoutPanel1.TabIndex = 6;
+            // 
+            // Backbtn
+            // 
+            Backbtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            Backbtn.BackColor = Color.SpringGreen;
+            Backbtn.FlatStyle = FlatStyle.Flat;
+            Backbtn.Font = new Font("Segoe Print", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Backbtn.Location = new Point(10, 598);
+            Backbtn.Margin = new Padding(10, 4, 3, 10);
+            Backbtn.Name = "Backbtn";
+            Backbtn.Size = new Size(249, 102);
+            Backbtn.TabIndex = 4;
+            Backbtn.Text = "Back";
+            Backbtn.UseVisualStyleBackColor = false;
+            Backbtn.Click += Backbtn_Click;
             // 
             // Guide
             // 
@@ -106,12 +133,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.SpaceBackGround;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(995, 532);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(Backbtn);
-            Controls.Add(pictureBox1);
-            Controls.Add(pictureBox2);
+            ClientSize = new Size(1137, 710);
+            Controls.Add(tableLayoutPanel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "Guide";
@@ -119,6 +142,7 @@
             FormClosing += Guide_FormClosing;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            tableLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -126,8 +150,9 @@
 
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
-        private Button Backbtn;
         private Label label1;
         private Label label2;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Button Backbtn;
     }
 }
