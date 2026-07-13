@@ -6,6 +6,8 @@ internal abstract class Enemy : GameObject
 {
     public static List<Enemy> enemies = new();
     public static List<EnemyBullet> bullets = new();
+    protected double exactX;
+    protected double exactY;
 
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public virtual int HealthPoint { get; set; } = 2;
@@ -26,6 +28,8 @@ internal abstract class Enemy : GameObject
         this.Size = new Size(60, 60);
         this.Loot = LootManager.GetRandomDrop();
         this.Location = new Point(startLocation.X - this.Width / 2, startLocation.Y - this.Height / 2);
+        this.exactX = this.Left;
+        this.exactY = this.Top;
     }
 
     protected bool CanShoot(int cooldownMilliseconds)
@@ -40,12 +44,13 @@ internal abstract class Enemy : GameObject
 
     public virtual void Shoot() { }
 
-    public virtual void Move()
+    public virtual void Move(double deltaTime)
     {
         if (this.Top <= 0) Invert.Y = 1;
         else if (this.Bottom >= Game.Instance.ClientSize.Height) Invert.Y = -1;
 
-        this.Top += Speed * Invert.Y;
+        this.exactY += Speed * Invert.Y * deltaTime * 60.0;
+        this.Top = (int)Math.Round(this.exactY);
     }
 
     public void DropLoot()
@@ -114,7 +119,7 @@ class ScoutEnemy : Enemy
         this.Speed = 3 + WaveManager.EnemySpeedBonus;
     }
 
-    public override void Move()
+    public override void Move(double deltaTime)
     {
         if ((DateTime.Now - lastInvertTime).TotalMilliseconds >= 1000)
         {
@@ -122,15 +127,19 @@ class ScoutEnemy : Enemy
             lastInvertTime = DateTime.Now;
         }
 
-        if (this.Right > Game.Instance.ClientSize.Width) Invert.X = -1;
-        else if (this.Left < 0) Invert.X = 1;
+        if (this.exactX + this.Width > Game.Instance.ClientSize.Width) Invert.X = -1;
+        else if (this.exactX < 0) Invert.X = 1;
 
-        if (this.Top <= 0) Invert.Y = 1;
-        else if (this.Bottom >= Game.Instance.ClientSize.Height) Invert.Y = -1;
+        if (this.exactY <= 0) Invert.Y = 1;
+        else if (this.exactY + this.Height >= Game.Instance.ClientSize.Height) Invert.Y = -1;
 
-        int step = (int)Math.Round(Speed / Math.Sqrt(2));
-        this.Left += step * Invert.X;
-        this.Top += step * Invert.Y;
+        double step = (Speed / Math.Sqrt(2)) * deltaTime * 60.0;
+
+        this.exactX += step * Invert.X;
+        this.exactY += step * Invert.Y;
+
+        this.Left = (int)Math.Round(this.exactX);
+        this.Top = (int)Math.Round(this.exactY);
     }
 }
 
@@ -147,17 +156,22 @@ class TerroristEnemy : Enemy
         this.Speed = 2 + WaveManager.EnemySpeedBonus;
     }
 
-    public override void Move()
+    public override void Move(double deltaTime)
     {
-        int diffX = Player.Instance.Left - this.Left;
-        int diffY = Player.Instance.Top - this.Top;
+        int diffX = Player.Instance.Left - (int)Math.Round(exactX);
+        int diffY = Player.Instance.Top - (int)Math.Round(exactY);
 
         double diagonal = Math.Sqrt(Math.Pow(diffX, 2) + Math.Pow(diffY, 2));
         if (diagonal == 0) return;
 
-        double k = Speed / diagonal;
-        this.Left += (int)Math.Round(diffX * k);
-        this.Top += (int)Math.Round(diffY * k);
+        double speedForFrame = Speed * deltaTime * 60.0;
+        double k = speedForFrame / diagonal;
+
+        this.exactX += diffX * k;
+        this.exactY += diffY * k;
+
+        this.Left = (int)Math.Round(exactX);
+        this.Top = (int)Math.Round(exactY);
     }
 }
 
@@ -175,12 +189,13 @@ class TankEnemy : Enemy
         Score = 25;
     }
 
-    public override void Move()
+    public override void Move(double deltaTime)
     {
-        if (this.Right > Game.Instance.ClientSize.Width) Invert.X = -1;
-        else if (this.Left < 0) Invert.X = 1;
+        if (this.exactX + this.Width > Game.Instance.ClientSize.Width) Invert.X = -1;
+        else if (this.exactX < 0) Invert.X = 1;
 
-        this.Left += Speed * Invert.X;
+        this.exactX += Speed * Invert.X * deltaTime * 60.0;
+        this.Left = (int)Math.Round(this.exactX);
     }
 
     public override void Shoot()

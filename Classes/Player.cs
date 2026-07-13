@@ -4,6 +4,8 @@ namespace Arcade_Game;
 
 internal class Player : GameObject
 {
+    private double exactX;
+    private double exactY;
     public static List<PlayerBullet> bullets = new();
 
     public static int TotalSilverCoinValues = 0;
@@ -48,7 +50,8 @@ internal class Player : GameObject
         this.Image = skin;
         this.Size = new Size(90, 90);
         this.Location = new Point(windowWidth / 2 - 45, windowHeight - 90 - 15);
-
+        this.exactX = this.Left;
+        this.exactY = this.Top;
         int extraLivesCount = ConsumeEquippedExtraLives();
         HealthPoint = 3 + extraLivesCount;
     }
@@ -109,12 +112,18 @@ internal class Player : GameObject
         if (e.KeyCode == Keys.Space) isShooting = false;
     }
 
-    public void Update()
+    public void Update(double deltaTime)
     {
-        if (goLeft && this.Location.X >= 15) this.Left -= Speed;
-        if (goRight && this.Location.X <= windowWidth - 90 - 15) this.Left += Speed;
-        if (goUp && this.Location.Y >= 15) this.Top -= Speed;
-        if (goDown && this.Location.Y <= windowHeight - 90 - 15) this.Top += Speed;
+        double moveAmount = Speed * deltaTime * 60.0;
+
+        if (goLeft && exactX >= 15) exactX -= moveAmount;
+        if (goRight && exactX <= windowWidth - 90 - 15) exactX += moveAmount;
+        if (goUp && exactY >= 15) exactY -= moveAmount;
+        if (goDown && exactY <= windowHeight - 90 - 15) exactY += moveAmount;
+
+        this.Left = (int)Math.Round(exactX);
+        this.Top = (int)Math.Round(exactY);
+
         if (isShooting && this.CanShoot()) Shoot(0, 1);
         if (isShooting && this.CanShoot() && tripleShoot)
         {

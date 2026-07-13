@@ -26,10 +26,10 @@ internal abstract class Bullet : GameObject
         this.Top = (int)Math.Round(this.exactY);
     }
 
-    public void Move()
+    public void Move(double deltaTime)
     {
-        this.exactX += moveSpeedX;
-        this.exactY += moveSpeedY;
+        this.exactX += moveSpeedX * deltaTime * 60.0;
+        this.exactY += moveSpeedY * deltaTime * 60.0;
 
         this.Left = (int)Math.Round(this.exactX);
         this.Top = (int)Math.Round(this.exactY);

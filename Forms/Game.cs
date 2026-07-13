@@ -5,13 +5,15 @@ public partial class Game : Base
     Player player;
     public static Game Instance { get; private set; }
     private PausePrompt pausePrmpt = new PausePrompt();
+    private System.Diagnostics.Stopwatch gameTimer = new System.Diagnostics.Stopwatch();
+    private double deltaTime = 0;
 
     public Game()
     {
         Instance = this;
 
         InitializeComponent();
-
+        this.DoubleBuffered = true;
         typeof(TableLayoutPanel).GetProperty("DoubleBuffered",
             System.Reflection.BindingFlags.NonPublic |
             System.Reflection.BindingFlags.Instance)
@@ -23,7 +25,9 @@ public partial class Game : Base
         this.ActiveControl = null;
 
         SetupGame();
+        gameTimer.Start();
         Timer.Start();
+
     }
 
     private void SetupGame()
@@ -55,14 +59,14 @@ public partial class Game : Base
 
     private void TimerEvent(object sender, EventArgs e)
     {
+        deltaTime = gameTimer.Elapsed.TotalSeconds;
+        gameTimer.Restart();
         if (player == null) return;
-
-        player.Update();
-
-        UpdatePlayerBullets();
-        UpdateEnemyBullets();
-        UpdateEnemies();
-        UpdateCollectables();
+        player.Update(deltaTime);
+        UpdatePlayerBullets(deltaTime);
+        UpdateEnemyBullets(deltaTime);
+        UpdateEnemies(deltaTime);
+        UpdateCollectables(deltaTime);
         UpdatePowerUpUI();
 
         healthBar.Width = player.HealthPoint * 10;
@@ -71,7 +75,19 @@ public partial class Game : Base
         theCoins.Text = $"{Player.TotalGoldCoinValues} : Gold Coins";
         silCoins.Text = $"{Player.TotalSilverCoinValues} : Silver Coins";
         wavey.Text = $"Wave {WaveManager.CurrentWave}";
+        if (healthBar.Width != player.HealthPoint * 10) healthBar.Width = player.HealthPoint * 10;
 
+        string expectedScore = $"Score : {Player.CurrentScore}";
+        if (playerScore.Text != expectedScore) playerScore.Text = expectedScore;
+
+        string expectedGold = $"{Player.TotalGoldCoinValues} : Gold Coins";
+        if (theCoins.Text != expectedGold) theCoins.Text = expectedGold;
+
+        string expectedSil = $"{Player.TotalSilverCoinValues} : Silver Coins";
+        if (silCoins.Text != expectedSil) silCoins.Text = expectedSil;
+
+        string expectedWave = $"Wave {WaveManager.CurrentWave}";
+        if (wavey.Text != expectedWave) wavey.Text = expectedWave;
         if (player.HealthPoint <= 0)
         {
             Player.HighScore = Math.Max(Player.CurrentScore, Player.HighScore);
@@ -90,12 +106,12 @@ public partial class Game : Base
         this.Invalidate();
     }
 
-    private void UpdatePlayerBullets()
+    private void UpdatePlayerBullets(double dt)
     {
         for (int i = Player.bullets.Count - 1; i >= 0; i--)
         {
             PlayerBullet bullet = Player.bullets[i];
-            bullet.Move();
+            bullet.Move(dt);
 
             if (bullet.IsOutOfBounds())
             {
@@ -104,12 +120,12 @@ public partial class Game : Base
         }
     }
 
-    private void UpdateEnemyBullets()
+    private void UpdateEnemyBullets(double dt)
     {
         for (int i = Enemy.bullets.Count - 1; i >= 0; i--)
         {
             EnemyBullet bullet = Enemy.bullets[i];
-            bullet.Move();
+            bullet.Move(dt);
 
             if (bullet.IsOutOfBounds())
             {
@@ -129,12 +145,12 @@ public partial class Game : Base
         }
     }
 
-    private void UpdateEnemies()
+    private void UpdateEnemies(double dt)
     {
         for (int i = Enemy.enemies.Count - 1; i >= 0; i--)
         {
             Enemy currentEnemy = Enemy.enemies[i];
-            currentEnemy.Move();
+            currentEnemy.Move(dt);
             currentEnemy.Shoot();
 
             if (currentEnemy.Bounds.IntersectsWith(player.Bounds) && player.CanGetHitByImpact())
@@ -157,9 +173,7 @@ public partial class Game : Base
                 if (currentBullet.Bounds.IntersectsWith(currentEnemy.Bounds))
                 {
                     Player.bullets.RemoveAt(j);
-
                     SoundEffects.Play(GameAssets.hitHurt);
-
                     currentEnemy.HealthPoint--;
 
                     if (CheckEnemyDeath(currentEnemy, i))
@@ -169,42 +183,25 @@ public partial class Game : Base
         }
     }
 
-    private void UpdatePowerUpUI()
+    private void UpdateCollectables(double dt)
     {
-        if (player == null || player.HealthPoint <= 0) return;
-
-        DateTime now = DateTime.Now;
-
-        PowerUpPicBox.Visible = false;
-        PowerUpTimer.Visible = false;
-
-        if (player.ShieldEndTime > now)
+        for (int i = Collectable.collectables.Count - 1; i >= 0; i--)
         {
-            PowerUpPicBox.Image = Properties.Resources.ShieldPowerUp;
+            Collectable drop = Collectable.collectables[i];
+            drop.Move();
 
-            int secondsLeft = (int)Math.Ceiling((player.ShieldEndTime - now).TotalSeconds);
-            PowerUpTimer.Text = $"{secondsLeft}s";
+            if (player.Bounds.IntersectsWith(drop.Bounds))
+            {
+                SoundEffects.Play(GameAssets.CoinPickup);
+                drop.ApplyEffect();
+                Collectable.collectables.RemoveAt(i);
+                continue;
+            }
 
-            PowerUpPicBox.Visible = true;
-            PowerUpTimer.Visible = true;
-        }
-        else if (player.FireRateEndTime > now)
-        {
-            PowerUpPicBox.Image = Properties.Resources.FireRateBulletPowerUp;
-            int secondsLeft = (int)Math.Ceiling((player.FireRateEndTime - now).TotalSeconds);
-            PowerUpTimer.Text = $"{secondsLeft}s";
-
-            PowerUpPicBox.Visible = true;
-            PowerUpTimer.Visible = true;
-        }
-        else if (player.TripleShotEndTime > now)
-        {
-            PowerUpPicBox.Image = Properties.Resources.TrippleShotBulletPowerUp;
-            int secondsLeft = (int)Math.Ceiling((player.TripleShotEndTime - now).TotalSeconds);
-            PowerUpTimer.Text = $"{secondsLeft}s";
-
-            PowerUpPicBox.Visible = true;
-            PowerUpTimer.Visible = true;
+            if (drop.Top >= Game.Instance.ClientSize.Height)
+            {
+                Collectable.collectables.RemoveAt(i);
+            }
         }
     }
 
