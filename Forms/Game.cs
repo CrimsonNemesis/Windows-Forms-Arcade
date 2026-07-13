@@ -7,6 +7,7 @@ public partial class Game : Base
     private PausePrompt pausePrmpt = new PausePrompt();
     private System.Diagnostics.Stopwatch gameTimer = new System.Diagnostics.Stopwatch();
     private double deltaTime = 0;
+    private double timeScale = 0.4;
 
     public Game()
     {
@@ -59,7 +60,7 @@ public partial class Game : Base
 
     private void TimerEvent(object sender, EventArgs e)
     {
-        deltaTime = gameTimer.Elapsed.TotalSeconds;
+        deltaTime = gameTimer.Elapsed.TotalSeconds * timeScale;
         gameTimer.Restart();
         if (player == null) return;
         player.Update(deltaTime);
@@ -188,7 +189,7 @@ public partial class Game : Base
         for (int i = Collectable.collectables.Count - 1; i >= 0; i--)
         {
             Collectable drop = Collectable.collectables[i];
-            drop.Move();
+            drop.Move(dt);
 
             if (player.Bounds.IntersectsWith(drop.Bounds))
             {
@@ -205,6 +206,44 @@ public partial class Game : Base
         }
     }
 
+    private void UpdatePowerUpUI()
+    {
+        if (player == null || player.HealthPoint <= 0) return;
+
+        DateTime now = DateTime.Now;
+
+        PowerUpPicBox.Visible = false;
+        PowerUpTimer.Visible = false;
+
+        if (player.ShieldEndTime > now)
+        {
+            PowerUpPicBox.Image = Properties.Resources.ShieldPowerUp;
+
+            int secondsLeft = (int)Math.Ceiling((player.ShieldEndTime - now).TotalSeconds);
+            PowerUpTimer.Text = $"{secondsLeft}s";
+
+            PowerUpPicBox.Visible = true;
+            PowerUpTimer.Visible = true;
+        }
+        else if (player.FireRateEndTime > now)
+        {
+            PowerUpPicBox.Image = Properties.Resources.FireRateBulletPowerUp;
+            int secondsLeft = (int)Math.Ceiling((player.FireRateEndTime - now).TotalSeconds);
+            PowerUpTimer.Text = $"{secondsLeft}s";
+
+            PowerUpPicBox.Visible = true;
+            PowerUpTimer.Visible = true;
+        }
+        else if (player.TripleShotEndTime > now)
+        {
+            PowerUpPicBox.Image = Properties.Resources.TrippleShotBulletPowerUp;
+            int secondsLeft = (int)Math.Ceiling((player.TripleShotEndTime - now).TotalSeconds);
+            PowerUpTimer.Text = $"{secondsLeft}s";
+
+            PowerUpPicBox.Visible = true;
+            PowerUpTimer.Visible = true;
+        }
+    }
     private bool CheckEnemyDeath(Enemy enemy, int enemyIndex)
     {
         if (enemy.HealthPoint <= 0)
@@ -219,27 +258,7 @@ public partial class Game : Base
         return false;
     }
 
-    private void UpdateCollectables()
-    {
-        for (int i = Collectable.collectables.Count - 1; i >= 0; i--)
-        {
-            Collectable drop = Collectable.collectables[i];
-            drop.Move();
-
-            if (player.Bounds.IntersectsWith(drop.Bounds))
-            {
-                SoundEffects.Play(GameAssets.CoinPickup);
-                drop.ApplyEffect();
-                Collectable.collectables.RemoveAt(i);
-                continue;
-            }
-
-            if (drop.Top >= Game.Instance.ClientSize.Height)
-            {
-                Collectable.collectables.RemoveAt(i);
-            }
-        }
-    }
+    
 
     private void MainFormKeyDown(object sender, KeyEventArgs e) => player.KeyDown(e);
     private void MainFormKeyUp(object sender, KeyEventArgs e) => player.KeyUp(e);
