@@ -89,7 +89,7 @@ class ShooterEnemy : Enemy
 
         Score = 15;
         this.HealthPoint = 2 + WaveManager.EnemyHealthBonus;
-        this.Speed = 1;
+        this.Speed = 2;
     }
 
     public override void Shoot()

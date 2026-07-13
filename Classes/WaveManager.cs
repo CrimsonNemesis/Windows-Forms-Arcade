@@ -29,14 +29,14 @@ internal static class WaveManager
                 break;
 
             case 3:
-                Enemy.enemies.Add(new StandardEnemy(new(25, 150)));
-                Enemy.enemies.Add(new StandardEnemy(new(225, 150)));
-                Enemy.enemies.Add(new StandardEnemy(new(425, 150)));
-                Enemy.enemies.Add(new StandardEnemy(new(625, 150)));
-                Enemy.enemies.Add(new ScoutEnemy(new(125, 150)));
-                Enemy.enemies.Add(new ScoutEnemy(new(325, 150)));
-                Enemy.enemies.Add(new ScoutEnemy(new(525, 150)));
-                Enemy.enemies.Add(new ScoutEnemy(new(725, 150)));
+                Enemy.enemies.Add(new StandardEnemy(new(125, 150)));
+                Enemy.enemies.Add(new StandardEnemy(new(325, 150)));
+                Enemy.enemies.Add(new StandardEnemy(new(525, 150)));
+                Enemy.enemies.Add(new StandardEnemy(new(725, 150)));
+                Enemy.enemies.Add(new ScoutEnemy(new(225, 150)));
+                Enemy.enemies.Add(new ScoutEnemy(new(425, 150)));
+                Enemy.enemies.Add(new ScoutEnemy(new(625, 150)));
+                Enemy.enemies.Add(new ScoutEnemy(new(825, 150)));
                 Enemy.enemies.Add(new TerroristEnemy(new(250, 300)));
                 Enemy.enemies.Add(new TerroristEnemy(new(750, 300)));
                 break;
