@@ -82,7 +82,7 @@
             // 
             // txtName
             // 
-            txtName.Anchor = AnchorStyles.Bottom;
+            txtName.Anchor = AnchorStyles.None;
             txtName.BackColor = Color.Snow;
             txtName.Font = new Font("Kristen ITC", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtName.Location = new Point(551, 594);

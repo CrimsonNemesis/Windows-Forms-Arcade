@@ -11,6 +11,8 @@ internal static class Program
 
         NavigationManager.ShowForm(rootForm);
 
+        Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);
+
         Application.Run(rootForm);
     }
 }
