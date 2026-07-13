@@ -1,0 +1,178 @@
+﻿namespace Arcade_Game
+{
+    partial class Game
+    {
+        /// <summary>
+        ///  Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        ///  Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        ///  Required method for Designer support - do not modify
+        ///  the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Game));
+            Timer = new System.Windows.Forms.Timer(components);
+            playerScore = new Label();
+            theCoins = new Label();
+            silCoins = new Label();
+            wavey = new Label();
+            PowerUpPicBox = new PictureBox();
+            PowerUpTimer = new Label();
+            healthBar = new Panel();
+            ((System.ComponentModel.ISupportInitialize)PowerUpPicBox).BeginInit();
+            SuspendLayout();
+            // 
+            // Timer
+            // 
+            Timer.Interval = 20;
+            Timer.Tick += TimerEvent;
+            // 
+            // playerScore
+            // 
+            playerScore.AutoSize = true;
+            playerScore.BackColor = Color.Transparent;
+            playerScore.Font = new Font("Simplified Arabic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            playerScore.ForeColor = Color.Chartreuse;
+            playerScore.Location = new Point(11, 69);
+            playerScore.Name = "playerScore";
+            playerScore.Size = new Size(144, 49);
+            playerScore.TabIndex = 3;
+            playerScore.Text = "Score : 0";
+            // 
+            // theCoins
+            // 
+            theCoins.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            theCoins.BackColor = Color.Transparent;
+            theCoins.Font = new Font("Simplified Arabic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            theCoins.ForeColor = Color.Gold;
+            theCoins.Location = new Point(1613, 23);
+            theCoins.Name = "theCoins";
+            theCoins.RightToLeft = RightToLeft.No;
+            theCoins.Size = new Size(299, 45);
+            theCoins.TabIndex = 4;
+            theCoins.Text = "0 : Gold Coins";
+            theCoins.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // silCoins
+            // 
+            silCoins.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            silCoins.BackColor = Color.Transparent;
+            silCoins.Font = new Font("Simplified Arabic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            silCoins.ForeColor = Color.Silver;
+            silCoins.Location = new Point(1613, 68);
+            silCoins.Name = "silCoins";
+            silCoins.RightToLeft = RightToLeft.No;
+            silCoins.Size = new Size(299, 45);
+            silCoins.TabIndex = 5;
+            silCoins.Text = "0 : Silver Coins";
+            silCoins.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // wavey
+            // 
+            wavey.Anchor = AnchorStyles.Top;
+            wavey.AutoSize = true;
+            wavey.BackColor = Color.Transparent;
+            wavey.Font = new Font("Century", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            wavey.ForeColor = Color.Tomato;
+            wavey.Location = new Point(889, 21);
+            wavey.Name = "wavey";
+            wavey.Size = new Size(185, 47);
+            wavey.TabIndex = 6;
+            wavey.Text = "WAVE 1";
+            wavey.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // PowerUpPicBox
+            // 
+            PowerUpPicBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            PowerUpPicBox.BackColor = Color.Transparent;
+            PowerUpPicBox.Image = Properties.Resources.TrippleShotBulletPowerUp;
+            PowerUpPicBox.Location = new Point(1397, 21);
+            PowerUpPicBox.Margin = new Padding(3, 4, 3, 4);
+            PowerUpPicBox.Name = "PowerUpPicBox";
+            PowerUpPicBox.Size = new Size(129, 109);
+            PowerUpPicBox.SizeMode = PictureBoxSizeMode.Zoom;
+            PowerUpPicBox.TabIndex = 7;
+            PowerUpPicBox.TabStop = false;
+            PowerUpPicBox.Visible = false;
+            // 
+            // PowerUpTimer
+            // 
+            PowerUpTimer.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            PowerUpTimer.AutoSize = true;
+            PowerUpTimer.BackColor = Color.Transparent;
+            PowerUpTimer.Font = new Font("Century", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            PowerUpTimer.ForeColor = Color.White;
+            PowerUpTimer.Location = new Point(1259, 50);
+            PowerUpTimer.Name = "PowerUpTimer";
+            PowerUpTimer.Size = new Size(132, 47);
+            PowerUpTimer.TabIndex = 8;
+            PowerUpTimer.Text = "label1";
+            // 
+            // healthBar
+            // 
+            healthBar.BackColor = Color.Firebrick;
+            healthBar.Location = new Point(22, 21);
+            healthBar.Name = "healthBar";
+            healthBar.Size = new Size(133, 32);
+            healthBar.TabIndex = 9;
+            // 
+            // Game
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.Desktop;
+            BackgroundImage = Properties.Resources.SpaceBackGround2;
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(1924, 1055);
+            Controls.Add(healthBar);
+            Controls.Add(PowerUpTimer);
+            Controls.Add(wavey);
+            Controls.Add(silCoins);
+            Controls.Add(theCoins);
+            Controls.Add(playerScore);
+            Controls.Add(PowerUpPicBox);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            KeyPreview = true;
+            MaximizeBox = false;
+            Name = "Game";
+            Text = "Space Invaders";
+            FormClosing += Form_FormClosing;
+            Load += MainForm_Load;
+            KeyDown += Game_KeyDown;
+            ((System.ComponentModel.ISupportInitialize)PowerUpPicBox).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
+        }
+
+        #endregion
+
+        public System.Windows.Forms.Timer Timer;
+        private Label playerScore;
+        private Label theCoins;
+        private Label silCoins;
+        private Label wavey;
+        private PictureBox PowerUpPicBox;
+        private Label PowerUpTimer;
+        private Panel healthBar;
+    }
+}

@@ -63,9 +63,9 @@ namespace Arcade_Game.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap arrows {
+        internal static System.Drawing.Bitmap Arrows {
             get {
-                object obj = ResourceManager.GetObject("arrows", resourceCulture);
+                object obj = ResourceManager.GetObject("Arrows", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -101,30 +101,10 @@ namespace Arcade_Game.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap extraLife {
-            get {
-                object obj = ResourceManager.GetObject("extraLife", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap FireRateBulletPowerUp {
             get {
                 object obj = ResourceManager.GetObject("FireRateBulletPowerUp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] GameIcon {
-            get {
-                object obj = ResourceManager.GetObject("GameIcon", resourceCulture);
-                return ((byte[])(obj));
             }
         }
         
@@ -140,9 +120,9 @@ namespace Arcade_Game.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap gameTitle {
+        internal static System.Drawing.Bitmap Heart {
             get {
-                object obj = ResourceManager.GetObject("gameTitle", resourceCulture);
+                object obj = ResourceManager.GetObject("Heart", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -153,6 +133,26 @@ namespace Arcade_Game.Properties {
         internal static System.IO.UnmanagedMemoryStream hitHurt {
             get {
                 return ResourceManager.GetStream("hitHurt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] IconICO {
+            get {
+                object obj = ResourceManager.GetObject("IconICO", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap IconPNG {
+            get {
+                object obj = ResourceManager.GetObject("IconPNG", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -457,16 +457,6 @@ namespace Arcade_Game.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Space {
-            get {
-                object obj = ResourceManager.GetObject("Space", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap SpaceBackGround {
             get {
                 object obj = ResourceManager.GetObject("SpaceBackGround", resourceCulture);
@@ -480,6 +470,36 @@ namespace Arcade_Game.Properties {
         internal static System.Drawing.Bitmap SpaceBackGround2 {
             get {
                 object obj = ResourceManager.GetObject("SpaceBackGround2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SpaceBackGround3 {
+            get {
+                object obj = ResourceManager.GetObject("SpaceBackGround3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SpaceBackGround4 {
+            get {
+                object obj = ResourceManager.GetObject("SpaceBackGround4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SpaceKey {
+            get {
+                object obj = ResourceManager.GetObject("SpaceKey", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -516,9 +536,9 @@ namespace Arcade_Game.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap TrippleShotBulletPowerUp {
+        internal static System.Drawing.Bitmap Title {
             get {
-                object obj = ResourceManager.GetObject("TrippleShotBulletPowerUp", resourceCulture);
+                object obj = ResourceManager.GetObject("Title", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -526,9 +546,9 @@ namespace Arcade_Game.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Untitled_1___Copy {
+        internal static System.Drawing.Bitmap TrippleShotBulletPowerUp {
             get {
-                object obj = ResourceManager.GetObject("Untitled-1 - Copy", resourceCulture);
+                object obj = ResourceManager.GetObject("TrippleShotBulletPowerUp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
