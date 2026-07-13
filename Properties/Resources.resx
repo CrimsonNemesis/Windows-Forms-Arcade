@@ -119,7 +119,7 @@
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="SpaceBackGround" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Background&amp;Title\SpaceBackGround.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Backgrounds\SpaceBackGround.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PixelEnemyBullet" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PixelPics\PixelEnemyBullet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -190,17 +190,11 @@
   <data name="NormalEnemyTerrorist" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NormalPics\NormalEnemyTerrorist.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="gameTitle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Background&amp;Title\gameTitle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="NormalPlayer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NormalPics\NormalPlayer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="GameMusic" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Musics&amp;Sounds\GameMusic.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="GameIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Background&amp;Title\GameIcon.ico;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="NormalEnemyScout" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NormalPics\NormalEnemyScout.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -220,20 +214,11 @@
   <data name="PixelEnemyTank" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PixelPics\PixelEnemyTank.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Untitled-1 - Copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Untitled-1 - Copy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="arrows" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\NormalPics\arrows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Space" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\NormalPics\Space.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="hitHurt" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Musics&amp;Sounds\hitHurt.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="SpaceBackGround2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Background&amp;Title\SpaceBackGround2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Backgrounds\SpaceBackGround2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="NormalBulletPlayer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NormalPics\NormalBulletPlayer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -245,9 +230,42 @@
     <value>..\Resources\PixelPics\SpecialPixelPlayerBullet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="AsteroidBeltBackGround" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Background&amp;Title\AsteroidBeltBackGround.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Backgrounds\AsteroidBeltBackGround.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="extraLife" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PixelPics\extraLife.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="QuestionMark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\QuestionMark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FireRateBulletPowerUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PixelPics\FireRateBulletPowerUp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TrippleShotBulletPowerUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PixelPics\TrippleShotBulletPowerUp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ShieldPowerUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PixelPics\ShieldPowerUp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Arrows" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Arrows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Heart" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Heart.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Title" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Title.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IconPNG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IconICO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon.ico;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SpaceKey" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SpaceKey.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SpaceBackGround3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Backgrounds\SpaceBackGround3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SpaceBackGround4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Backgrounds\SpaceBackGround4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

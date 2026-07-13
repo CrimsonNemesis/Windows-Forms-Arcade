@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 
 namespace Arcade_Game;
 
@@ -16,21 +15,18 @@ public class PlayerProfile
     public int TotalSilverCoinValues { get; set; }
     public int HighScore { get; set; }
 
-    // Navigation property mapping the player to their owned items
     public List<PlayerItem> Inventory { get; set; } = new();
 }
 
-// The Catalog: This defines what exists in the game. It never changes during gameplay.
 public class ShopItem
 {
     public int Id { get; set; }
     public string Name { get; set; }
-    public string Category { get; set; } // Skin, Bullet, Theme, Consumable
+    public string Category { get; set; }
     public int Price { get; set; }
     public CoinKind CurrencyType { get; set; }
 }
 
-// The Inventory: Links a specific player to a specific item they bought.
 public class PlayerItem
 {
     public int Id { get; set; }
@@ -43,7 +39,6 @@ public class PlayerItem
     public bool IsEquipped { get; set; }
 }
 
-// Data Transfer Object: Packages data cleanly for the UI
 public class ShopMenuViewModel
 {
     public int ShopItemId { get; set; }
@@ -54,6 +49,8 @@ public class ShopMenuViewModel
     public bool IsPurchased { get; set; }
     public bool IsEquipped { get; set; }
     public bool CanAfford { get; set; }
+    public int OwnedQuantity { get; set; }
+    public int EquippedQuantity { get; set; }
 }
 
 public class GameDbContext : DbContext

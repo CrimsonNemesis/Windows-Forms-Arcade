@@ -13,6 +13,15 @@ internal class Player : GameObject
     public static int MatchSilverCoins = 0;
     public static int HighScore { get; set; }
 
+    public static bool HasSpecialTheme = false;
+    public static bool HasSpecialBullet = false;
+    public static bool HasSpecialSkin = false;
+    public static bool tripleShoot = false;
+
+    public DateTime TripleShotEndTime { get; private set; } = DateTime.MinValue;
+    public DateTime ShieldEndTime { get; private set; } = DateTime.MinValue;
+    public DateTime FireRateEndTime { get; private set; } = DateTime.MinValue;
+    public bool IsShielded => DateTime.Now < ShieldEndTime;
     public static Player Instance { get; private set; }
 
     private DateTime lastTimeShot = DateTime.MinValue;
@@ -27,63 +36,41 @@ internal class Player : GameObject
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public int Speed { get; set; } = 10;
 
-    private int _HP = 3;
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-    public int HealthPoint
-    {
-        get => _HP;
-        set
-        {
-            _HP = value;
-            if (_HP <= 0)
-            {
-                _HP = 0;
-                Player.HighScore = Math.Max(Player.CurrentScore, Player.HighScore);
-
-                SavePlayerDataToDb();
-                SoundEffects.Play(GameAssets.Explosion);
-
-                MainForm.Instance.Timer.Stop();
-
-                MainForm.Instance.ShowGameOver();
-
-            }
-        }
-    }
-
+    public int HealthPoint;
 
     public Player(Image skin)
     {
         Instance = this;
-        windowWidth = MainForm.Instance.ClientSize.Width;
-        windowHeight = MainForm.Instance.ClientSize.Height;
+        windowWidth = Game.Instance.ClientSize.Width;
+        windowHeight = Game.Instance.ClientSize.Height;
 
         this.Image = skin;
         this.Size = new Size(90, 90);
         this.Location = new Point(windowWidth / 2 - 45, windowHeight - 90 - 15);
 
-        if (ConsumeEquippedExtraLife())
-        {
-            _HP = 4;
-        }
+        int extraLivesCount = ConsumeEquippedExtraLives();
+        HealthPoint = 3 + extraLivesCount;
     }
 
-    private bool ConsumeEquippedExtraLife()
+    private int ConsumeEquippedExtraLives()
     {
         using (var db = new GameDbContext())
         {
-            var equippedLife = db.PlayerItems.FirstOrDefault(pi =>
+            var equippedLives = db.PlayerItems.Where(pi =>
                 pi.PlayerProfileId == GameSession.CurrentPlayerId &&
                 pi.ShopItemId == 4 &&
-                pi.IsEquipped);
+                pi.IsEquipped).ToList();
 
-            if (equippedLife != null)
+            int count = equippedLives.Count;
+
+            if (count > 0)
             {
-                db.PlayerItems.Remove(equippedLife);
+                db.PlayerItems.RemoveRange(equippedLives);
                 db.SaveChanges();
-                return true;
             }
-            return false;
+
+            return count;
         }
     }
 
@@ -129,11 +116,18 @@ internal class Player : GameObject
         if (goUp && this.Location.Y >= 15) this.Top -= Speed;
         if (goDown && this.Location.Y <= windowHeight - 90 - 15) this.Top += Speed;
         if (isShooting && this.CanShoot()) Shoot(0, 1);
+        if (isShooting && this.CanShoot() && tripleShoot)
+        {
+            Shoot(-1, 1);
+            Shoot(1, 1);
+        }
     }
 
     public bool CanShoot()
     {
-        if ((DateTime.Now - this.lastTimeShot).TotalMilliseconds >= CoolDown)
+        int currentCooldown = (DateTime.Now < FireRateEndTime) ? (CoolDown / 2) : CoolDown;
+
+        if ((DateTime.Now - this.lastTimeShot).TotalMilliseconds >= currentCooldown)
         {
             this.lastTimeShot = DateTime.Now;
             return true;
@@ -155,8 +149,37 @@ internal class Player : GameObject
     {
         SoundEffects.Play(GameAssets.Shoot);
 
-        PlayerBullet bullet = new(this, dirX, dirY, 15);
-        bullets.Add(bullet);
+        if (DateTime.Now < TripleShotEndTime)
+        {
+            bullets.Add(new PlayerBullet(this, dirX, dirY, 15));
+            bullets.Add(new PlayerBullet(this, -1, 1, 15));
+            bullets.Add(new PlayerBullet(this, 1, 1, 15));
+        }
+        else
+        {
+            bullets.Add(new PlayerBullet(this, dirX, dirY, 15));
+        }
+    }
+
+    public static void ActivatePowerUp(PowerUpType type)
+    {
+        if (Instance == null) return;
+
+        switch (type)
+        {
+            case PowerUpType.TripleShot:
+                Instance.TripleShotEndTime = DateTime.Now.AddSeconds(10);
+                break;
+            case PowerUpType.Shield:
+                Instance.ShieldEndTime = DateTime.Now.AddSeconds(5);
+                break;
+            case PowerUpType.HealthPack:
+                Instance.HealthPoint++;
+                break;
+            case PowerUpType.FireRateBooster:
+                Instance.FireRateEndTime = DateTime.Now.AddSeconds(10);
+                break;
+        }
     }
 
     public static void LoadPlayerDataFromDb()
@@ -172,8 +195,16 @@ internal class Player : GameObject
                 Player.MatchGoldCoins = 0;
                 Player.MatchSilverCoins = 0;
                 Player.CurrentScore = 0;
-
             }
+
+            var equippedItems = db.PlayerItems
+                .Where(pi => pi.PlayerProfileId == GameSession.CurrentPlayerId && pi.IsEquipped)
+                .Select(pi => pi.ShopItemId)
+                .ToList();
+
+            HasSpecialTheme = equippedItems.Contains(1);
+            HasSpecialBullet = equippedItems.Contains(2);
+            HasSpecialSkin = equippedItems.Contains(3);
         }
     }
 }

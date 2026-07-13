@@ -1,6 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Security.Cryptography.X509Certificates;
-using static System.Windows.Forms.AxHost;
 
 namespace Arcade_Game;
 
@@ -12,7 +10,7 @@ internal abstract class Enemy : GameObject
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public virtual int HealthPoint { get; set; } = 2;
 
-    public CoinSpecification? Loot { get; }
+    public IDropSpecification? Loot { get; }
 
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public int Score { get; protected set; }
@@ -23,10 +21,10 @@ internal abstract class Enemy : GameObject
 
     protected Point Invert = new Point(1, 1);
 
-    public Enemy(Point startLocation, CoinSpecification? loot = null)
+    public Enemy(Point startLocation)
     {
         this.Size = new Size(60, 60);
-        this.Loot = loot;
+        this.Loot = LootManager.GetRandomDrop();
         this.Location = new Point(startLocation.X - this.Width / 2, startLocation.Y - this.Height / 2);
     }
 
@@ -37,7 +35,6 @@ internal abstract class Enemy : GameObject
             lastTimeShot = DateTime.Now;
             return true;
         }
-
         return false;
     }
 
@@ -46,34 +43,39 @@ internal abstract class Enemy : GameObject
     public virtual void Move()
     {
         if (this.Top <= 0) Invert.Y = 1;
-        else if (this.Bottom >= MainForm.Instance.ClientSize.Height) Invert.Y = -1;
+        else if (this.Bottom >= Game.Instance.ClientSize.Height) Invert.Y = -1;
 
         this.Top += Speed * Invert.Y;
     }
 
-    public void DropCoin()
+    public void DropLoot()
     {
         if (Loot != null)
         {
             int centerX = this.Left + this.Width / 2;
             int centerY = this.Top + this.Height / 2;
-            Coin.coins.Add(new Coin(Loot.Value, Loot.Kind, centerX, centerY));
+
+            if (Loot is CoinSpecification coinSpec)
+            {
+                Collectable.collectables.Add(new Coin(coinSpec.Value, coinSpec.Kind, centerX, centerY));
+            }
+            else if (Loot is PowerUpSpecification powerSpec)
+            {
+                Collectable.collectables.Add(new PowerUp(powerSpec.Type, centerX, centerY));
+            }
         }
     }
 }
 
 class StandardEnemy : Enemy
 {
-    
-    public StandardEnemy(Point startLocation, CoinSpecification? loot = null) : base(startLocation, loot)
+    public StandardEnemy(Point startLocation) : base(startLocation)
     {
         this.Image = AssetManager.StandardEnemy;
-        this.HealthPoint = HealthPoint + WaveManager.EnemyHealthBonus;
-        this.Speed = Speed * WaveManager.EnemySpeedBonus;
-
 
         Score = 5;
-        Speed = 3;
+        this.HealthPoint = 2 + WaveManager.EnemyHealthBonus;
+        this.Speed = 3 + WaveManager.EnemySpeedBonus;
     }
 }
 
@@ -81,14 +83,13 @@ class ShooterEnemy : Enemy
 {
     private const int CoolDown = 3500;
 
-    public ShooterEnemy(Point startLocation, CoinSpecification? loot = null) : base(startLocation, loot)
+    public ShooterEnemy(Point startLocation) : base(startLocation)
     {
         this.Image = AssetManager.ShooterEnemy;
-        this.HealthPoint = HealthPoint + WaveManager.EnemyHealthBonus;
-
 
         Score = 15;
-        Speed = 2;
+        this.HealthPoint = 2 + WaveManager.EnemyHealthBonus;
+        this.Speed = 2;
     }
 
     public override void Shoot()
@@ -104,15 +105,13 @@ class ScoutEnemy : Enemy
     private static readonly Random rand = new();
     private DateTime lastInvertTime = DateTime.Now;
 
-    public ScoutEnemy(Point startLocation, CoinSpecification? loot = null) : base(startLocation, loot)
+    public ScoutEnemy(Point startLocation) : base(startLocation)
     {
         this.Image = AssetManager.ScoutEnemy;
-        this.HealthPoint = HealthPoint + WaveManager.EnemyHealthBonus;
-        this.Speed = Speed * WaveManager.EnemySpeedBonus;
-
 
         Score = 10;
-        Speed = 3;
+        this.HealthPoint = 2 + WaveManager.EnemyHealthBonus;
+        this.Speed = 3 + WaveManager.EnemySpeedBonus;
     }
 
     public override void Move()
@@ -123,11 +122,11 @@ class ScoutEnemy : Enemy
             lastInvertTime = DateTime.Now;
         }
 
-        if (this.Right > MainForm.Instance.ClientSize.Width) Invert.X = -1;
+        if (this.Right > Game.Instance.ClientSize.Width) Invert.X = -1;
         else if (this.Left < 0) Invert.X = 1;
 
         if (this.Top <= 0) Invert.Y = 1;
-        else if (this.Bottom >= MainForm.Instance.ClientSize.Height) Invert.Y = -1;
+        else if (this.Bottom >= Game.Instance.ClientSize.Height) Invert.Y = -1;
 
         int step = (int)Math.Round(Speed / Math.Sqrt(2));
         this.Left += step * Invert.X;
@@ -139,15 +138,13 @@ class TerroristEnemy : Enemy
 {
     public override int HealthPoint { get; set; } = 1;
 
-    public TerroristEnemy(Point startLocation, CoinSpecification? loot = null) : base(startLocation, loot)
+    public TerroristEnemy(Point startLocation) : base(startLocation)
     {
         this.Image = AssetManager.TerroristEnemy;
-        this.HealthPoint = HealthPoint + WaveManager.EnemyHealthBonus;
-        this.Speed = Speed * WaveManager.EnemySpeedBonus;
-
 
         Score = 10;
-        Speed = 2;
+        this.HealthPoint = 1 + WaveManager.EnemyHealthBonus;
+        this.Speed = 2 + WaveManager.EnemySpeedBonus;
     }
 
     public override void Move()
@@ -166,20 +163,21 @@ class TerroristEnemy : Enemy
 
 class TankEnemy : Enemy
 {
-    public override int HealthPoint { get; set; } = 200;
+    public override int HealthPoint { get; set; } = 80;
     private const int CoolDown = 3500;
 
-    public TankEnemy(Point startLocation, CoinSpecification? loot = null) : base(startLocation, loot)
+    public TankEnemy(Point startLocation) : base(startLocation)
     {
         this.Image = AssetManager.TankEnemy;
         this.Size = new Size(200, 120);
+        this.Speed = 2;
+
         Score = 25;
-        Speed = 2;
     }
 
     public override void Move()
     {
-        if (this.Right > MainForm.Instance.ClientSize.Width) Invert.X = -1;
+        if (this.Right > Game.Instance.ClientSize.Width) Invert.X = -1;
         else if (this.Left < 0) Invert.X = 1;
 
         this.Left += Speed * Invert.X;
@@ -193,7 +191,8 @@ class TankEnemy : Enemy
             new EnemyBullet(this, 0, 1, 5), new EnemyBullet(this, 0, -1, 5),
             new EnemyBullet(this, 1, 0, 5), new EnemyBullet(this, -1, 0, 5),
             new EnemyBullet(this, 1, 1, 5), new EnemyBullet(this, 1, -1, 5),
-            new EnemyBullet(this, -1, -1, 5), new EnemyBullet(this, -1, 1, 5)
+            new EnemyBullet(this, 1, -1, 5), new EnemyBullet(this, -1, -1, 5),
+            new EnemyBullet(this, -1, 1, 5)
         };
 
         foreach (var bullet in tankBullets) bullets.Add(bullet);

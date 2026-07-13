@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Arcade_Game;
 
@@ -18,14 +15,6 @@ public class EquipmentManager
             { 3, EquipSpaceship2 },
             { 4, EquipExtraLife }
         };
-    }
-
-    public void TriggerEquipAction(int itemId)
-    {
-        if (_itemActions.ContainsKey(itemId))
-        {
-            _itemActions[itemId].Invoke();
-        }
     }
 
 
