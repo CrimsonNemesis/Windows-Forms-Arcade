@@ -5,6 +5,12 @@ public partial class Sounds : Base
     public Sounds()
     {
         InitializeComponent();
+
+        typeof(TableLayoutPanel).GetProperty("DoubleBuffered",
+            System.Reflection.BindingFlags.NonPublic |
+            System.Reflection.BindingFlags.Instance)
+            ?.SetValue(tableLayoutPanel1, true, null);
+
         this.FullScreen();
     }
 

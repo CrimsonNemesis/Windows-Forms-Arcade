@@ -46,12 +46,12 @@
             // 
             // btnNew
             // 
-            btnNew.Anchor = AnchorStyles.Top;
+            btnNew.Anchor = AnchorStyles.None;
             btnNew.BackColor = Color.MediumSeaGreen;
             btnNew.FlatStyle = FlatStyle.Flat;
             btnNew.Font = new Font("Impact", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnNew.ForeColor = Color.Black;
-            btnNew.Location = new Point(1194, 859);
+            btnNew.Location = new Point(1194, 834);
             btnNew.Margin = new Padding(3, 4, 3, 4);
             btnNew.Name = "btnNew";
             btnNew.Size = new Size(226, 92);
@@ -70,12 +70,12 @@
             // 
             // btnLoad
             // 
-            btnLoad.Anchor = AnchorStyles.Top;
+            btnLoad.Anchor = AnchorStyles.None;
             btnLoad.BackColor = Color.LightSeaGreen;
             btnLoad.FlatStyle = FlatStyle.Flat;
             btnLoad.Font = new Font("Impact", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnLoad.ForeColor = Color.Black;
-            btnLoad.Location = new Point(32, 859);
+            btnLoad.Location = new Point(32, 834);
             btnLoad.Margin = new Padding(3, 4, 3, 4);
             btnLoad.Name = "btnLoad";
             btnLoad.Size = new Size(236, 92);
@@ -89,7 +89,7 @@
             txtName.Anchor = AnchorStyles.None;
             txtName.BackColor = Color.Snow;
             txtName.Font = new Font("Kristen ITC", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtName.Location = new Point(613, 883);
+            txtName.Location = new Point(613, 858);
             txtName.Margin = new Padding(3, 4, 3, 4);
             txtName.Name = "txtName";
             txtName.Size = new Size(231, 43);
@@ -101,7 +101,7 @@
             lstProfiles.Anchor = AnchorStyles.None;
             lstProfiles.Font = new Font("Lucida Sans Unicode", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lstProfiles.FormattingEnabled = true;
-            lstProfiles.Location = new Point(355, 372);
+            lstProfiles.Location = new Point(355, 347);
             lstProfiles.Margin = new Padding(3, 4, 3, 4);
             lstProfiles.Name = "lstProfiles";
             lstProfiles.Size = new Size(747, 411);
@@ -129,15 +129,15 @@
             tableLayoutPanel1.Controls.Add(btnLoad, 0, 2);
             tableLayoutPanel1.Controls.Add(lstProfiles, 1, 1);
             tableLayoutPanel1.Controls.Add(btnNew, 2, 2);
-            tableLayoutPanel1.Controls.Add(txtName, 1, 2);
             tableLayoutPanel1.Controls.Add(pictureBox1, 1, 0);
+            tableLayoutPanel1.Controls.Add(txtName, 1, 2);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 3;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 300F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 100F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 150F));
             tableLayoutPanel1.Size = new Size(1457, 955);
             tableLayoutPanel1.TabIndex = 6;
             // 
