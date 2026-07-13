@@ -148,7 +148,6 @@
             MaximizeBox = false;
             Name = "Sounds";
             Text = "Sounds";
-            FormClosing += Form_FormClosing;
             ((System.ComponentModel.ISupportInitialize)trackBarMusic).EndInit();
             ((System.ComponentModel.ISupportInitialize)trackBarSfx).EndInit();
             ResumeLayout(false);

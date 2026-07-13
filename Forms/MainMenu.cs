@@ -8,21 +8,9 @@ public partial class MainMenu : Base
         this.FullScreen();
     }
 
-    private void MenuForm_Load(object sender, EventArgs e)
-    {
-        MusicPlayer.Play(@"Resources\Musics&Sounds\MenuMusic.wav");
-    }
-
-    private void Form_FormClosing(object sender, FormClosingEventArgs e)
-    {
-        Application.Exit();
-    }
-
     private void btnStart_Click(object sender, EventArgs e)
     {
-        ChooseMode game = new ChooseMode();
-        this.Hide();
-        game.Show();
+        NavigationManager.ShowForm(NavigationManager.ChooseModeForm);
     }
 
     private void Exit_Click(object sender, EventArgs e)
@@ -32,30 +20,28 @@ public partial class MainMenu : Base
 
     private void about_Click(object sender, EventArgs e)
     {
-        About page = new About();
-        this.Hide();
-        page.Show();
+        NavigationManager.ShowForm(NavigationManager.About);
     }
 
     private void option_Click(object sender, EventArgs e)
     {
-        Options options = new Options();
-        this.Hide();
-        options.Show();
+        NavigationManager.ShowForm(NavigationManager.OptionsForm);
     }
 
     private void Shop_Click(object sender, EventArgs e)
     {
-        Shop menu = new Shop();
-        this.Hide();
-        menu.Show();
+        NavigationManager.ShowForm(NavigationManager.ShopForm);
     }
 
     private void Back_Click(object sender, EventArgs e)
     {
-        SelectProfile menu = new();
-        this.Hide();
-        menu.Show();
+        NavigationManager.ShowForm(NavigationManager.SelectProfileForm);
+    }
+
+    private void MainMenu_VisibleChanged(object sender, EventArgs e)
+    {
+        if (this.Visible)
+            MusicPlayer.Play(@"Resources\Musics&Sounds\MenuMusic.wav");
     }
 }
 

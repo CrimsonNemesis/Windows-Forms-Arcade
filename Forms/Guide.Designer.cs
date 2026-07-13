@@ -120,7 +120,6 @@
             MaximizeBox = false;
             Name = "Guide";
             Text = "Guides";
-            FormClosing += Form_FormClosing;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);

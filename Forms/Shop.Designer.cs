@@ -484,7 +484,6 @@
             MaximizeBox = false;
             Name = "Shop";
             Text = "Shop";
-            FormClosing += Form_FormClosing;
             Load += ShopForm_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();

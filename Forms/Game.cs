@@ -238,11 +238,6 @@ public partial class Game : Base
         }
     }
 
-    private void Form_FormClosing(object sender, FormClosingEventArgs e)
-    {
-        Application.Exit();
-    }
-
     private void MainFormKeyDown(object sender, KeyEventArgs e) => player.KeyDown(e);
     private void MainFormKeyUp(object sender, KeyEventArgs e) => player.KeyUp(e);
 
@@ -269,11 +264,6 @@ public partial class Game : Base
         foreach (var drop in Collectable.collectables) e.Graphics.DrawImage(drop.Image, drop.Bounds);
     }
 
-    private void MainForm_Load(object sender, EventArgs e)
-    {
-        MusicPlayer.Play(@"Resources\Musics&Sounds\GameMusic.wav");
-    }
-
     private void backBTN_Click(object sender, EventArgs e)
     {
         MessageBox.Show("Back Clicked");
@@ -288,15 +278,15 @@ public partial class Game : Base
             TaskDialogButton result = pausePrmpt.Show();
 
             if (result == pausePrmpt.backBtn)
-            {
-                MainMenu menu = new();
-                this.Hide();
-                menu.Show();
-            }
+                NavigationManager.LeaveGameAndGoToMenu(this);
             else
-            {
                 Timer.Start();
-            }
         }
+    }
+
+    private void Game_VisibleChanged(object sender, EventArgs e)
+    {
+        if (this.Visible)
+            MusicPlayer.Play(@"Resources\Musics&Sounds\GameMusic.wav");
     }
 }

@@ -154,7 +154,6 @@
             MaximizeBox = false;
             Name = "About";
             Text = "About";
-            FormClosing += Form_FormClosing;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }

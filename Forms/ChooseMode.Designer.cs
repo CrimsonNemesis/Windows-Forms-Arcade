@@ -91,7 +91,6 @@
             MinimizeBox = false;
             Name = "ChooseMode";
             Text = "choose";
-            FormClosing += Form_FormClosing;
             ResumeLayout(false);
         }
 

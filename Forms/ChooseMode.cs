@@ -10,31 +10,16 @@ public partial class ChooseMode : Base
 
     private void backBtn_Click(object sender, EventArgs e)
     {
-        MainMenu game2 = new MainMenu();
-        this.Hide();
-        game2.Show();
+        NavigationManager.ShowForm(NavigationManager.MainMenuForm);
     }
 
     private void NormMode_Click(object sender, EventArgs e)
     {
-        GameSettings.PixelMode = false;
-
-        Game game3 = new Game();
-        this.Hide();
-        game3.Show();
+        NavigationManager.StartGame(pixelMode: false);
     }
 
     private void PixMode_Click(object sender, EventArgs e)
     {
-        GameSettings.PixelMode = true;
-
-        Game game3 = new Game();
-        this.Hide();
-        game3.Show();
-    }
-
-    private void Form_FormClosing(object sender, FormClosingEventArgs e)
-    {
-        Application.Exit();
+        NavigationManager.StartGame(pixelMode: true);
     }
 }

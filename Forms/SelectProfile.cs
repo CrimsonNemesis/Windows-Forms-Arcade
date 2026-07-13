@@ -10,21 +10,11 @@ public partial class SelectProfile : Base
         this.FullScreen();
     }
 
-    private void Form_FormClosing(object sender, FormClosingEventArgs e)
-    {
-        Application.Exit();
-    }
     private void RefreshProfilesList()
     {
         lstProfiles.DataSource = pM.GetAllProfiles();
         lstProfiles.DisplayMember = "ProfileName";
         lstProfiles.ValueMember = "Id";
-    }
-
-    private void SelectForm_Load(object sender, EventArgs e)
-    {
-        MusicPlayer.Play(@"Resources\Musics&Sounds\TheTheme.wav");
-        RefreshProfilesList();
     }
 
     private void btnNew_Click(object sender, EventArgs e)
@@ -51,9 +41,16 @@ public partial class SelectProfile : Base
         PlayerProfile selectedProfile = (PlayerProfile)lstProfiles.SelectedItem;
         if (pM.SelectProfile(selectedProfile.Id))
         {
-            MainMenu menu = new MainMenu();
-            this.Hide();
-            menu.Show();
+            NavigationManager.ShowForm(NavigationManager.MainMenuForm);
+        }
+    }
+
+    private void SelectProfile_VisibleChanged(object sender, EventArgs e)
+    {
+        if (this.Visible)
+        {
+            MusicPlayer.Play(@"Resources\Musics&Sounds\TheTheme.wav");
+            RefreshProfilesList();
         }
     }
 }

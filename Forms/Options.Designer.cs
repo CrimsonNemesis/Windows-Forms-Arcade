@@ -93,7 +93,6 @@
             MaximizeBox = false;
             Name = "Options";
             Text = "Options";
-            FormClosing += Form_FormClosing;
             ResumeLayout(false);
         }
 

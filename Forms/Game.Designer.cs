@@ -156,8 +156,7 @@
             MaximizeBox = false;
             Name = "Game";
             Text = "Space Invaders";
-            FormClosing += Form_FormClosing;
-            Load += MainForm_Load;
+            VisibleChanged += Game_VisibleChanged;
             KeyDown += Game_KeyDown;
             ((System.ComponentModel.ISupportInitialize)PowerUpPicBox).EndInit();
             ResumeLayout(false);

@@ -8,15 +8,8 @@ public partial class Guide : Base
         this.FullScreen();
     }
 
-    private void Form_FormClosing(object sender, FormClosingEventArgs e)
-    {
-        Application.Exit();
-    }
-
     private void Backbtn_Click(object sender, EventArgs e)
     {
-        Options miowmiow = new Options();
-        miowmiow.Show();
-        this.Hide();
+        NavigationManager.ShowForm(NavigationManager.OptionsForm);
     }
 }

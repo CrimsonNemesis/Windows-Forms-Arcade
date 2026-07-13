@@ -21,16 +21,9 @@ public partial class Shop : Base
         RefreshShop();
     }
 
-    private void Form_FormClosing(object sender, FormClosingEventArgs e)
-    {
-        Application.Exit();
-    }
-
     private void button1_Click(object sender, EventArgs e)
     {
-        MainMenu hello = new MainMenu();
-        this.Hide();
-        hello.Show();
+        NavigationManager.ShowForm(NavigationManager.MainMenuForm);
     }
 
     private void RefreshShop()

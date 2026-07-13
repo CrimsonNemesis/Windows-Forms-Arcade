@@ -159,8 +159,7 @@
             Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             Name = "MainMenu";
-            FormClosing += Form_FormClosing;
-            Load += MenuForm_Load;
+            VisibleChanged += MainMenu_VisibleChanged;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }

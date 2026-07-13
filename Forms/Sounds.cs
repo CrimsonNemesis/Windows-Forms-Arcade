@@ -7,10 +7,6 @@ public partial class Sounds : Base
         InitializeComponent();
         this.FullScreen();
     }
-    private void Form_FormClosing(object sender, FormClosingEventArgs e)
-    {
-        Application.Exit();
-    }
 
     private void trackBarMusic_Scroll(object sender, EventArgs e)
     {
@@ -34,8 +30,6 @@ public partial class Sounds : Base
 
     private void Backbtn_Click(object sender, EventArgs e)
     {
-        Options options = new Options();
-        this.Hide();
-        options.Show();
+        NavigationManager.ShowForm(NavigationManager.OptionsForm);
     }
 }
