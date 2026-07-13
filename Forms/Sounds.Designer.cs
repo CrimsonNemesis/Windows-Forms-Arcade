@@ -44,11 +44,10 @@
             // 
             trackBarMusic.Anchor = AnchorStyles.None;
             trackBarMusic.BackColor = Color.Black;
-            trackBarMusic.Location = new Point(466, 328);
-            trackBarMusic.Margin = new Padding(3, 4, 3, 4);
+            trackBarMusic.Location = new Point(408, 246);
             trackBarMusic.Maximum = 100;
             trackBarMusic.Name = "trackBarMusic";
-            trackBarMusic.Size = new Size(550, 56);
+            trackBarMusic.Size = new Size(481, 45);
             trackBarMusic.TabIndex = 0;
             trackBarMusic.TickStyle = TickStyle.Both;
             trackBarMusic.Value = 80;
@@ -58,11 +57,10 @@
             // 
             trackBarSfx.Anchor = AnchorStyles.None;
             trackBarSfx.BackColor = Color.Black;
-            trackBarSfx.Location = new Point(466, 493);
-            trackBarSfx.Margin = new Padding(3, 4, 3, 4);
+            trackBarSfx.Location = new Point(408, 370);
             trackBarSfx.Maximum = 100;
             trackBarSfx.Name = "trackBarSfx";
-            trackBarSfx.Size = new Size(550, 56);
+            trackBarSfx.Size = new Size(481, 45);
             trackBarSfx.TabIndex = 1;
             trackBarSfx.TickStyle = TickStyle.Both;
             trackBarSfx.Value = 80;
@@ -75,18 +73,18 @@
             lblMusicVolume.BackColor = Color.Transparent;
             lblMusicVolume.Font = new Font("Monotype Corsiva", 25.8000011F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             lblMusicVolume.ForeColor = Color.White;
-            lblMusicVolume.Location = new Point(219, 328);
+            lblMusicVolume.Location = new Point(192, 246);
             lblMusicVolume.Name = "lblMusicVolume";
-            lblMusicVolume.Size = new Size(241, 53);
+            lblMusicVolume.Size = new Size(194, 43);
             lblMusicVolume.TabIndex = 2;
             lblMusicVolume.Text = "Music : 80 %";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(342, 31);
+            label1.Location = new Point(299, 23);
             label1.Name = "label1";
-            label1.Size = new Size(0, 20);
+            label1.Size = new Size(0, 15);
             label1.TabIndex = 3;
             // 
             // lblSfxVolume
@@ -96,9 +94,9 @@
             lblSfxVolume.BackColor = Color.Transparent;
             lblSfxVolume.Font = new Font("Monotype Corsiva", 25.8000011F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             lblSfxVolume.ForeColor = Color.White;
-            lblSfxVolume.Location = new Point(219, 493);
+            lblSfxVolume.Location = new Point(192, 370);
             lblSfxVolume.Name = "lblSfxVolume";
-            lblSfxVolume.Size = new Size(256, 53);
+            lblSfxVolume.Size = new Size(207, 43);
             lblSfxVolume.TabIndex = 4;
             lblSfxVolume.Text = "Sounds : 80 %";
             // 
@@ -109,9 +107,9 @@
             label3.BackColor = Color.Black;
             label3.Font = new Font("Kristen ITC", 27.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(322, 42);
+            label3.Location = new Point(282, 32);
             label3.Name = "label3";
-            label3.Size = new Size(660, 65);
+            label3.Size = new Size(521, 51);
             label3.TabIndex = 5;
             label3.Text = "Music and  Sounds Options";
             // 
@@ -121,10 +119,9 @@
             Backbtn.BackColor = Color.LightGreen;
             Backbtn.FlatStyle = FlatStyle.Flat;
             Backbtn.Font = new Font("Ink Free", 23.9999962F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Backbtn.Location = new Point(29, 742);
-            Backbtn.Margin = new Padding(3, 4, 3, 4);
+            Backbtn.Location = new Point(25, 556);
             Backbtn.Name = "Backbtn";
-            Backbtn.Size = new Size(175, 87);
+            Backbtn.Size = new Size(153, 65);
             Backbtn.TabIndex = 6;
             Backbtn.Text = "Back";
             Backbtn.UseVisualStyleBackColor = false;
@@ -132,10 +129,10 @@
             // 
             // Sounds
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.SpaceBackGround;
-            ClientSize = new Size(1341, 857);
+            ClientSize = new Size(1173, 562);
             Controls.Add(Backbtn);
             Controls.Add(label3);
             Controls.Add(lblSfxVolume);
@@ -144,10 +141,10 @@
             Controls.Add(trackBarSfx);
             Controls.Add(trackBarMusic);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             Name = "Sounds";
             Text = "Sounds";
+            FormClosing += Sounds_FormClosing;
             ((System.ComponentModel.ISupportInitialize)trackBarMusic).EndInit();
             ((System.ComponentModel.ISupportInitialize)trackBarSfx).EndInit();
             ResumeLayout(false);

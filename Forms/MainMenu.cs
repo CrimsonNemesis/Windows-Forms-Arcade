@@ -43,5 +43,11 @@ public partial class MainMenu : Base
         if (this.Visible)
             MusicPlayer.Play(@"Resources\Musics&Sounds\MenuMusic.wav");
     }
+
+    private void MainMenu_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        Application.Exit();
+
+    }
 }
 

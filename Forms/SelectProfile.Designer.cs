@@ -130,6 +130,7 @@
             MaximizeBox = false;
             Name = "SelectProfile";
             Text = "SelectForm";
+            FormClosing += SelectProfile_FormClosing;
             VisibleChanged += SelectProfile_VisibleChanged;
             ((System.ComponentModel.ISupportInitialize)gameDbContextBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)playerProfileBindingSource).EndInit();

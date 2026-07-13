@@ -22,4 +22,10 @@ public partial class ChooseMode : Base
     {
         NavigationManager.StartGame(pixelMode: true);
     }
+
+    private void ChooseMode_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        Application.Exit();
+
+    }
 }

@@ -100,6 +100,10 @@ public partial class Shop : Base
         HandleNormalItemClick(NeonTheme);
     }
 
+    private void ShopForm_FormClosing (object sender, FormClosingEventArgs e)
+    {
+        Application.Exit();
+    }
     private void SpePlaBullBtn_Click(object sender, EventArgs e)
     {
         HandleNormalItemClick(GreenBullet);

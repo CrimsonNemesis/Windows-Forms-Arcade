@@ -38,10 +38,9 @@
             // 
             NormMode.Anchor = AnchorStyles.Top;
             NormMode.Font = new Font("Palatino Linotype", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            NormMode.Location = new Point(298, 58);
-            NormMode.Margin = new Padding(3, 4, 3, 4);
+            NormMode.Location = new Point(261, 44);
             NormMode.Name = "NormMode";
-            NormMode.Size = new Size(314, 128);
+            NormMode.Size = new Size(275, 96);
             NormMode.TabIndex = 0;
             NormMode.Text = "Normal Mode";
             NormMode.UseVisualStyleBackColor = true;
@@ -53,10 +52,9 @@
             backBtn.BackColor = Color.SpringGreen;
             backBtn.Font = new Font("Lucida Console", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             backBtn.ForeColor = SystemColors.ActiveCaptionText;
-            backBtn.Location = new Point(305, 447);
-            backBtn.Margin = new Padding(3, 4, 3, 4);
+            backBtn.Location = new Point(267, 335);
             backBtn.Name = "backBtn";
-            backBtn.Size = new Size(307, 117);
+            backBtn.Size = new Size(269, 88);
             backBtn.TabIndex = 1;
             backBtn.Text = "Back";
             backBtn.UseVisualStyleBackColor = false;
@@ -66,10 +64,9 @@
             // 
             PixMode.Anchor = AnchorStyles.Top;
             PixMode.Font = new Font("Palatino Linotype", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            PixMode.Location = new Point(298, 257);
-            PixMode.Margin = new Padding(3, 4, 3, 4);
+            PixMode.Location = new Point(261, 193);
             PixMode.Name = "PixMode";
-            PixMode.Size = new Size(314, 128);
+            PixMode.Size = new Size(275, 96);
             PixMode.TabIndex = 2;
             PixMode.Text = "Pixel Mode";
             PixMode.UseVisualStyleBackColor = true;
@@ -77,20 +74,20 @@
             // 
             // ChooseMode
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.SpaceBackGround;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(914, 600);
+            ClientSize = new Size(800, 450);
             Controls.Add(PixMode);
             Controls.Add(backBtn);
             Controls.Add(NormMode);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "ChooseMode";
             Text = "choose";
+            FormClosing += ChooseMode_FormClosing;
             ResumeLayout(false);
         }
 

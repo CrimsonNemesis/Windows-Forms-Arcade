@@ -12,5 +12,10 @@ public partial class About : Base
     {
         NavigationManager.ShowForm(NavigationManager.MainMenuForm);
     }
+
+    private void About_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        Application.Exit();
+    }
 }
 

@@ -22,4 +22,10 @@ public partial class Options : Base
     {
         NavigationManager.ShowForm(NavigationManager.SoundsForm);
     }
+
+    private void Options_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        Application.Exit();
+
+    }
 }

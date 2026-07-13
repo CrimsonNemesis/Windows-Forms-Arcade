@@ -12,4 +12,10 @@ public partial class Guide : Base
     {
         NavigationManager.ShowForm(NavigationManager.OptionsForm);
     }
+
+    private void Guide_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        Application.Exit();
+
+    }
 }

@@ -32,4 +32,10 @@ public partial class Sounds : Base
     {
         NavigationManager.ShowForm(NavigationManager.OptionsForm);
     }
+
+    private void Sounds_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        Application.Exit();
+
+    }
 }

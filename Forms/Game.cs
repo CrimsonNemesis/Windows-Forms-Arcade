@@ -289,4 +289,10 @@ public partial class Game : Base
         if (this.Visible)
             MusicPlayer.Play(@"Resources\Musics&Sounds\GameMusic.wav");
     }
+
+    private void Game_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        Application.Exit();
+
+    }
 }

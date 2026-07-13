@@ -53,4 +53,10 @@ public partial class SelectProfile : Base
             RefreshProfilesList();
         }
     }
+
+    private void SelectProfile_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        Application.Exit();
+
+    }
 }

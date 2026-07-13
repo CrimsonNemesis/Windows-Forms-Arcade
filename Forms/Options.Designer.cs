@@ -40,10 +40,9 @@
             Guidesbtn.BackColor = Color.MediumTurquoise;
             Guidesbtn.BackgroundImageLayout = ImageLayout.None;
             Guidesbtn.Font = new Font("Monotype Corsiva", 24F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            Guidesbtn.Location = new Point(370, 164);
-            Guidesbtn.Margin = new Padding(3, 4, 3, 4);
+            Guidesbtn.Location = new Point(324, 123);
             Guidesbtn.Name = "Guidesbtn";
-            Guidesbtn.Size = new Size(209, 113);
+            Guidesbtn.Size = new Size(183, 85);
             Guidesbtn.TabIndex = 0;
             Guidesbtn.Text = "Guides";
             Guidesbtn.UseVisualStyleBackColor = false;
@@ -55,10 +54,9 @@
             Soundsbtn.BackColor = Color.SandyBrown;
             Soundsbtn.BackgroundImageLayout = ImageLayout.None;
             Soundsbtn.Font = new Font("Monotype Corsiva", 24F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            Soundsbtn.Location = new Point(370, 308);
-            Soundsbtn.Margin = new Padding(3, 4, 3, 4);
+            Soundsbtn.Location = new Point(324, 231);
             Soundsbtn.Name = "Soundsbtn";
-            Soundsbtn.Size = new Size(209, 113);
+            Soundsbtn.Size = new Size(183, 85);
             Soundsbtn.TabIndex = 1;
             Soundsbtn.Text = "Sounds";
             Soundsbtn.UseVisualStyleBackColor = false;
@@ -70,10 +68,9 @@
             button1.BackColor = Color.LimeGreen;
             button1.BackgroundImageLayout = ImageLayout.None;
             button1.Font = new Font("Comic Sans MS", 24F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            button1.Location = new Point(370, 441);
-            button1.Margin = new Padding(3, 4, 3, 4);
+            button1.Location = new Point(324, 331);
             button1.Name = "button1";
-            button1.Size = new Size(209, 114);
+            button1.Size = new Size(183, 86);
             button1.TabIndex = 2;
             button1.Text = "Back";
             button1.UseVisualStyleBackColor = false;
@@ -81,18 +78,18 @@
             // 
             // Options
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.SpaceBackGround;
-            ClientSize = new Size(914, 708);
+            ClientSize = new Size(800, 531);
             Controls.Add(button1);
             Controls.Add(Soundsbtn);
             Controls.Add(Guidesbtn);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             Name = "Options";
             Text = "Options";
+            FormClosing += Options_FormClosing;
             ResumeLayout(false);
         }
 

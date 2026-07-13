@@ -52,9 +52,9 @@
             playerScore.BackColor = Color.Transparent;
             playerScore.Font = new Font("Simplified Arabic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             playerScore.ForeColor = Color.Chartreuse;
-            playerScore.Location = new Point(11, 69);
+            playerScore.Location = new Point(10, 52);
             playerScore.Name = "playerScore";
-            playerScore.Size = new Size(144, 49);
+            playerScore.Size = new Size(114, 41);
             playerScore.TabIndex = 3;
             playerScore.Text = "Score : 0";
             // 
@@ -64,10 +64,10 @@
             theCoins.BackColor = Color.Transparent;
             theCoins.Font = new Font("Simplified Arabic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             theCoins.ForeColor = Color.Gold;
-            theCoins.Location = new Point(566, 23);
+            theCoins.Location = new Point(495, 17);
             theCoins.Name = "theCoins";
             theCoins.RightToLeft = RightToLeft.No;
-            theCoins.Size = new Size(299, 45);
+            theCoins.Size = new Size(262, 34);
             theCoins.TabIndex = 4;
             theCoins.Text = "0 : Gold Coins";
             theCoins.TextAlign = ContentAlignment.MiddleRight;
@@ -78,10 +78,10 @@
             silCoins.BackColor = Color.Transparent;
             silCoins.Font = new Font("Simplified Arabic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             silCoins.ForeColor = Color.Silver;
-            silCoins.Location = new Point(566, 68);
+            silCoins.Location = new Point(495, 51);
             silCoins.Name = "silCoins";
             silCoins.RightToLeft = RightToLeft.No;
-            silCoins.Size = new Size(299, 45);
+            silCoins.Size = new Size(262, 34);
             silCoins.TabIndex = 5;
             silCoins.Text = "0 : Silver Coins";
             silCoins.TextAlign = ContentAlignment.MiddleRight;
@@ -93,9 +93,9 @@
             wavey.BackColor = Color.Transparent;
             wavey.Font = new Font("Century", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             wavey.ForeColor = Color.Tomato;
-            wavey.Location = new Point(365, 21);
+            wavey.Location = new Point(319, 16);
             wavey.Name = "wavey";
-            wavey.Size = new Size(185, 47);
+            wavey.Size = new Size(150, 38);
             wavey.TabIndex = 6;
             wavey.Text = "WAVE 1";
             wavey.TextAlign = ContentAlignment.TopCenter;
@@ -105,10 +105,9 @@
             PowerUpPicBox.Anchor = AnchorStyles.Top;
             PowerUpPicBox.BackColor = Color.Transparent;
             PowerUpPicBox.Image = Properties.Resources.TrippleShotBulletPowerUp;
-            PowerUpPicBox.Location = new Point(646, 23);
-            PowerUpPicBox.Margin = new Padding(3, 4, 3, 4);
+            PowerUpPicBox.Location = new Point(565, 17);
             PowerUpPicBox.Name = "PowerUpPicBox";
-            PowerUpPicBox.Size = new Size(129, 109);
+            PowerUpPicBox.Size = new Size(113, 82);
             PowerUpPicBox.SizeMode = PictureBoxSizeMode.Zoom;
             PowerUpPicBox.TabIndex = 7;
             PowerUpPicBox.TabStop = false;
@@ -121,28 +120,29 @@
             PowerUpTimer.BackColor = Color.Transparent;
             PowerUpTimer.Font = new Font("Century", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             PowerUpTimer.ForeColor = Color.White;
-            PowerUpTimer.Location = new Point(508, 50);
+            PowerUpTimer.Location = new Point(444, 38);
             PowerUpTimer.Name = "PowerUpTimer";
-            PowerUpTimer.Size = new Size(132, 47);
+            PowerUpTimer.Size = new Size(107, 38);
             PowerUpTimer.TabIndex = 8;
             PowerUpTimer.Text = "label1";
             // 
             // healthBar
             // 
             healthBar.BackColor = Color.Firebrick;
-            healthBar.Location = new Point(22, 21);
+            healthBar.Location = new Point(19, 16);
+            healthBar.Margin = new Padding(3, 2, 3, 2);
             healthBar.Name = "healthBar";
-            healthBar.Size = new Size(133, 32);
+            healthBar.Size = new Size(116, 24);
             healthBar.TabIndex = 9;
             // 
             // Game
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Desktop;
             BackgroundImage = Properties.Resources.SpaceBackGround2;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(877, 562);
+            ClientSize = new Size(767, 422);
             Controls.Add(healthBar);
             Controls.Add(PowerUpTimer);
             Controls.Add(wavey);
@@ -153,9 +153,11 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             KeyPreview = true;
+            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "Game";
             Text = "Space Invaders";
+            FormClosing += Game_FormClosing;
             VisibleChanged += Game_VisibleChanged;
             KeyDown += Game_KeyDown;
             ((System.ComponentModel.ISupportInitialize)PowerUpPicBox).EndInit();
