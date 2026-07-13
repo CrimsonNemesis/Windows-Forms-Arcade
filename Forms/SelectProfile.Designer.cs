@@ -37,9 +37,11 @@
             txtName = new TextBox();
             lstProfiles = new ListBox();
             pictureBox1 = new PictureBox();
+            tableLayoutPanel1 = new TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)gameDbContextBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)playerProfileBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // btnNew
@@ -49,7 +51,7 @@
             btnNew.FlatStyle = FlatStyle.Flat;
             btnNew.Font = new Font("Impact", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnNew.ForeColor = Color.Black;
-            btnNew.Location = new Point(1172, 812);
+            btnNew.Location = new Point(1194, 859);
             btnNew.Margin = new Padding(3, 4, 3, 4);
             btnNew.Name = "btnNew";
             btnNew.Size = new Size(226, 92);
@@ -73,7 +75,7 @@
             btnLoad.FlatStyle = FlatStyle.Flat;
             btnLoad.Font = new Font("Impact", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnLoad.ForeColor = Color.Black;
-            btnLoad.Location = new Point(67, 812);
+            btnLoad.Location = new Point(32, 859);
             btnLoad.Margin = new Padding(3, 4, 3, 4);
             btnLoad.Name = "btnLoad";
             btnLoad.Size = new Size(236, 92);
@@ -87,7 +89,7 @@
             txtName.Anchor = AnchorStyles.None;
             txtName.BackColor = Color.Snow;
             txtName.Font = new Font("Kristen ITC", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtName.Location = new Point(632, 844);
+            txtName.Location = new Point(613, 883);
             txtName.Margin = new Padding(3, 4, 3, 4);
             txtName.Name = "txtName";
             txtName.Size = new Size(231, 43);
@@ -99,23 +101,45 @@
             lstProfiles.Anchor = AnchorStyles.None;
             lstProfiles.Font = new Font("Lucida Sans Unicode", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lstProfiles.FormattingEnabled = true;
-            lstProfiles.Location = new Point(423, 351);
+            lstProfiles.Location = new Point(355, 372);
             lstProfiles.Margin = new Padding(3, 4, 3, 4);
             lstProfiles.Name = "lstProfiles";
-            lstProfiles.Size = new Size(625, 300);
+            lstProfiles.Size = new Size(747, 411);
             lstProfiles.TabIndex = 4;
             // 
             // pictureBox1
             // 
-            pictureBox1.Anchor = AnchorStyles.Top;
+            pictureBox1.Anchor = AnchorStyles.None;
             pictureBox1.Image = Properties.Resources.Title;
-            pictureBox1.Location = new Point(423, 49);
+            pictureBox1.Location = new Point(416, 46);
             pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(625, 207);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 5;
             pictureBox1.TabStop = false;
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.BackColor = Color.Transparent;
+            tableLayoutPanel1.ColumnCount = 3;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 300F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 300F));
+            tableLayoutPanel1.Controls.Add(btnLoad, 0, 2);
+            tableLayoutPanel1.Controls.Add(lstProfiles, 1, 1);
+            tableLayoutPanel1.Controls.Add(btnNew, 2, 2);
+            tableLayoutPanel1.Controls.Add(txtName, 1, 2);
+            tableLayoutPanel1.Controls.Add(pictureBox1, 1, 0);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 3;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 300F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 100F));
+            tableLayoutPanel1.Size = new Size(1457, 955);
+            tableLayoutPanel1.TabIndex = 6;
             // 
             // SelectProfile
             // 
@@ -125,11 +149,7 @@
             BackgroundImage = Properties.Resources.SpaceBackGround;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1457, 955);
-            Controls.Add(lstProfiles);
-            Controls.Add(txtName);
-            Controls.Add(btnLoad);
-            Controls.Add(btnNew);
-            Controls.Add(pictureBox1);
+            Controls.Add(tableLayoutPanel1);
             DoubleBuffered = true;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 4, 3, 4);
@@ -141,8 +161,9 @@
             ((System.ComponentModel.ISupportInitialize)gameDbContextBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)playerProfileBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -154,5 +175,6 @@
         private TextBox txtName;
         private ListBox lstProfiles;
         private PictureBox pictureBox1;
+        private TableLayoutPanel tableLayoutPanel1;
     }
 }
