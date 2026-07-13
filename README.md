@@ -19,3 +19,14 @@ These are the enemies you will face throughout the game!
 There is an in-game guide explaining how to play, but as a quick guide: Your spaceship moves with the arrow keys on your keyboard and you can shoot by either pressing or holding the space bar. 
 That's it! Now you're ready to explore and advance through the perilous depths of space in front of you. Good luck, **Captain**!
 
+## Features List
+
+- **Resource Control** (GameAssets & AssetManager classes and Resources.resx)
+- **Player & Enemy Implementing** (Player.cs , Enemy.cs )
+- **Game Environment & Logic** (MainForm.cs , ProfileManager.cs , LootManager.cs and etc)
+- **Shooting Logic** (Bullet.cs , GameObject.cs)
+- **Coin Pickup** (Coin.cs , LootManager.cs)
+- **Power Up Implementing** (PowerUps.cs , Player.cs )
+- **Sounds and Musics Management** (MusicPlayer.cs , SoundEffects.cs , GameSettings.cs)
+- **Sounds Control** (Sounds.cs , MusicPlayer.cs , SoundEffects.cs )
+- **Making the Uis and Forms** (MenuForm.cs , SelectForm.cs , Options.cs , etc)
