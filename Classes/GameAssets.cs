@@ -1,4 +1,5 @@
 ﻿using System.Media;
+
 namespace Arcade_Game;
 
 internal class GameAssets
