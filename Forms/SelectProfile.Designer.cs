@@ -44,7 +44,7 @@
             // 
             // btnNew
             // 
-            btnNew.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnNew.Anchor = AnchorStyles.Top;
             btnNew.BackColor = Color.MediumSeaGreen;
             btnNew.FlatStyle = FlatStyle.Flat;
             btnNew.Font = new Font("Impact", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -68,7 +68,7 @@
             // 
             // btnLoad
             // 
-            btnLoad.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnLoad.Anchor = AnchorStyles.Top;
             btnLoad.BackColor = Color.LightSeaGreen;
             btnLoad.FlatStyle = FlatStyle.Flat;
             btnLoad.Font = new Font("Impact", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
