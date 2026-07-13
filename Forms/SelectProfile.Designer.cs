@@ -49,10 +49,9 @@
             btnNew.FlatStyle = FlatStyle.Flat;
             btnNew.Font = new Font("Impact", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnNew.ForeColor = Color.Black;
-            btnNew.Location = new Point(1172, 812);
-            btnNew.Margin = new Padding(3, 4, 3, 4);
+            btnNew.Location = new Point(1019, 570);
             btnNew.Name = "btnNew";
-            btnNew.Size = new Size(226, 92);
+            btnNew.Size = new Size(198, 69);
             btnNew.TabIndex = 0;
             btnNew.Text = "New Profile";
             btnNew.UseVisualStyleBackColor = false;
@@ -73,10 +72,9 @@
             btnLoad.FlatStyle = FlatStyle.Flat;
             btnLoad.Font = new Font("Impact", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnLoad.ForeColor = Color.Black;
-            btnLoad.Location = new Point(67, 812);
-            btnLoad.Margin = new Padding(3, 4, 3, 4);
+            btnLoad.Location = new Point(67, 570);
             btnLoad.Name = "btnLoad";
-            btnLoad.Size = new Size(236, 92);
+            btnLoad.Size = new Size(206, 69);
             btnLoad.TabIndex = 2;
             btnLoad.Text = "Load Profile";
             btnLoad.UseVisualStyleBackColor = false;
@@ -87,10 +85,9 @@
             txtName.Anchor = AnchorStyles.Bottom;
             txtName.BackColor = Color.Snow;
             txtName.Font = new Font("Kristen ITC", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtName.Location = new Point(632, 844);
-            txtName.Margin = new Padding(3, 4, 3, 4);
+            txtName.Location = new Point(551, 594);
             txtName.Name = "txtName";
-            txtName.Size = new Size(231, 43);
+            txtName.Size = new Size(203, 36);
             txtName.TabIndex = 3;
             txtName.TextAlign = HorizontalAlignment.Center;
             // 
@@ -99,32 +96,30 @@
             lstProfiles.Anchor = AnchorStyles.None;
             lstProfiles.Font = new Font("Lucida Sans Unicode", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lstProfiles.FormattingEnabled = true;
-            lstProfiles.Location = new Point(423, 351);
-            lstProfiles.Margin = new Padding(3, 4, 3, 4);
+            lstProfiles.Location = new Point(370, 263);
             lstProfiles.Name = "lstProfiles";
-            lstProfiles.Size = new Size(625, 300);
+            lstProfiles.Size = new Size(547, 200);
             lstProfiles.TabIndex = 4;
             // 
             // pictureBox1
             // 
             pictureBox1.Anchor = AnchorStyles.Top;
             pictureBox1.Image = Properties.Resources.Title;
-            pictureBox1.Location = new Point(423, 49);
-            pictureBox1.Margin = new Padding(3, 4, 3, 4);
+            pictureBox1.Location = new Point(370, 37);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(625, 207);
+            pictureBox1.Size = new Size(547, 155);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 5;
             pictureBox1.TabStop = false;
             // 
             // SelectProfile
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.RosyBrown;
             BackgroundImage = Properties.Resources.SpaceBackGround;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1457, 955);
+            ClientSize = new Size(1199, 562);
             Controls.Add(lstProfiles);
             Controls.Add(txtName);
             Controls.Add(btnLoad);
@@ -132,11 +127,9 @@
             Controls.Add(pictureBox1);
             DoubleBuffered = true;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             Name = "SelectProfile";
             Text = "SelectForm";
-            Load += SelectProfile_Load;
             VisibleChanged += SelectProfile_VisibleChanged;
             ((System.ComponentModel.ISupportInitialize)gameDbContextBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)playerProfileBindingSource).EndInit();

@@ -7,6 +7,7 @@ public partial class SelectProfile : Base
     public SelectProfile()
     {
         InitializeComponent();
+        this.FullScreen();
     }
 
     private void RefreshProfilesList()
@@ -51,10 +52,5 @@ public partial class SelectProfile : Base
             MusicPlayer.Play(@"Resources\Musics&Sounds\TheTheme.wav");
             RefreshProfilesList();
         }
-    }
-
-    private void SelectProfile_Load(object sender, EventArgs e)
-    {
-        this.FullScreen();
     }
 }
