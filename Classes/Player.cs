@@ -36,42 +36,21 @@ internal class Player : GameObject
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public int Speed { get; set; } = 10;
 
-    private int _HP = 3;
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-    public int HealthPoint
-    {
-        get => _HP;
-        set
-        {
-            _HP = value;
-            if (_HP <= 0)
-            {
-                _HP = 0;
-                Player.HighScore = Math.Max(Player.CurrentScore, Player.HighScore);
-
-                SavePlayerDataToDb();
-                SoundEffects.Play(GameAssets.Explosion);
-
-                MainForm.Instance.Timer.Stop();
-
-
-            }
-        }
-    }
-
+    public int HealthPoint;
 
     public Player(Image skin)
     {
         Instance = this;
-        windowWidth = MainForm.Instance.ClientSize.Width;
-        windowHeight = MainForm.Instance.ClientSize.Height;
+        windowWidth = Game.Instance.ClientSize.Width;
+        windowHeight = Game.Instance.ClientSize.Height;
 
         this.Image = skin;
         this.Size = new Size(90, 90);
         this.Location = new Point(windowWidth / 2 - 45, windowHeight - 90 - 15);
 
         int extraLivesCount = ConsumeEquippedExtraLives();
-        _HP = 3 + extraLivesCount;
+        HealthPoint = 3 + extraLivesCount;
     }
 
     private int ConsumeEquippedExtraLives()
@@ -172,9 +151,9 @@ internal class Player : GameObject
 
         if (DateTime.Now < TripleShotEndTime)
         {
-            bullets.Add(new PlayerBullet(this, dirX, dirY, 15));    // مستقیم
-            bullets.Add(new PlayerBullet(this, -1, 1, 15));         // مایل به چپ
-            bullets.Add(new PlayerBullet(this, 1, 1, 15));          // مایل به راست
+            bullets.Add(new PlayerBullet(this, dirX, dirY, 15));
+            bullets.Add(new PlayerBullet(this, -1, 1, 15));
+            bullets.Add(new PlayerBullet(this, 1, 1, 15));
         }
         else
         {

@@ -46,7 +46,7 @@ internal abstract class Enemy : GameObject
     public virtual void Move()
     {
         if (this.Top <= 0) Invert.Y = 1;
-        else if (this.Bottom >= MainForm.Instance.ClientSize.Height) Invert.Y = -1;
+        else if (this.Bottom >= Game.Instance.ClientSize.Height) Invert.Y = -1;
 
         this.Top += Speed * Invert.Y;
     }
@@ -125,11 +125,11 @@ class ScoutEnemy : Enemy
             lastInvertTime = DateTime.Now;
         }
 
-        if (this.Right > MainForm.Instance.ClientSize.Width) Invert.X = -1;
+        if (this.Right > Game.Instance.ClientSize.Width) Invert.X = -1;
         else if (this.Left < 0) Invert.X = 1;
 
         if (this.Top <= 0) Invert.Y = 1;
-        else if (this.Bottom >= MainForm.Instance.ClientSize.Height) Invert.Y = -1;
+        else if (this.Bottom >= Game.Instance.ClientSize.Height) Invert.Y = -1;
 
         int step = (int)Math.Round(Speed / Math.Sqrt(2));
         this.Left += step * Invert.X;
@@ -166,7 +166,7 @@ class TerroristEnemy : Enemy
 
 class TankEnemy : Enemy
 {
-    public override int HealthPoint { get; set; } = 200;
+    public override int HealthPoint { get; set; } = 80;
     private const int CoolDown = 3500;
 
     public TankEnemy(Point startLocation) : base(startLocation)
@@ -180,7 +180,7 @@ class TankEnemy : Enemy
 
     public override void Move()
     {
-        if (this.Right > MainForm.Instance.ClientSize.Width) Invert.X = -1;
+        if (this.Right > Game.Instance.ClientSize.Width) Invert.X = -1;
         else if (this.Left < 0) Invert.X = 1;
 
         this.Left += Speed * Invert.X;

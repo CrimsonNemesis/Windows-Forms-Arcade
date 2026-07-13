@@ -1,26 +1,16 @@
-using Microsoft.EntityFrameworkCore;
+namespace Arcade_Game;
 
-namespace Arcade_Game
+internal static class Program
 {
-
-    internal static class Program
+    [STAThread]
+    static void Main()
     {
+        ApplicationConfiguration.Initialize();
 
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
-        [STAThread]
+        Form rootForm = NavigationManager.SelectProfileForm;
 
-        static void Main()
-        {
+        NavigationManager.ShowForm(rootForm);
 
-            //this is just for the test of the repository , done by SINAM
-            //this is gonna be the second test by SINAM , still a lot of stuff TO DO !!
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new SelectForm());
-
-        }
+        Application.Run(rootForm);
     }
 }

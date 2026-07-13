@@ -7,20 +7,14 @@ internal class GameAssets
     public static readonly string Explosion = @"Resources\Musics&Sounds\Explosion.wav";
     public static readonly string CoinPickup = @"Resources\Musics&Sounds\CoinPickup.wav";
     public static readonly string hitHurt = @"Resources\Musics&Sounds\hitHurt.wav";
+
     public static readonly SoundPlayer TheTheme = new SoundPlayer(Properties.Resources.TheTheme);
     public static readonly SoundPlayer MenuMusic = new SoundPlayer(Properties.Resources.MenuMusic);
     public static readonly SoundPlayer GameMusic = new SoundPlayer(Properties.Resources.GameMusic);
 
-
-
-    public static readonly Image gameTitle = Properties.Resources.gameTitle;
     public static readonly Image SpaceBackGround = Properties.Resources.SpaceBackGround;
     public static readonly Image SpaceBackGround2 = Properties.Resources.SpaceBackGround2;
     public static readonly Image AsteroidBeltBackGround = Properties.Resources.AsteroidBeltBackGround;
-
-    public static readonly byte[] GameIcon = Properties.Resources.GameIcon;
-
-
 
     public static readonly Image NormalSilver1Coin = Properties.Resources.NormalSilver1Coin;
     public static readonly Image NormalSilver5Coin = Properties.Resources.NormalSilver5Coin;
@@ -38,10 +32,6 @@ internal class GameAssets
 
     public static readonly Image NormalBulletPlayer = Properties.Resources.NormalBulletPlayer;
     public static readonly Image NormalBulletEnemy = Properties.Resources.NormalBulletEnemy;
-
-
-
-
 
     public static readonly Image PixelSilver1Coin = Properties.Resources.PixelSilver1Coin;
     public static readonly Image PixelSilver5Coin = Properties.Resources.PixelSilver5Coin;
@@ -62,9 +52,4 @@ internal class GameAssets
     public static readonly Image SpecialPixelPlayerBullet = Properties.Resources.SpecialPixelPlayerBullet;
     public static readonly Image SpecialNormalPlayerBullet = Properties.Resources.SpecialNormalBulletPlayer;
     public static readonly Image QuestionMark = Properties.Resources.QuestionMark;
-
-
-
-
-
 }

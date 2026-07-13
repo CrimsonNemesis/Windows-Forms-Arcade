@@ -38,9 +38,9 @@ internal abstract class Bullet : GameObject
     public bool IsOutOfBounds()
     {
         return (this.Right < 0 ||
-                this.Left > MainForm.Instance.ClientSize.Width ||
+                this.Left > Game.Instance.ClientSize.Width ||
                 this.Bottom < 0 ||
-                this.Top > MainForm.Instance.ClientSize.Height);
+                this.Top > Game.Instance.ClientSize.Height);
     }
 }
 
