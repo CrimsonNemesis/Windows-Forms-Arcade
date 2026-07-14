@@ -45,9 +45,10 @@
             startGame.BackColor = Color.Lime;
             startGame.FlatStyle = FlatStyle.Popup;
             startGame.Font = new Font("Courier New", 22.2F, FontStyle.Bold);
-            startGame.Location = new Point(567, 260);
+            startGame.Location = new Point(514, 311);
+            startGame.Margin = new Padding(3, 4, 3, 4);
             startGame.Name = "startGame";
-            startGame.Size = new Size(168, 79);
+            startGame.Size = new Size(192, 105);
             startGame.TabIndex = 0;
             startGame.Text = "Start";
             startGame.UseVisualStyleBackColor = false;
@@ -59,9 +60,10 @@
             Shop.BackColor = Color.Yellow;
             Shop.FlatStyle = FlatStyle.Popup;
             Shop.Font = new Font("Courier New", 22.2F, FontStyle.Bold);
-            Shop.Location = new Point(567, 345);
+            Shop.Location = new Point(514, 424);
+            Shop.Margin = new Padding(3, 4, 3, 4);
             Shop.Name = "Shop";
-            Shop.Size = new Size(168, 79);
+            Shop.Size = new Size(192, 105);
             Shop.TabIndex = 1;
             Shop.Text = "Shop";
             Shop.UseVisualStyleBackColor = false;
@@ -73,9 +75,10 @@
             about.BackColor = Color.DarkCyan;
             about.FlatStyle = FlatStyle.Flat;
             about.Font = new Font("Courier New", 22.2F, FontStyle.Bold);
-            about.Location = new Point(567, 430);
+            about.Location = new Point(514, 537);
+            about.Margin = new Padding(3, 4, 3, 4);
             about.Name = "about";
-            about.Size = new Size(168, 79);
+            about.Size = new Size(192, 105);
             about.TabIndex = 2;
             about.Text = "About";
             about.UseVisualStyleBackColor = false;
@@ -87,9 +90,10 @@
             Exit.BackColor = Color.Tomato;
             Exit.FlatStyle = FlatStyle.Flat;
             Exit.Font = new Font("Courier New", 22.2F, FontStyle.Bold);
-            Exit.Location = new Point(567, 682);
+            Exit.Location = new Point(514, 873);
+            Exit.Margin = new Padding(3, 4, 3, 4);
             Exit.Name = "Exit";
-            Exit.Size = new Size(168, 79);
+            Exit.Size = new Size(192, 105);
             Exit.TabIndex = 3;
             Exit.Text = "Exit";
             Exit.UseVisualStyleBackColor = false;
@@ -101,9 +105,10 @@
             option.BackColor = Color.Thistle;
             option.FlatStyle = FlatStyle.Flat;
             option.Font = new Font("Courier New", 22.2F, FontStyle.Bold);
-            option.Location = new Point(567, 514);
+            option.Location = new Point(514, 649);
+            option.Margin = new Padding(3, 4, 3, 4);
             option.Name = "option";
-            option.Size = new Size(168, 79);
+            option.Size = new Size(192, 105);
             option.TabIndex = 4;
             option.Text = "Options";
             option.UseVisualStyleBackColor = false;
@@ -114,9 +119,10 @@
             pictureBox1.Anchor = AnchorStyles.Top;
             pictureBox1.BackColor = Color.Transparent;
             pictureBox1.Image = Properties.Resources.Title;
-            pictureBox1.Location = new Point(360, 37);
+            pictureBox1.Location = new Point(277, 13);
+            pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(565, 177);
+            pictureBox1.Size = new Size(646, 236);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 5;
             pictureBox1.TabStop = false;
@@ -127,10 +133,9 @@
             Back.BackColor = Color.Coral;
             Back.FlatStyle = FlatStyle.Flat;
             Back.Font = new Font("Courier New", 22.2F, FontStyle.Bold);
-            Back.Location = new Point(567, 598);
-            Back.Margin = new Padding(3, 2, 3, 2);
+            Back.Location = new Point(514, 761);
             Back.Name = "Back";
-            Back.Size = new Size(168, 79);
+            Back.Size = new Size(192, 105);
             Back.TabIndex = 6;
             Back.Text = "Back";
             Back.UseVisualStyleBackColor = false;
@@ -138,11 +143,11 @@
             // 
             // MainMenu
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.SpaceBackGround3;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1199, 562);
+            ClientSize = new Size(1188, 758);
             Controls.Add(Back);
             Controls.Add(option);
             Controls.Add(Exit);
@@ -151,6 +156,7 @@
             Controls.Add(startGame);
             Controls.Add(pictureBox1);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             Name = "MainMenu";
             FormClosing += MainMenu_FormClosing;

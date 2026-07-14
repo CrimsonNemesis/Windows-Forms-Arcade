@@ -50,14 +50,13 @@
             // 
             // playerScore
             // 
-            playerScore.Anchor = AnchorStyles.Left;
             playerScore.AutoSize = true;
             playerScore.BackColor = Color.Transparent;
             playerScore.Font = new Font("Simplified Arabic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             playerScore.ForeColor = Color.Chartreuse;
-            playerScore.Location = new Point(3, 95);
+            playerScore.Location = new Point(3, 106);
             playerScore.Name = "playerScore";
-            playerScore.Size = new Size(114, 41);
+            playerScore.Size = new Size(144, 49);
             playerScore.TabIndex = 3;
             playerScore.Text = "Score : 0";
             // 
@@ -67,24 +66,24 @@
             theCoins.BackColor = Color.Transparent;
             theCoins.Font = new Font("Simplified Arabic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             theCoins.ForeColor = Color.Gold;
-            theCoins.Location = new Point(920, 17);
+            theCoins.Location = new Point(1052, 23);
             theCoins.Name = "theCoins";
             theCoins.RightToLeft = RightToLeft.No;
-            theCoins.Size = new Size(244, 45);
+            theCoins.Size = new Size(279, 60);
             theCoins.TabIndex = 4;
             theCoins.Text = "0 : Gold Coins";
             theCoins.TextAlign = ContentAlignment.MiddleRight;
             // 
             // silCoins
             // 
-            silCoins.Anchor = AnchorStyles.Right;
+            silCoins.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             silCoins.BackColor = Color.Transparent;
             silCoins.Font = new Font("Simplified Arabic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             silCoins.ForeColor = Color.Silver;
-            silCoins.Location = new Point(920, 97);
+            silCoins.Location = new Point(1052, 106);
             silCoins.Name = "silCoins";
             silCoins.RightToLeft = RightToLeft.No;
-            silCoins.Size = new Size(244, 45);
+            silCoins.Size = new Size(279, 60);
             silCoins.TabIndex = 5;
             silCoins.Text = "0 : Silver Coins";
             silCoins.TextAlign = ContentAlignment.MiddleRight;
@@ -96,22 +95,22 @@
             wavey.BackColor = Color.Transparent;
             wavey.Font = new Font("Century", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             wavey.ForeColor = Color.Tomato;
-            wavey.Location = new Point(491, 16);
+            wavey.Location = new Point(574, 29);
             wavey.Name = "wavey";
-            wavey.Size = new Size(150, 38);
+            wavey.Size = new Size(185, 47);
             wavey.TabIndex = 6;
             wavey.Text = "WAVE 1";
             wavey.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // PowerUpPicBox
             // 
-            PowerUpPicBox.Anchor = AnchorStyles.Left;
+            PowerUpPicBox.Anchor = AnchorStyles.Top;
             PowerUpPicBox.BackColor = Color.Transparent;
             PowerUpPicBox.Image = Properties.Resources.TrippleShotBulletPowerUp;
-            PowerUpPicBox.Location = new Point(820, 4);
-            PowerUpPicBox.Margin = new Padding(3, 4, 3, 4);
+            PowerUpPicBox.Location = new Point(937, 5);
+            PowerUpPicBox.Margin = new Padding(3, 5, 3, 5);
             PowerUpPicBox.Name = "PowerUpPicBox";
-            PowerUpPicBox.Size = new Size(94, 72);
+            PowerUpPicBox.Size = new Size(107, 96);
             PowerUpPicBox.SizeMode = PictureBoxSizeMode.Zoom;
             PowerUpPicBox.TabIndex = 7;
             PowerUpPicBox.TabStop = false;
@@ -124,9 +123,9 @@
             PowerUpTimer.BackColor = Color.Transparent;
             PowerUpTimer.Font = new Font("Century", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             PowerUpTimer.ForeColor = Color.White;
-            PowerUpTimer.Location = new Point(720, 0);
+            PowerUpTimer.Location = new Point(823, 6);
             PowerUpTimer.Name = "PowerUpTimer";
-            PowerUpTimer.Size = new Size(77, 80);
+            PowerUpTimer.Size = new Size(97, 94);
             PowerUpTimer.TabIndex = 8;
             PowerUpTimer.Text = "label1";
             PowerUpTimer.TextAlign = ContentAlignment.MiddleCenter;
@@ -135,23 +134,23 @@
             // 
             healthBar.Anchor = AnchorStyles.Left;
             healthBar.BackColor = Color.Firebrick;
-            healthBar.Location = new Point(15, 24);
-            healthBar.Margin = new Padding(15, 3, 3, 3);
+            healthBar.Location = new Point(17, 37);
+            healthBar.Margin = new Padding(17, 4, 3, 4);
             healthBar.Name = "healthBar";
-            healthBar.Size = new Size(116, 24);
+            healthBar.Size = new Size(133, 32);
             healthBar.TabIndex = 9;
             // 
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.BackColor = Color.Transparent;
             tableLayoutPanel1.ColumnCount = 7;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 250F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 286F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 114F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 114F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 250F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 114F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 114F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 286F));
             tableLayoutPanel1.Controls.Add(healthBar, 0, 0);
             tableLayoutPanel1.Controls.Add(silCoins, 6, 1);
             tableLayoutPanel1.Controls.Add(PowerUpTimer, 4, 0);
@@ -162,26 +161,26 @@
             tableLayoutPanel1.Dock = DockStyle.Top;
             tableLayoutPanel1.ForeColor = Color.Transparent;
             tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Margin = new Padding(3, 4, 3, 4);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 2;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Size = new Size(1167, 160);
+            tableLayoutPanel1.Size = new Size(1334, 213);
             tableLayoutPanel1.TabIndex = 10;
             // 
             // Game
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Desktop;
             BackgroundImage = Properties.Resources.SpaceBackGround2;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1167, 697);
+            ClientSize = new Size(1334, 929);
             Controls.Add(tableLayoutPanel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             KeyPreview = true;
-            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "Game";
             Text = "Space Invaders";
