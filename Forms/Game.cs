@@ -9,6 +9,8 @@ public partial class Game : Base
     private double deltaTime = 0;
     private double timeScale = 0.25;
 
+    private bool isReturningToMenu = false;
+
     public Game()
     {
         Instance = this;
@@ -28,7 +30,6 @@ public partial class Game : Base
         SetupGame();
         gameTimer.Start();
         Timer.Start();
-
     }
 
     private void SetupGame()
@@ -92,12 +93,9 @@ public partial class Game : Base
         if (player.HealthPoint <= 0)
         {
             Player.HighScore = Math.Max(Player.CurrentScore, Player.HighScore);
-
             Player.SavePlayerDataToDb();
-
             GameOverPrompt prompt = new("You lost!");
             prompt.Show();
-
             return;
         }
 
@@ -244,6 +242,7 @@ public partial class Game : Base
             PowerUpTimer.Visible = true;
         }
     }
+
     private bool CheckEnemyDeath(Enemy enemy, int enemyIndex)
     {
         if (enemy.HealthPoint <= 0)
@@ -254,11 +253,8 @@ public partial class Game : Base
             Enemy.enemies.RemoveAt(enemyIndex);
             return true;
         }
-
         return false;
     }
-
-    
 
     private void MainFormKeyDown(object sender, KeyEventArgs e) => player.KeyDown(e);
     private void MainFormKeyUp(object sender, KeyEventArgs e) => player.KeyUp(e);
@@ -297,12 +293,22 @@ public partial class Game : Base
         {
             Timer.Stop();
 
+            gameTimer.Stop();
+
+            player?.ResetControls();
+
             TaskDialogButton result = pausePrmpt.Show();
 
             if (result == pausePrmpt.backBtn)
+            {
+                isReturningToMenu = true;
                 NavigationManager.LeaveGameAndGoToMenu(this);
+            }
             else
+            {
+                gameTimer.Restart();
                 Timer.Start();
+            }
         }
     }
 
@@ -314,7 +320,9 @@ public partial class Game : Base
 
     private void Game_FormClosing(object sender, FormClosingEventArgs e)
     {
-        Application.Exit();
-
+        if (!isReturningToMenu)
+        {
+            Application.Exit();
+        }
     }
 }

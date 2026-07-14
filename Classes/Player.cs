@@ -132,6 +132,15 @@ internal class Player : GameObject
         }
     }
 
+    public void ResetControls()
+    {
+        goLeft = false;
+        goRight = false;
+        goUp = false;
+        goDown = false;
+        isShooting = false;
+    }
+
     public bool CanShoot()
     {
         int currentCooldown = (DateTime.Now < FireRateEndTime) ? (CoolDown / 2) : CoolDown;
