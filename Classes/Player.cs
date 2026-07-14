@@ -20,9 +20,9 @@ internal class Player : GameObject
     public static bool HasSpecialSkin = false;
     public static bool tripleShoot = false;
 
-    public DateTime TripleShotEndTime { get; private set; } = DateTime.MinValue;
-    public DateTime ShieldEndTime { get; private set; } = DateTime.MinValue;
-    public DateTime FireRateEndTime { get; private set; } = DateTime.MinValue;
+    public DateTime TripleShotEndTime { get;  set; } = DateTime.MinValue;
+    public DateTime ShieldEndTime { get; set; } = DateTime.MinValue;
+    public DateTime FireRateEndTime { get;  set; } = DateTime.MinValue;
     public bool IsShielded => DateTime.Now < ShieldEndTime;
     public static Player Instance { get; private set; }
 

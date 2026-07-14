@@ -292,10 +292,11 @@ public partial class Game : Base
         if (e.KeyCode == Keys.Escape)
         {
             Timer.Stop();
-
             gameTimer.Stop();
-
             player?.ResetControls();
+
+            // ۱. زمان دقیق شروع پاز رو ذخیره می‌کنیم
+            DateTime pauseStartTime = DateTime.Now;
 
             TaskDialogButton result = pausePrmpt.Show();
 
@@ -306,6 +307,20 @@ public partial class Game : Base
             }
             else
             {
+                TimeSpan pausedDuration = DateTime.Now - pauseStartTime;
+
+                if (player != null)
+                {
+                    if (player.ShieldEndTime > pauseStartTime)
+                        player.ShieldEndTime += pausedDuration;
+
+                    if (player.FireRateEndTime > pauseStartTime)
+                        player.FireRateEndTime += pausedDuration;
+
+                    if (player.TripleShotEndTime > pauseStartTime)
+                        player.TripleShotEndTime += pausedDuration;
+                }
+
                 gameTimer.Restart();
                 Timer.Start();
             }
